@@ -1,9 +1,9 @@
 # Project3-team03
 
-# First Time Step
+## First Time Step
 
 Run `npm install`.
 
-# How to Run
+## How to Run
 
 Run `bin/run.sh`.
