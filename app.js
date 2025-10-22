@@ -1,11 +1,14 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const user = require("./src/routes/user");
 
 dotenv.config();
 
 const SERVER_PORT = process.env.SERVER_PORT;
 
 const app = express();
+
+app.use("/user", user);
 
 app.get("/", (req, res) => {
     res.send("Hello World");
