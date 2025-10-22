@@ -1,0 +1,26 @@
+{
+    "name": "project3-team03",
+    "version": "1.0.0",
+    "description": "Project 3 for CSCE331",
+    "homepage": "https://github.com/CSCE331-Fall2025-900-911/Project3-team03#readme",
+    "bugs": {
+        "url": "https://github.com/CSCE331-Fall2025-900-911/Project3-team03/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CSCE331-Fall2025-900-911/Project3-team03.git"
+    },
+    "license": "ISC",
+    "author": "",
+    "type": "commonjs",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "dotenv": "^17.2.3",
+        "ejs": "^3.1.10",
+        "express": "^5.1.0",
+        "pg": "^8.16.3"
+    }
+}
