@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const path = require("path");
 const user = require("./src/routes/user");
 
 dotenv.config();
@@ -10,8 +11,8 @@ const app = express();
 
 app.use("/user", user);
 
-app.get("/", (req, res) => {
-    res.send("Hello World");
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'src', 'public', 'hello.html'));
 });
 
 app.listen(SERVER_PORT, () =>
