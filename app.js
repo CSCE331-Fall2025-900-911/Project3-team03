@@ -11,8 +11,8 @@ const app = express();
 
 app.use("/user", user);
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src', 'public', 'LoginPage.html'));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "public", "LoginPage.html"));
 });
 
 app.listen(SERVER_PORT, () =>
