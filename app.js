@@ -9,10 +9,14 @@ const SERVER_PORT = process.env.SERVER_PORT;
 
 const app = express();
 
+app.set("view engine", "ejs");
+app.set("views", path.join(process.cwd(), "src/views"));
+app.use(express.static(path.join(process.cwd(), "src/public")));
+
 app.use("/user", user);
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "src", "public", "LoginPage.html"));
+    res.render("LandingPage", { title: "Hello from Yifang!" });
 });
 
 app.listen(SERVER_PORT, () =>
