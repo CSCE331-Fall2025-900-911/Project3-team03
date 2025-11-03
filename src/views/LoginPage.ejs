@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Employee Login</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .login-wrap { max-width: 640px; margin: 4rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .row { margin: 1rem 0; display: flex; align-items: center; gap: 1rem; }
+    .row label { width: 140px; font-weight: 700; }
+    input { flex: 1; padding: .6rem .8rem; border: 1px solid #d0d0d0; border-radius: 8px; }
+    button { padding: .7rem 1.2rem; border: 0; border-radius: 8px; cursor: pointer; font-weight: 700; }
+    .btn-primary { background:#111827; color:white; }
+  </style>
+</head>
+<body>
+  <div>
+    <h2>Employee Login</h2>
+
+    <form id="loginForm">
+      <div class="row">
+        <label for="employeeID">Employee Id:</label>
+        <input id="employeeID" name="employeeID" autocomplete="employeeID" required />
+      </div>
+
+      <div class="row">
+        <label for="password">Password:</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required />
+      </div>
+
+      <div class="row" style="justify-content:flex-start">
+        <button class="btn-primary" type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

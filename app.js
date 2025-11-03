@@ -30,6 +30,10 @@ app.get("/", (req, res) => {
     res.render("LandingPage", { title: "Hello from Yifang!" });
 });
 
+app.get("/login", (req, res) => {
+  res.render("LoginPage", { title: "Employee Login" });
+});
+
 app.get("/menu", (req, res) => {
     res.render("MenuPage", { title: "Yi Fang Tea - Menu" });
 });
