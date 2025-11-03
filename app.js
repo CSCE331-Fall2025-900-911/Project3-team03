@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(process.cwd(), "src/views"));
 app.use(express.static(path.join(process.cwd(), "src/public")));
 
-app.use("/user", user);
+app.use("/api", user);
 
 app.get("/", (req, res) => {
     res.render("LandingPage", { title: "Hello from Yifang!" });
