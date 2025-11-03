@@ -19,6 +19,10 @@ app.get("/", (req, res) => {
     res.render("LandingPage", { title: "Hello from Yifang!" });
 });
 
+app.get("/menu", (req, res) => {
+    res.render("MenuPage", { title: "Yi Fang Tea - Menu" });
+});
+
 app.listen(SERVER_PORT, () =>
     console.log(
         `App started on ${SERVER_PORT} | http://localhost:${SERVER_PORT}/`
