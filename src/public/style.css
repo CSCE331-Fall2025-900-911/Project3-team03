@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.main-header {
+    background-color: #F0E1C5;
+    padding: 1rem;
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo {
+    height: 60px;
+}
+
+.nav-left {
+    margin-bottom: 1rem;
+}
+
+.nav-left a {
+    margin-right: 1rem;
+}
+
+.menu-title {
+    text-align: center;
+    padding: 2rem;
+}
+
+.menu-title h1 {
+    margin-bottom: 1rem;
+}
+
+.menu-items {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.drink-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.drink {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 8px;
+}
+
+footer {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: #F0E1C5;
+    text-align: center;
+}
