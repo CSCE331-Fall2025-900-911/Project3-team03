@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../models/pool");
 
-router.get(async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const query = `
         SELECT 
