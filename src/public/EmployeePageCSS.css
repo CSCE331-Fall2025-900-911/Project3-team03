@@ -1,0 +1,7 @@
+.wrap { max-width: 960px; margin: 3rem auto; padding: 2rem; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+.card { padding: 2rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+.stack { display: grid; gap: 1rem; }
+.btn { display: inline-block; padding: 1rem 1.25rem; border-radius: 10px; font-weight: 700; text-align: center; }
+.btn-dark { background:#111827; color:#fff; }
+.logo { max-width: 220px; height: auto; display:block; margin: 0 auto; }

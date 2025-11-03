@@ -38,6 +38,10 @@ app.get("/menu", (req, res) => {
     res.render("MenuPage", { title: "Yi Fang Tea - Menu" });
 });
 
+app.get("/employee", (req, res) => {
+  res.render("EmployeePage", { title: "Employee Page" });
+});
+
 app.listen(SERVER_PORT, () =>
     console.log(
         `App started on ${SERVER_PORT} | http://localhost:${SERVER_PORT}/`
