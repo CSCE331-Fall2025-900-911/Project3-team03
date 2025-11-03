@@ -2,13 +2,25 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../models/pool");
 
-router.get("/", async (req, res) => {
+router.get("/:weekNumber", async (req, res) => {
   try {
-    const { start, end } = req.query;
-
-    if (!start || !end) {
-      return res.status(400).json({ error: "Missing start or end date" });
+    const { weekNumber } = req.params;
+    if (!weekNumber) {
+      return res.status(400).json({ error: "Missing week number" });
     }
+
+    const year = new Date().getFullYear();
+
+    const jan1 = new Date(year, 0, 1);
+    const daysOffset = (parseInt(weekNumber) - 1) * 7;
+    const startDate = new Date(jan1.getTime() + daysOffset * 24 * 60 * 60 * 1000);
+    const endDate = new Date(startDate.getTime() + 6 * 24 * 60 * 60 * 1000);
+
+    const formatDate = (d) => d.toISOString().split("T")[0];
+    const startStr = formatDate(startDate);
+    const endStr = formatDate(endDate);
+
+    console.log(`Week ${weekNumber}: ${startStr} → ${endStr}`);
 
     const query = `
       SELECT 
@@ -26,7 +38,7 @@ router.get("/", async (req, res) => {
       ORDER BY sold_count DESC;
     `;
 
-    const result = await pool.query(query, [start, end]);
+    const result = await pool.query(query, [startStr, endStr]);
     res.status(200).json(result.rows);
 
   } catch (error) {
