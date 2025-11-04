@@ -1,45 +1,89 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body { 
+    background: #FBF8F2;
+    font-family: 'Inter', sans-serif; 
+}
+
+.main-header {
+  background: #0B1320;
+  width: 100%;
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-header .logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-header .logo {
+  height: 60px;
+  display: block;
+}
+
 .login-wrap {
-  max-width: 640px;
+  max-width: 400px;
   margin: 4rem auto;
+  background: #fff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.login-wrap h2 {
+  margin-bottom: 1.5rem;
+  color: #111;
 }
 
 .row {
-  margin: 1rem 0;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
 }
 
-.row label {
-  width: 140px;
-  font-weight: 700;
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #111;
 }
 
 input {
-  flex: 1;
-  padding: .6rem .8rem;
-  border: 1px solid #d0d0d0;
+  width: 100%;
+  padding: 0.6rem 0.7rem;
   border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  outline: none;
 }
 
-/* Keep here in case you later switch back to a <button>. Not used by the link. */
-button {
-  padding: .7rem 1.2rem;
-  border: 0;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 700;
+input:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.15);
 }
 
-.btn-primary {
-  background: #111827;
-  color: white;
-}
-
-/* Replaces the inline style on the last row */
 .row-actions {
-  justify-content: flex-start;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.row-actions a {
+  display: inline-block;
+  padding: 0.75rem 1.6rem;
+  background: #111827;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.row-actions a:hover {
+  background: #1f2937;
+  transform: translateY(-2px);
 }
