@@ -42,6 +42,10 @@ app.get("/employee", (req, res) => {
   res.render("EmployeePage", { title: "Employee Page" });
 });
 
+app.get("/cashier", (req, res) => {
+  res.render("CashierPage", { title: "Cashier Page" });
+});
+
 app.listen(SERVER_PORT, () =>
     console.log(
         `App started on ${SERVER_PORT} | http://localhost:${SERVER_PORT}/`
