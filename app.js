@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("LoginPage", { title: "Employee Login" });
+    res.render("LoginPage", { title: "Employee Login" });
 });
 
 app.get("/menu", (req, res) => {
@@ -43,11 +43,11 @@ app.get("/menu", (req, res) => {
 });
 
 app.get("/employee", (req, res) => {
-  res.render("EmployeePage", { title: "Employee Page" });
+    res.render("EmployeePage", { title: "Employee Page" });
 });
 
 app.get("/cashier", (req, res) => {
-  res.render("CashierPage", { title: "Cashier Page" });
+    res.render("CashierPage", { title: "Cashier Page" });
 });
 
 app.listen(SERVER_PORT, () =>
