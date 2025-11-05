@@ -9,6 +9,8 @@ const weeklyInventory = require('./src/routes/weeklyInventory');
 const xreport = require('./src/routes/xreport');
 const inventory = require('./src/routes/inventory');
 const employees = require('./src/routes/employees');
+const cashierOrder = require('./src/routes/createOrder');
+const kioskOrder = require('./src/routes/createKioskOrder');
 
 dotenv.config();
 
@@ -29,6 +31,8 @@ app.use('/api/weeklyInventory', weeklyInventory);
 app.use('/api/xreport', xreport);
 app.use('/api/inventory', inventory);
 app.use('/api/employees', employees);
+app.use('/api/cashierOrder', cashierOrder);
+app.use('/api/kioskOrder', kioskOrder);
 
 app.get('/', (req, res) => {
     res.render('LandingPage', { title: 'Hello from Yifang!' });
