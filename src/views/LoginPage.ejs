@@ -40,9 +40,7 @@
                     />
                 </div>
 
-                <div class="row login-button">
-                    <a href="/employee">Login</a>
-                </div>
+                <button id="login" class="login-button" type="buttoncl">Login</button>
             </form>
         </div>
 
@@ -54,5 +52,38 @@
                 /></a>
             </div>
         </footer>
+
+        <script>
+            document.getElementById("login").addEventListener("click", async (e) => {
+                e.preventDefault();
+
+                const employeeId = document.getElementById("employeeID").value;
+                const password = document.getElementById("password").value;
+        
+                if (!employeeId || !password) {
+                    alert("Please fill out both Employee ID and Password!");
+                    return;
+                }
+
+                const res = await fetch("/api/login", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        employeeId : employeeId,
+                        password : password
+                    })
+                })
+
+                const data = await res.json();
+                console.log(data)
+
+                if(data.success){
+                    window.location.href = "/employee"
+                }
+                else{
+                    alert(data.message)
+                }
+            })
+        </script>
     </body>
 </html>

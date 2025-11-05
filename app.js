@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
+const bodyParser = require('body-parser');
 const user = require('./src/routes/user');
 const peak = require('./src/routes/peak');
 const profit = require('./src/routes/profit');
@@ -23,6 +24,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'src/views'));
 app.use(express.static(path.join(process.cwd(), 'src/public')));
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/user', user);
 app.use('/api/peak', peak);

@@ -11,17 +11,21 @@ router.post('/', async (req, res) => {
     const { employeeId, password } = req.body;
 
     if (employeeId == null || password == null) {
-        return res.status(400).send('Invalid Request');
+        return res
+            .status(400)
+            .send({ success: false, message: 'Invalid Request' });
     }
 
     if (
         !employeeExists(employeeId) ||
-        password === process.env.STORE_PASSWORD
+        password !== process.env.STORE_PASSWORD
     ) {
-        return res.send(401).send('Unauthorized');
+        return res
+            .status(401)
+            .send({ success: false, message: 'Unauthorized' });
     }
 
-    return res.send(200).send('Logged in!');
+    return res.status(200).send({ success: true, message: 'Logged in!' });
 });
 
 module.exports = router;

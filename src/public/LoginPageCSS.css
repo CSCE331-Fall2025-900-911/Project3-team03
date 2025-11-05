@@ -81,7 +81,7 @@ input:focus {
 }
 
 /* CSS for login button */
-.login-button a {
+.login-button {
     display: inline-block;
     padding: 0.75rem 1.6rem;
     background: #111827;
@@ -92,7 +92,7 @@ input:focus {
 }
 
 /* CSS for login button */
-.login-button a:hover {
+.login-button:hover {
     background: #1f2937;
     transform: translateY(-2px);
 }
