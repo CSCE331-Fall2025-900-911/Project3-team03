@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const pool = require("../models/pool");
+const pool = require('../models/pool');
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const query = `
         SELECT 
@@ -17,9 +17,9 @@ router.get("/", async (req, res) => {
         const result = await pool.query(query);
         res.status(200).json(result.rows);
     } catch (error) {
-        console.error("Error fetching profit data:", error);
-        res.status(500).json({ error: "Internal server error" });
+        console.error('Error fetching profit data:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
-})
+});
 
 module.exports = router;
