@@ -11,6 +11,7 @@ const inventory = require('./src/routes/inventory');
 const employees = require('./src/routes/employees');
 const cashierOrder = require('./src/routes/createOrder');
 const kioskOrder = require('./src/routes/createKioskOrder');
+const login = require('./src/routes/login');
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use('/api/inventory', inventory);
 app.use('/api/employees', employees);
 app.use('/api/cashierOrder', cashierOrder);
 app.use('/api/kioskOrder', kioskOrder);
+app.use('/api/login', login);
 
 app.get('/', (req, res) => {
     res.render('LandingPage', { title: 'Hello from Yifang!' });
@@ -42,8 +44,8 @@ app.get('/login', (req, res) => {
     res.render('LoginPage', { title: 'Employee Login' });
 });
 
-app.get("/menu", (req, res) => {
-    res.render("CustomerPage", { title: "Yi Fang Tea - Menu" });
+app.get('/menu', (req, res) => {
+    res.render('CustomerPage', { title: 'Yi Fang Tea - Menu' });
 });
 
 app.get('/employee', (req, res) => {
