@@ -37,7 +37,7 @@ app.use('/api/kioskOrder', kioskOrder);
 app.use('/api/login', login);
 
 app.get('/', (req, res) => {
-    res.render('LandingPage', { title: 'Hello from Yifang!' });
+    res.render('LandingPage', { title: 'Hello from Yifang!!' });
 });
 
 app.get('/login', (req, res) => {
