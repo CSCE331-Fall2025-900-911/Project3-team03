@@ -1,13 +1,21 @@
 /* expands the dark blue logo across whole page */
-html,
-body {
-    margin: 0;
-    padding: 0;
+html, body { 
+  margin: 0; 
+  padding: 0; 
+  height: 100%;
 }
 
 /* background color of website */
-body {
-    background: #fbf8f2;
+body { 
+  background: #FBF8F2; 
+    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* pushes banner to the bottom part of page */
+footer.header-container { 
+  margin-top: auto;
 }
 
 /* CSS for dark blue header */
@@ -30,8 +38,8 @@ body {
 
 /* Outer container that for white box  */
 .white-box-wrap {
-    max-width: 400px;
-    margin: 4rem auto;
+    width: min(90%, 400px);
+    margin: auto;
     background: #fff;
     padding: 2rem;
     border-radius: 12px;
