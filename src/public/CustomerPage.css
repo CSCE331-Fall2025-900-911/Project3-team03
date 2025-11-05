@@ -52,6 +52,24 @@ body {
 .menu-title{
   text-align:center;
   padding:2rem 1rem 1rem;
+  margin: 0 auto;
+  
+}
+
+/* CSS for button */
+.proceed-button{
+  position: absolute;
+  top: 7rem;
+  right: 1rem;
+  display:inline-block;
+  padding:1rem 2rem;
+  background:#111827;
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:600;
+  font-size:1.1rem;
+  transition:background-color .25s ease, transform .2s ease;
 }
 
 /* Group all drinks from the category */
@@ -108,24 +126,7 @@ body {
   font-weight:600; 
 }
 
-/* Organize button */
-.proceed-container{ 
-  text-align:center; 
-  margin:3rem 0; 
-}
 
-/* CSS for button */
-.proceed-button{
-  display:inline-block;
-  padding:1rem 2rem;
-  background:#111827;
-  color:#fff;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:600;
-  font-size:1.1rem;
-  transition:background-color .25s ease, transform .2s ease;
-}
 
 /* Popover button*/
 .drink-item button{
