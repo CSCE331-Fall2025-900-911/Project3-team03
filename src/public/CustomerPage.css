@@ -1,0 +1,136 @@
+/* expands the dark blue logo across whole page */
+html, body { 
+  margin: 0; 
+  padding: 0; 
+}
+
+/* background color of website */
+body { 
+  background: #FBF8F2; 
+}
+
+/* CSS for dark blue header */
+.header-container{
+  background:#0B1320;
+  color:#fff;
+  width:100%;
+  padding:12px 0;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* CSS for img of logo */
+.header-container .logo-container img.logo{
+  height:60px;
+  display:block;
+}
+
+
+/* Navigation for button */
+.nav-left{
+  position:absolute;
+  left:16px;
+}
+
+/* Button CSS */
+.nav-left button{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:8px;
+}
+
+/* Button CSS */
+.nav-left button:hover{ 
+  background:rgba(255,255,255,.08); 
+}
+
+/* Menu title CSS */
+.menu-title{
+  text-align:center;
+  padding:2rem 1rem 1rem;
+}
+
+/* Group all drinks from the category */
+.menu-items{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 1rem 2rem;
+}
+
+/* Organzie the group of drinks */
+.drink-items{
+  display:grid;
+  grid-template-columns:repeat(4, 260px);
+  justify-content:center;
+  gap:1.5rem;
+  margin:1.25rem 0 2.5rem;
+}
+
+/* Organize the group of drinks */
+.drink-item{
+  width:260px;
+  height:420px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  
+}
+
+/* CSS for individual drink */
+.drink{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  display:block;
+  box-shadow:0 16px 16px rgba(0,0,0,.35);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+
+/* CSS for individual drink */
+.drink:hover{
+  transform:scale(1.05);
+  box-shadow:0 12px 30px rgba(0,0,0,.45);
+}
+
+/* CSS for text */
+.price{ 
+  font-weight:600; 
+}
+
+/* Organize button */
+.proceed-container{ 
+  text-align:center; 
+  margin:3rem 0; 
+}
+
+/* CSS for button */
+.proceed-button{
+  display:inline-block;
+  padding:1rem 2rem;
+  background:#111827;
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:600;
+  font-size:1.1rem;
+  transition:background-color .25s ease, transform .2s ease;
+}
+
+.drink-item button{
+  all: unset;
+  display: block;
+  width: 100%;
+  height: 360px;
+}
+
+.drink-item button img{
+  display: block;
+  width: 100%;
+  height: 100%;
+}

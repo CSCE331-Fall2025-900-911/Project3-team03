@@ -39,7 +39,7 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/menu", (req, res) => {
-    res.render("MenuPage", { title: "Yi Fang Tea - Menu" });
+    res.render("CustomerPage", { title: "Yi Fang Tea - Menu" });
 });
 
 app.get("/employee", (req, res) => {
