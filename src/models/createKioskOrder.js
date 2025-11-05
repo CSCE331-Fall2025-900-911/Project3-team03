@@ -36,6 +36,7 @@ async function createKioskOrder(drinksInfo) {
 
     console.log(`Order ${orderId} created with total price ${totalPrice}`);
     (await worker).release();
+    return {orderId, totalPrice};
 }
 
 module.exports = {
