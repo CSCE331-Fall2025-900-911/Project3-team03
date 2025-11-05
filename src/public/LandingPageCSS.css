@@ -1,0 +1,73 @@
+/* expands the dark blue logo across whole page */
+html, body { 
+  margin: 0; 
+  padding: 0; 
+  height: 100%;
+}
+
+/* background color of website */
+body { 
+  background: #FBF8F2; 
+    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* pushes banner to the bottom part of page */
+footer.header-container { 
+  margin-top: auto;
+}
+
+/* CSS for dark blue header */
+.header-container{
+  background-color: #0b0d17;
+  color:#fff;
+  width:100%;
+  padding:12px 0;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* CSS for img of logo */
+.header-container .logo-container img.logo{
+  height:60px;
+  display:block;
+}
+
+/* Navigation for button */
+.nav-left{
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-left a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:8px;
+}
+
+.nav-left a:hover{ 
+  background:rgba(255,255,255,.08); 
+}
+
+/* Button CSS */
+.nav-left button{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:8px;
+}
+
+/* Button CSS */
+.nav-left button:hover{ 
+  background:rgba(255,255,255,.08); 
+}
