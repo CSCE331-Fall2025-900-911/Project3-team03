@@ -73,6 +73,78 @@ footer.header-container {
 }
 
 
+/* container for cart rectangle */
+.cart-wrap{
+  max-width: 960px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
 
+/* white rectangle  */
+.cart-card{
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 560px;            
+}
 
+/* The area inside the solid blue line */
+.cart-content{
+  flex: 1 1 auto;
+  min-height: 400px;          
+  border: 2px solid #0b0d17;    
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  margin-bottom: 1rem;
+}
 
+/* bottom row with total price and checkout button */
+.cart-bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Text for price */
+.cart-total{
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Attributes for cart-total */
+.cart-total-price{
+  margin-left: .5rem;
+  font-size: 1.05rem;
+}
+
+/* checkout button css */
+.complete-order{
+  border: none;
+  border-radius: 10px;
+  background: #111827;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease;
+  box-shadow: 0 10px 18px rgba(0,0,0,.15);
+}
+
+.complete-order:hover{
+  background: #1f2937;
+  transform: translateY(-2px);
+}
+
+.complete-order:active{
+  transform: translateY(0);
+}

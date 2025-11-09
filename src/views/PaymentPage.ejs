@@ -16,8 +16,35 @@
                 <a href="/"><img src="/logo.png" alt="logo" class="logo" /></a>
             </div>
         </header>
-        
+      
 
+        <!-- Cart container -->
+        <main class="cart-wrap">
+          <!-- all of the giant white rectangle -->
+          <section class="cart-card">
+            <!-- shows the all drinks, drink attributes, and their price -->
+             <!-- currently empty, idk how to do yet -->
+            <div id="cart-content" class="cart-content">
+
+            </div>
+            <!-- Bottom of the cart wrap, shows complete order button and total price -->
+            <div class="cart-bottom">
+              <div class="cart-total">
+                <span>Total</span>
+                <span class="cart-total-price">
+                  $<%= (typeof total === 'undefined') ? '0.00' : Number(total).toFixed(2) %>
+                </span>
+              </div>
+
+              <button
+                type="button"
+                class="complete-order"
+                onclick="location.href='/employee'">
+                Complete Order
+              </button>
+            </div>
+          </section>
+        </main>
 
         <!-- dark blue bar and logo -->
         <footer class="header-container">
