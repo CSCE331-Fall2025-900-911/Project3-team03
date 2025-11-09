@@ -1,297 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yi Fang Tea - Customer</title>
-  <link rel="stylesheet" href="/CustomerPage.css" />
-</head>
-<body>
-    <!-- dark blue bar and logo -->
-  <header class="header-container">
-    <nav class="nav-left">
-      <a href="/">Back to Home Page</a>
-    </nav>
-    <div class="logo-container">
-      <img src="/logo.png" alt="logo" class="logo" />
-    </div> 
-  </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Yi Fang Tea - Customer</title>
+        <link rel="stylesheet" href="/CustomerPage.css" />
+    </head>
+    <body>
+        <!-- dark blue bar and logo -->
+        <header class="header-container">
+            <nav class="nav-left">
+                <a href="/">Back to Home Page</a>
+            </nav>
+            <div class="logo-container">
+                <img src="/logo.png" alt="logo" class="logo" />
+            </div>
+        </header>
 
-  <div class="menu-title">
-    <h1>Drinks Menu</h1>
-    <p>Select drinks below and add them to the order.</p>
-    <a href="/payment" class="proceed-button">Proceed to Payment</a>
-  </div>
-
-  <!-- All drinks seperated in their category, showing name/price -->
-  <div class="menu-items">
-    <!-- Category: Tea -->
-    <h2>Tea Series</h2>
-    <div class="drink-items">
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/1.png" alt="Tea 1" class="drink" />
-        </button>
-        <p class="price">$5.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/2.png" alt="Tea 2" class="drink" />
-        </button>
-        <p class="price">$5.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/3.png" alt="Tea 3" class="drink" />
-        </button>
-        <p class="price">$5.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/4.png" alt="Tea 4" class="drink" />
-        </button>
-        <p class="price">$5.49</p>
-      </div>
-    </div>
-
-    <!-- Category: Fruit Tea -->
-    <h2>Fruit Tea Series</h2>
-    <div class="drink-items">
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/5.png" alt="Fruit Tea 5" class="drink" />
-        </button>
-        <p class="price">$5.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/6.png" alt="Fruit Tea 6" class="drink" />
-        </button>
-        <p class="price">$5.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/7.png" alt="Fruit Tea 7" class="drink" />
-        </button>
-        <p class="price">$5.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/8.png" alt="Fruit Tea 8" class="drink" />
-        </button>
-        <p class="price">$5.99</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/9.png" alt="Fruit Tea 9" class="drink" />
-        </button>
-        <p class="price">$5.99</p>
-      </div>
-    </div>
-
-    <!-- Category: Tea Latte -->
-    <h2>Tea Latte Series</h2>
-    <div class="drink-items">
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/10.png" alt="Latte 10" class="drink" />
-        </button>
-        <p class="price">$5.99</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/11.png" alt="Latte 11" class="drink" />
-        </button>
-        <p class="price">$6.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/12.png" alt="Latte 12" class="drink" />
-        </button>
-        <p class="price">$6.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/13.png" alt="Latte 13" class="drink" />
-        </button>
-        <p class="price">$6.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/14.png" alt="Latte 14" class="drink" />
-        </button>
-        <p class="price">$6.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/15.png" alt="Latte 15" class="drink" />
-        </button>
-        <p class="price">$6.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/16.png" alt="Latte 16" class="drink" />
-        </button>
-        <p class="price">$5.99</p>
-      </div>
-    </div>
-
-    <!-- Category: Traditional -->
-    <h2>Traditional Series</h2>
-    <div class="drink-items">
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/17.png" alt="Traditional 17" class="drink" />
-        </button>
-        <p class="price">$6.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/18.png" alt="Traditional 18" class="drink" />
-        </button>
-        <p class="price">$4.99</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/19.png" alt="Traditional 19" class="drink" />
-        </button>
-        <p class="price">$4.99</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/20.png" alt="Traditional 20" class="drink" />
-        </button>
-        <p class="price">$5.99</p>
-      </div>
-    </div>
-
-    <!-- Category: Seasonal -->
-    <h2>Seasonal Series</h2>
-    <div class="drink-items">
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/21.png" alt="Seasonal 21" class="drink" />
-        </button>
-        <p class="price">$5.99</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/22.png" alt="Seasonal 22" class="drink" />
-        </button>
-        <p class="price">$5.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/23.png" alt="Seasonal 23" class="drink" />
-        </button>
-        <p class="price">$5.49</p>
-      </div>
-      <div class="drink-item">
-        <button type="button" popovertarget="toppings" popovertargetaction="toggle">
-          <img src="/drinksImages/24.png" alt="Seasonal 24" class="drink" />
-        </button>
-        <p class="price">$5.99</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toppings Section-->
-  <div id="toppings" popover>
-      <div class="toppings-header">
-        <h2 class="toppings-title">Choose your toppings</h2>
-        <button class="toppings-close" popovertarget="toppings" popovertargetaction="hide">✕</button>
-      </div>
-
-      <div class="toppings-section">
-        <h3>Toppings</h3>
-        <div class="topping-grid">
-          <div class="topping">
-            <label>
-              <input type="checkbox" value="pearl">Pearl (+$0.5)</label>
-          </div>
-          <div class="topping">
-            <label>
-              <input type="checkbox" value="aloe">Aloe (+$0.5)</label>
-          </div>
-          <div class="topping">
-            <label>
-              <input type="checkbox" value="lychee-jelly">Lychee Jelly (+$0.5)</label>
-          </div>
-          <div class="topping">
-            <label>
-              <input type="checkbox" value="almond-jelly">Almond Jelly (+$0.5)</label>
-          </div>
-          <div class="topping">
-            <label>
-              <input type="checkbox" value="custard-pudding">Custard Pudding (+$0.5)</label>
-          </div>
-          <div class="topping">
-            <label>
-              <input type="checkbox" value="crystal-boba">Crystal Boba (+$0.5)</label>
-          </div>
-          <div class="topping">
-            <label>
-              <input type="checkbox" value="aiyu-jelly">Aiyu Jelly (+$0.5)</label>
-          </div>
-          <div class="topping">
-            <label>
-              <input type="checkbox" value="grass-jelly">Grass Jelly (+$0.5)</label>
-          </div>
-          <div class="topping">
-            <label>
-              <input type="checkbox" value="salty-cream">Salty Cream (+$0.5)</label>
-          </div>
+        <div class="menu-title">
+            <h1>Drinks Menu</h1>
+            <p>Select drinks below and add them to the order.</p>
+            <a href="/payment" class="proceed-button">Proceed to Payment</a>
         </div>
-      </div>
 
-      <div class="drink-attributes">
-        <h3>Drink Attributes</h3>
-        <div class="attribute">
-          <p class = "attribute-title"><strong>Select Size:</strong></p>
-          <label><input type="radio" name="size" value="small">Small</label>
-          <label><input type="radio" name="size" value="medium">Medium (+$0.5)</label>
-          <label><input type="radio" name="size" value="large">Large (+$1.5)</label>
-        </div>
-        <div class="attribute">
-          <p class = "attribute-title"><strong>Select Temp:</strong></p>
-          <label><input type="radio" name="temp" value="hot">Hot</label>
-          <label><input type="radio" name="temp" value="cold">Cold</label>
-        </div>
-        <div class="attribute">
-          <p class = "attribute-title"><strong>Sugar Level:</strong></p>
-          <label><input type="radio" name="sugar" value="0">0%</label>
-          <label><input type="radio" name="sugar" value="25">25%</label>
-          <label><input type="radio" name="sugar" value="50">50%</label>
-          <label><input type="radio" name="sugar" value="75">75%</label>
-          <label><input type="radio" name="sugar" value="100">100%</label>
-        </div>
-        <div class="attribute">
-          <p class = "attribute-title"><strong>Ice Level:</strong></p>
-          <label><input type="radio" name="ice" value="0">0%</label>
-          <label><input type="radio" name="ice" value="25">25%</label>
-          <label><input type="radio" name="ice" value="50">50%</label>
-          <label><input type="radio" name="ice" value="75">75%</label>
-          <label><input type="radio" name="ice" value="100">100%</label>
-        </div>
-        <div class="attribute">
-          <p class = "attribute-title"><strong>Milk type:</strong></p>
-          <label><input type="radio" name="milk" value="soy">Soy (+$1.0)</label>
-          <label><input type="radio" name="milk" value="oat">Oat (+$1.0)</label>
-          <label><input type="radio" name="milk" value="original">Original</label>
-        </div>
-      </div>
+        <!-- All drinks seperated in their category, showing name/price -->
+        <div class="menu-items">
+            <!-- Category: Tea -->
+            <h2>Tea Series</h2>
+            <div class="drink-items">
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/1.png" alt="Tea 1" class="drink" />
+                    </button>
+                    <p class="price">$5.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/2.png" alt="Tea 2" class="drink" />
+                    </button>
+                    <p class="price">$5.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/3.png" alt="Tea 3" class="drink" />
+                    </button>
+                    <p class="price">$5.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/4.png" alt="Tea 4" class="drink" />
+                    </button>
+                    <p class="price">$5.49</p>
+                </div>
+            </div>
 
-      <div class="toppings-footer">
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-  </div>
+            <!-- Category: Fruit Tea -->
+            <h2>Fruit Tea Series</h2>
+            <div class="drink-items">
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/5.png" alt="Fruit Tea 5" class="drink" />
+                    </button>
+                    <p class="price">$5.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/6.png" alt="Fruit Tea 6" class="drink" />
+                    </button>
+                    <p class="price">$5.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/7.png" alt="Fruit Tea 7" class="drink" />
+                    </button>
+                    <p class="price">$5.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/8.png" alt="Fruit Tea 8" class="drink" />
+                    </button>
+                    <p class="price">$5.99</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/9.png" alt="Fruit Tea 9" class="drink" />
+                    </button>
+                    <p class="price">$5.99</p>
+                </div>
+            </div>
 
-  <!-- dark blue bar and logo -->
-  <footer class="header-container">
-    <div class="logo-container">
-      <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
-    </div>
-  </footer>
+            <!-- Category: Tea Latte -->
+            <h2>Tea Latte Series</h2>
+            <div class="drink-items">
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/10.png" alt="Latte 10" class="drink" />
+                    </button>
+                    <p class="price">$5.99</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/11.png" alt="Latte 11" class="drink" />
+                    </button>
+                    <p class="price">$6.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/12.png" alt="Latte 12" class="drink" />
+                    </button>
+                    <p class="price">$6.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/13.png" alt="Latte 13" class="drink" />
+                    </button>
+                    <p class="price">$6.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/14.png" alt="Latte 14" class="drink" />
+                    </button>
+                    <p class="price">$6.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/15.png" alt="Latte 15" class="drink" />
+                    </button>
+                    <p class="price">$6.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/16.png" alt="Latte 16" class="drink" />
+                    </button>
+                    <p class="price">$5.99</p>
+                </div>
+            </div>
 
-</body>
+            <!-- Category: Traditional -->
+            <h2>Traditional Series</h2>
+            <div class="drink-items">
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/17.png" alt="Traditional 17" class="drink" />
+                    </button>
+                    <p class="price">$6.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/18.png" alt="Traditional 18" class="drink" />
+                    </button>
+                    <p class="price">$4.99</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/19.png" alt="Traditional 19" class="drink" />
+                    </button>
+                    <p class="price">$4.99</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/20.png" alt="Traditional 20" class="drink" />
+                    </button>
+                    <p class="price">$5.99</p>
+                </div>
+            </div>
+
+            <!-- Category: Seasonal -->
+            <h2>Seasonal Series</h2>
+            <div class="drink-items">
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/21.png" alt="Seasonal 21" class="drink" />
+                    </button>
+                    <p class="price">$5.99</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/22.png" alt="Seasonal 22" class="drink" />
+                    </button>
+                    <p class="price">$5.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/23.png" alt="Seasonal 23" class="drink" />
+                    </button>
+                    <p class="price">$5.49</p>
+                </div>
+                <div class="drink-item">
+                    <button type="button" popovertarget="toppings" popovertargetaction="toggle">
+                        <img src="/drinksImages/24.png" alt="Seasonal 24" class="drink" />
+                    </button>
+                    <p class="price">$5.99</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toppings Section-->
+        <div id="toppings" popover>
+            <div class="toppings-header">
+                <h2 class="toppings-title">Choose your toppings</h2>
+                <button class="toppings-close" popovertarget="toppings" popovertargetaction="hide">
+                    ✕
+                </button>
+            </div>
+
+            <div class="toppings-section">
+                <h3>Toppings</h3>
+                <div class="topping-grid">
+                    <div class="topping">
+                        <label> <input type="checkbox" value="pearl" />Pearl (+$0.5)</label>
+                    </div>
+                    <div class="topping">
+                        <label> <input type="checkbox" value="aloe" />Aloe (+$0.5)</label>
+                    </div>
+                    <div class="topping">
+                        <label>
+                            <input type="checkbox" value="lychee-jelly" />Lychee Jelly
+                            (+$0.5)</label
+                        >
+                    </div>
+                    <div class="topping">
+                        <label>
+                            <input type="checkbox" value="almond-jelly" />Almond Jelly
+                            (+$0.5)</label
+                        >
+                    </div>
+                    <div class="topping">
+                        <label>
+                            <input type="checkbox" value="custard-pudding" />Custard Pudding
+                            (+$0.5)</label
+                        >
+                    </div>
+                    <div class="topping">
+                        <label>
+                            <input type="checkbox" value="crystal-boba" />Crystal Boba
+                            (+$0.5)</label
+                        >
+                    </div>
+                    <div class="topping">
+                        <label>
+                            <input type="checkbox" value="aiyu-jelly" />Aiyu Jelly (+$0.5)</label
+                        >
+                    </div>
+                    <div class="topping">
+                        <label>
+                            <input type="checkbox" value="grass-jelly" />Grass Jelly (+$0.5)</label
+                        >
+                    </div>
+                    <div class="topping">
+                        <label>
+                            <input type="checkbox" value="salty-cream" />Salty Cream (+$0.5)</label
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="drink-attributes">
+                <h3>Drink Attributes</h3>
+                <div class="attribute">
+                    <p class="attribute-title"><strong>Select Size:</strong></p>
+                    <label><input type="radio" name="size" value="small" />Small</label>
+                    <label><input type="radio" name="size" value="medium" />Medium (+$0.5)</label>
+                    <label><input type="radio" name="size" value="large" />Large (+$1.5)</label>
+                </div>
+                <div class="attribute">
+                    <p class="attribute-title"><strong>Select Temp:</strong></p>
+                    <label><input type="radio" name="temp" value="hot" />Hot</label>
+                    <label><input type="radio" name="temp" value="cold" />Cold</label>
+                </div>
+                <div class="attribute">
+                    <p class="attribute-title"><strong>Sugar Level:</strong></p>
+                    <label><input type="radio" name="sugar" value="0" />0%</label>
+                    <label><input type="radio" name="sugar" value="25" />25%</label>
+                    <label><input type="radio" name="sugar" value="50" />50%</label>
+                    <label><input type="radio" name="sugar" value="75" />75%</label>
+                    <label><input type="radio" name="sugar" value="100" />100%</label>
+                </div>
+                <div class="attribute">
+                    <p class="attribute-title"><strong>Ice Level:</strong></p>
+                    <label><input type="radio" name="ice" value="0" />0%</label>
+                    <label><input type="radio" name="ice" value="25" />25%</label>
+                    <label><input type="radio" name="ice" value="50" />50%</label>
+                    <label><input type="radio" name="ice" value="75" />75%</label>
+                    <label><input type="radio" name="ice" value="100" />100%</label>
+                </div>
+                <div class="attribute">
+                    <p class="attribute-title"><strong>Milk type:</strong></p>
+                    <label><input type="radio" name="milk" value="soy" />Soy (+$1.0)</label>
+                    <label><input type="radio" name="milk" value="oat" />Oat (+$1.0)</label>
+                    <label><input type="radio" name="milk" value="original" />Original</label>
+                </div>
+            </div>
+
+            <div class="toppings-footer">
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- dark blue bar and logo -->
+        <footer class="header-container">
+            <div class="logo-container">
+                <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
+            </div>
+        </footer>
+    </body>
 </html>
