@@ -21,10 +21,11 @@ const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 const app = express();
 
+app.use('/js', express.static(path.join(process.cwd(), 'src/public/js')));
+app.use('/drinksImages', express.static(path.join(process.cwd(), 'src/public/drinksImages')));
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'src/views'));
-app.use(express.static(path.join(process.cwd(), 'src/public')));
-app.use(express.static(path.join(process.cwd(), 'src/public/js')));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
