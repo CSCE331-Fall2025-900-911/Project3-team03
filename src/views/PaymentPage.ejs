@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Payment</title>
-          <link rel="stylesheet" href="/PaymentPageCSS.css" />
+        <link rel="stylesheet" href="/PaymentPageCSS.css" />
     </head>
     <body>
         <!-- dark blue bar and logo -->
@@ -16,34 +16,33 @@
                 <a href="/"><img src="/logo.png" alt="logo" class="logo" /></a>
             </div>
         </header>
-      
 
         <!-- Cart container -->
         <main class="cart-wrap">
-          <!-- all of the giant white rectangle -->
-          <section class="cart-card">
-            <!-- shows the all drinks, drink attributes, and their price -->
-             <!-- currently empty, idk how to do yet -->
-            <div id="cart-content" class="cart-content">
+            <!-- all of the giant white rectangle -->
+            <section class="cart-card">
+                <!-- shows the all drinks, drink attributes, and their price -->
+                <!-- currently empty, idk how to do yet -->
+                <div id="cart-content" class="cart-content"></div>
+                <!-- Bottom of the cart wrap, shows complete order button and total price -->
+                <div class="cart-bottom">
+                    <div class="cart-total">
+                        <span>Total</span>
+                        <span class="cart-total-price">
+                            $<%= (typeof total === 'undefined') ? '0.00' : Number(total).toFixed(2)
+                            %>
+                        </span>
+                    </div>
 
-            </div>
-            <!-- Bottom of the cart wrap, shows complete order button and total price -->
-            <div class="cart-bottom">
-              <div class="cart-total">
-                <span>Total</span>
-                <span class="cart-total-price">
-                  $<%= (typeof total === 'undefined') ? '0.00' : Number(total).toFixed(2) %>
-                </span>
-              </div>
-
-              <button
-                type="button"
-                class="complete-order"
-                onclick="location.href='/employee'">
-                Complete Order
-              </button>
-            </div>
-          </section>
+                    <button
+                        type="button"
+                        class="complete-order"
+                        onclick="location.href='/employee'"
+                    >
+                        Complete Order
+                    </button>
+                </div>
+            </section>
         </main>
 
         <!-- dark blue bar and logo -->
@@ -53,26 +52,25 @@
             </div>
         </footer>
 
+        <script type="module">
+            import { renderCartInto, dollars, computePrice, getCart, clearCart } from '/js/cart.js';
 
-<script type="module">
-  import { renderCartInto, dollars, computePrice, getCart, clearCart } from '/client/cart.js';
+            const container = document.getElementById('cart-content');
+            const { total } = renderCartInto(container);
 
-  const container = document.getElementById('cart-content');
-  const { total } = renderCartInto(container);
+            // Initialize total on first load
+            const totalNode = document.querySelector('.cart-total-price');
+            totalNode.textContent = `$${dollars(
+                getCart().reduce((s, it) => s + computePrice(it.basePrice, it), 0)
+            )}`;
 
-  // Initialize total on first load
-  const totalNode = document.querySelector('.cart-total-price');
-  totalNode.textContent = `$${dollars(getCart().reduce((s, it) => s + computePrice(it.basePrice, it), 0))}`;
-
-  // "Complete Order" currently just navigates away.
-  // If you want it to also clear the cart (so cashier gets fresh cart on next order), do this:
-  const completeBtn = document.querySelector('.complete-order');
-  completeBtn.addEventListener('click', () => {
-    clearCart();
-    // Then navigate (your existing onclick can stay, this just ensures clear first)
-  });
-</script>
-
-
+            // "Complete Order" currently just navigates away.
+            // If you want it to also clear the cart (so cashier gets fresh cart on next order), do this:
+            const completeBtn = document.querySelector('.complete-order');
+            completeBtn.addEventListener('click', () => {
+                clearCart();
+                // Then navigate (your existing onclick can stay, this just ensures clear first)
+            });
+        </script>
     </body>
 </html>
