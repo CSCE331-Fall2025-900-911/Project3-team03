@@ -29,8 +29,23 @@ body {
 
 /* Navigation for button */
 .nav-left{
-  position:absolute;
-  left:16px;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-left a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:8px;
+}
+
+.nav-left a:hover{ 
+  background:rgba(255,255,255,.08); 
 }
 
 /* Button CSS */
@@ -339,4 +354,3 @@ body {
 
 .add-to-cart:hover {transform:scale(1.05);}
 .add-to-cart:active {transform: translateY(1px);}
-
