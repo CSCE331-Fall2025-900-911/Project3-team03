@@ -21,7 +21,7 @@ const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 const app = express();
 
-app.use('/js', express.static(path.join(process.cwd(), 'src/client/js')));
+app.use('/js', express.static(path.join(process.cwd(), 'src/public/client/js')));
 app.use(express.static(path.join(process.cwd(), 'src/public')));
 
 app.set('view engine', 'ejs');
