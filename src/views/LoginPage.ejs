@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -10,9 +10,7 @@
         <!-- dark blue bar and logo -->
         <header class="header-container">
             <div class="logo-container">
-                <a href="/"
-                    ><img src="/logo.png" alt="Yi Fang Logo" class="logo"
-                /></a>
+                <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
             </div>
         </header>
 
@@ -21,12 +19,7 @@
             <form id="loginForm">
                 <div class="row">
                     <label for="employeeID">Employee ID:</label>
-                    <input
-                        id="employeeID"
-                        name="employeeID"
-                        autocomplete="employeeID"
-                        required
-                    />
+                    <input id="employeeID" name="employeeID" autocomplete="employeeID" required />
                 </div>
 
                 <div class="row">
@@ -47,43 +40,40 @@
         <!-- dark blue bar and logo -->
         <footer class="header-container">
             <div class="logo-container">
-                <a href="/"
-                    ><img src="/logo.png" alt="Yi Fang Logo" class="logo"
-                /></a>
+                <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
             </div>
         </footer>
 
         <script>
-            document.getElementById("login").addEventListener("click", async (e) => {
+            document.getElementById('login').addEventListener('click', async (e) => {
                 e.preventDefault();
 
-                const employeeId = document.getElementById("employeeID").value;
-                const password = document.getElementById("password").value;
-        
+                const employeeId = document.getElementById('employeeID').value;
+                const password = document.getElementById('password').value;
+
                 if (!employeeId || !password) {
-                    alert("Please fill out both Employee ID and Password!");
+                    alert('Please fill out both Employee ID and Password!');
                     return;
                 }
 
-                const res = await fetch("/api/login", {
-                    method: "POST",
+                const res = await fetch('/api/login', {
+                    method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        employeeId : employeeId,
-                        password : password
-                    })
-                })
+                        employeeId: employeeId,
+                        password: password,
+                    }),
+                });
 
                 const data = await res.json();
-                console.log(data)
+                console.log(data);
 
-                if(data.success){
-                    window.location.href = "/employee"
+                if (data.success) {
+                    window.location.href = '/employee';
+                } else {
+                    alert(data.message);
                 }
-                else{
-                    alert(data.message)
-                }
-            })
+            });
         </script>
     </body>
 </html>

@@ -1,0 +1,150 @@
+/* expands the dark blue logo across whole page */
+html, body { 
+  margin: 0; 
+  padding: 0; 
+  height: 100%;
+}
+
+/* background color of website */
+body { 
+  background: #FBF8F2; 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* pushes banner to the bottom part of page */
+footer.header-container { 
+  margin-top: auto;
+}
+
+/* CSS for dark blue header */
+.header-container{
+  background-color: #0b0d17;
+  color:#fff;
+  width:100%;
+  padding:12px 0;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* CSS for img of logo */
+.header-container .logo-container img.logo{
+  height:60px;
+  display:block;
+}
+
+/* Navigation for button */
+.nav-left{
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-left a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:8px;
+}
+
+.nav-left a:hover{ 
+  background:rgba(255,255,255,.08); 
+}
+
+/* Button CSS */
+.nav-left button{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:8px;
+}
+
+/* Button CSS */
+.nav-left button:hover{ 
+  background:rgba(255,255,255,.08); 
+}
+
+
+/* container for cart rectangle */
+.cart-wrap{
+  max-width: 960px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* white rectangle  */
+.cart-card{
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 560px;            
+}
+
+/* The area inside the solid blue line */
+.cart-content{
+  flex: 1 1 auto;
+  min-height: 400px;          
+  border: 2px solid #0b0d17;    
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  margin-bottom: 1rem;
+}
+
+/* bottom row with total price and checkout button */
+.cart-bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Text for price */
+.cart-total{
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Attributes for cart-total */
+.cart-total-price{
+  margin-left: .5rem;
+  font-size: 1.05rem;
+}
+
+/* checkout button css */
+.complete-order{
+  border: none;
+  border-radius: 10px;
+  background: #111827;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease;
+  box-shadow: 0 10px 18px rgba(0,0,0,.15);
+}
+
+.complete-order:hover{
+  background: #1f2937;
+  transform: translateY(-2px);
+}
+
+.complete-order:active{
+  transform: translateY(0);
+}

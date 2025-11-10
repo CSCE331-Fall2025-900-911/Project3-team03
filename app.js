@@ -14,9 +14,10 @@ const cashierOrder = require('./src/routes/createOrder');
 const kioskOrder = require('./src/routes/createKioskOrder');
 const login = require('./src/routes/login');
 
+
 dotenv.config();
 
-const SERVER_PORT = process.env.SERVER_PORT;
+const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 const app = express();
 
@@ -67,3 +68,7 @@ app.listen(SERVER_PORT, () =>
         `App started on ${SERVER_PORT} | http://localhost:${SERVER_PORT}/`
     )
 );
+
+app.get('/manager', (req, res) => {
+  res.render('ManagerPage', { title: 'Manager Dashboard' });
+});
