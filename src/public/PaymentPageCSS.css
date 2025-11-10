@@ -188,3 +188,18 @@ footer.header-container {
 .complete-order:active{
   transform: translateY(0);
 }
+
+.cart-line-right{
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-right: 0.5rem;             
+}
+
+.cart-line-thumb{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  box-shadow: 0 6px 12px rgba(0,0,0,.12);
+  display: block;
+}

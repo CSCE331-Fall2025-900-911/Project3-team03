@@ -116,8 +116,14 @@ export function renderCartInto(container) {
       }
     });
 
+    const thumb = document.createElement('img');
+    thumb.className = 'cart-line-thumb';
+    thumb.src = item.imgSrc || `/drinksImages/${item.drinkId}.png`;
+    thumb.alt = item.name || 'Drink';
+
     right.appendChild(priceEl);
     right.appendChild(removeBtn);
+    right.appendChild(thumb);
 
     line.appendChild(left);
     line.appendChild(right);

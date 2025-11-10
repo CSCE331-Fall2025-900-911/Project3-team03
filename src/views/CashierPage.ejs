@@ -315,7 +315,9 @@
                     pendingDrink = {
                         drinkId: Number(btn.getAttribute('drink-id')),
                         name: btn.dataset.name,
-                        basePrice: Number(btn.dataset.price)
+                        basePrice: Number(btn.dataset.price),
+                        imgSrc: btn.querySelector('img')?.getAttribute('src') || `/drinksImages/${btn.getAttribute('drink-id')}.png`
+
                 };
                 const scope = document.getElementById('toppings');
                 scope.querySelectorAll('input[type="checkbox"]').forEach(i => i.checked = false);
@@ -372,7 +374,8 @@
                     sugar: pick('sugar'),
                     ice: pick('ice'),
                     milk: pick('milk'),
-                    toppings
+                    toppings,
+                    imgSrc: pendingDrink.imgSrc
             };
 
             addToCart(item);
