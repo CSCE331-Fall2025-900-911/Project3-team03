@@ -1,0 +1,10 @@
+{
+    "builds": [
+        { "src": "app.js", "use": "@vercel/node" },
+        { "src": "src/public/js/cart.js", "use": "@vercel/static" }
+    ],
+    "routes": [
+        { "src": "/js/cart.js", "dest": "src/public/js/cart.js" },
+        { "src": "/(.*)", "dest": "app.js" }
+    ]
+}
