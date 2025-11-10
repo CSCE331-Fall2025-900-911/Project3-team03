@@ -55,24 +55,8 @@
         <script type="module">
             import { renderCartInto, dollars, computePrice, getCart, clearCart } from '/js/cart.js';
 
-<script type="module">
-  import { renderCartInto, dollars, computePrice, getCart, clearCart } from '/js/cart.js';
-
-  const container = document.getElementById('cart-content');
-  const { total } = renderCartInto(container);
-
-  // Initialize total on first load
-  const totalNode = document.querySelector('.cart-total-price');
-  totalNode.textContent = `$${dollars(getCart().reduce((s, it) => s + computePrice(it.basePrice, it), 0))}`;
-
-  // "Complete Order" currently just navigates away.
-  // If you want it to also clear the cart (so cashier gets fresh cart on next order), do this:
-  const completeBtn = document.querySelector('.complete-order');
-  completeBtn.addEventListener('click', () => {
-    clearCart();
-    // Then navigate (your existing onclick can stay, this just ensures clear first)
-  });
-</script>
+            const container = document.getElementById('cart-content');
+            const { total } = renderCartInto(container);
 
             // Initialize total on first load
             const totalNode = document.querySelector('.cart-total-price');
