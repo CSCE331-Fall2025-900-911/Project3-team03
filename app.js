@@ -67,3 +67,7 @@ app.listen(SERVER_PORT, () =>
         `App started on ${SERVER_PORT} | http://localhost:${SERVER_PORT}/`
     )
 );
+
+app.get('/manager', (req, res) => {
+  res.render('ManagerPage', { title: 'Manager Dashboard' });
+});
