@@ -43,7 +43,6 @@ export function renderCartInto(container) {
   const cart = getCart();
   container.innerHTML = '';
   if (cart.length === 0) {
-    container.innerHTML = `<p class="empty">Cart is empty.</p>`;
     return { total: 0 };
   }
 
