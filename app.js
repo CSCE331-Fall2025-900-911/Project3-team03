@@ -13,6 +13,7 @@ const employees = require('./src/routes/employees');
 const cashierOrder = require('./src/routes/createOrder');
 const kioskOrder = require('./src/routes/createKioskOrder');
 const login = require('./src/routes/login');
+const fs = require('fs');
 
 
 dotenv.config();
@@ -38,6 +39,10 @@ app.use('/api/employees', employees);
 app.use('/api/cashierOrder', cashierOrder);
 app.use('/api/kioskOrder', kioskOrder);
 app.use('/api/login', login);
+
+app.get('/routes/cart.js', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src/routes/cart.js'));
+});
 
 app.get('/', (req, res) => {
     res.render('LandingPage', { title: 'Hello from Yifang!!' });

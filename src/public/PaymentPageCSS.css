@@ -103,6 +103,29 @@ footer.header-container {
   justify-content: center;
   background: #ffffff;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  overflow: auto;
+  padding-left: 2rem;   
+  padding-right: 2rem;
+}
+
+/* each line takes full width inside the column */
+.cart-line{
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-line:last-child{
+  border-bottom: none;
 }
 
 /* bottom row with total price and checkout button */
@@ -125,6 +148,23 @@ footer.header-container {
 .cart-total-price{
   margin-left: .5rem;
   font-size: 1.05rem;
+}
+
+
+.cart-line-name {
+  color: #000;         
+  font-weight: 700;
+}
+
+.cart-line-attrs {
+  color: #6b7280;      
+  font-size: 0.92rem;
+  margin-top: 0.25rem;
+  line-height: 1.35;
+}
+
+.cart-line-right{
+  gap: 1rem;           
 }
 
 /* checkout button css */
