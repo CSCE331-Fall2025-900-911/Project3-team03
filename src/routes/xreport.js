@@ -7,9 +7,7 @@ router.put('/', async (req, res) => {
         const { date, created_by, content } = req.body;
 
         if (!date || !created_by || !content) {
-            return res
-                .status(400)
-                .json({ error: 'Missing date, created_by, or content' });
+            return res.status(400).json({ error: 'Missing date, created_by, or content' });
         }
 
         const query = `
@@ -18,11 +16,7 @@ router.put('/', async (req, res) => {
       RETURNING id, name, created_at;
     `;
 
-        const result = await pool.query(query, [
-            `X-Report ${date}`,
-            created_by,
-            content,
-        ]);
+        const result = await pool.query(query, [`X-Report ${date}`, created_by, content]);
 
         res.status(201).json({
             message: 'X-Report created successfully',
