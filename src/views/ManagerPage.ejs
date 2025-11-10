@@ -1,124 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Manager Dashboard</title>
-    <link rel="stylesheet" href="/ManagerPageCSS.css" />
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body>
-    <!-- Top bar -->
-    <header class="header-container">
-      <div class="logo-container">
-        <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
-      </div>
-      <nav class="nav">
-        <a class="nav-link" href="/employee">Employee</a>
-        <a class="nav-link active" href="/manager">Manager</a>
-        <a class="nav-link" href="/cashier">Cashier</a>
-        <a class="nav-link" href="/menu">Menu</a>
-      </nav>
-    </header>
-
-    <main class="container">
-      <h1 class="page-title">Manager Dashboard</h1>
-
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="sales">Sales</button>
-        <button class="tab-btn" data-tab="profit">Profit</button>
-        <button class="tab-btn" data-tab="inventory">Inventory</button>
-        <button class="tab-btn" data-tab="employees">Employees</button>
-      </div>
-
-      <!-- Sales -->
-      <section id="tab-sales" class="tab active">
-        <div class="grid">
-          <div class="card">
-            <h2>Sales by Drink</h2>
-            <table class="table" id="sales-table">
-              <thead>
-                <tr><th>Drink ID</th><th>Sales</th></tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <div class="card">
-            <h2>Sales Chart</h2>
-            <canvas id="sales-chart" height="220"></canvas>
-          </div>
-        </div>
-      </section>
-
-      <!-- Profit -->
-      <section id="tab-profit" class="tab">
-        <div class="grid">
-          <div class="card">
-            <h2>Revenue & Orders</h2>
-            <table class="table" id="profit-table">
-              <thead>
-                <tr><th>Drink ID</th><th>Revenue (avg/wk)</th><th>Total Orders</th></tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <div class="card">
-            <h2>Top Revenue (Bar)</h2>
-            <canvas id="profit-chart" height="220"></canvas>
-          </div>
-        </div>
-      </section>
-
-      <!-- Inventory -->
-      <section id="tab-inventory" class="tab">
-        <div class="grid">
-          <div class="card">
-            <h2>Inventory by Category</h2>
-            <table class="table" id="inventory-table">
-              <thead>
-                <tr><th>Category</th><th>Items</th></tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <div class="card">
-            <h2>Weekly Inventory Snapshot</h2>
-            <div class="controls">
-              <label for="weekNumber">Week #</label>
-              <input id="weekNumber" type="number" min="1" max="53" value="1" />
-              <button id="load-week" class="button">Load</button>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Manager Dashboard</title>
+        <link rel="stylesheet" href="/ManagerPageCSS.css" />
+        <!-- Chart.js CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <!-- Top bar -->
+        <header class="header-container">
+            <div class="logo-container">
+                <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
             </div>
-            <table class="table" id="weekly-table">
-              <thead>
-                <tr><th>Date</th><th>Item</th><th>Prev Qty</th><th>Current Qty</th></tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+            <nav class="nav">
+                <a class="nav-link" href="/employee">Employee</a>
+                <a class="nav-link active" href="/manager">Manager</a>
+                <a class="nav-link" href="/cashier">Cashier</a>
+                <a class="nav-link" href="/menu">Menu</a>
+            </nav>
+        </header>
 
-      <!-- Employees -->
-      <section id="tab-employees" class="tab">
-        <div class="card">
-          <h2>Employees</h2>
-          <table class="table" id="employees-table">
-            <thead>
-              <tr><th>ID</th><th>Name</th><th>Permissions</th><th>Gender</th></tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </section>
-    </main>
+        <main class="container">
+            <h1 class="page-title">Manager Dashboard</h1>
 
-    <footer class="header-container">
-      <div class="logo-container">
-        <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
-      </div>
-    </footer>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="sales">Sales</button>
+                <button class="tab-btn" data-tab="profit">Profit</button>
+                <button class="tab-btn" data-tab="inventory">Inventory</button>
+                <button class="tab-btn" data-tab="employees">Employees</button>
+            </div>
 
-    <script src="/ManagerPage.js"></script>
-  </body>
+            <!-- Sales -->
+            <section id="tab-sales" class="tab active">
+                <div class="grid">
+                    <div class="card">
+                        <h2>Sales by Drink</h2>
+                        <table class="table" id="sales-table">
+                            <thead>
+                                <tr>
+                                    <th>Drink ID</th>
+                                    <th>Sales</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <h2>Sales Chart</h2>
+                        <canvas id="sales-chart" height="220"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profit -->
+            <section id="tab-profit" class="tab">
+                <div class="grid">
+                    <div class="card">
+                        <h2>Revenue & Orders</h2>
+                        <table class="table" id="profit-table">
+                            <thead>
+                                <tr>
+                                    <th>Drink ID</th>
+                                    <th>Revenue (avg/wk)</th>
+                                    <th>Total Orders</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <h2>Top Revenue (Bar)</h2>
+                        <canvas id="profit-chart" height="220"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inventory -->
+            <section id="tab-inventory" class="tab">
+                <div class="grid">
+                    <div class="card">
+                        <h2>Inventory by Category</h2>
+                        <table class="table" id="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Items</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <h2>Weekly Inventory Snapshot</h2>
+                        <div class="controls">
+                            <label for="weekNumber">Week #</label>
+                            <input id="weekNumber" type="number" min="1" max="53" value="1" />
+                            <button id="load-week" class="button">Load</button>
+                        </div>
+                        <table class="table" id="weekly-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Item</th>
+                                    <th>Prev Qty</th>
+                                    <th>Current Qty</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Employees -->
+            <section id="tab-employees" class="tab">
+                <div class="card">
+                    <h2>Employees</h2>
+                    <table class="table" id="employees-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Permissions</th>
+                                <th>Gender</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer class="header-container">
+            <div class="logo-container">
+                <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
+            </div>
+        </footer>
+
+        <script src="/js/managerPage.js"></script>
+    </body>
 </html>
