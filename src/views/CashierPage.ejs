@@ -23,377 +23,396 @@
             <a href="/payment" class="proceed-button">Proceed to Payment</a>
         </div>
 
-        <!-- All drinks seperated in their category, showing name/price -->
+        <!-- All drinks showing name/price -->
         <div class="menu-items">
-            <!-- Category: Tea -->
-            <h2>Tea Series</h2>
-            <div class="drink-items">
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="1"
-                        data-name="Puchong Green Tea"
-                        data-price="5.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/1.png" alt="Puchong Green Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="2"
-                        data-name="Lugu Oolong Tea"
-                        data-price="5.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/2.png" alt="Lugu Oolong Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="3"
-                        data-name="Sun Moon Lake Black Tea"
-                        data-price="5.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img
-                            src="/drinksImages/3.png"
-                            alt="Sun Moon Lake Black Tea"
-                            class="drink"
-                        />
-                    </button>
-                    <p class="price">$5.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="4"
-                        data-name="Songboling Mountain Tea"
-                        data-price="5.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img
-                            src="/drinksImages/4.png"
-                            alt="Songboling Mountain Tea"
-                            class="drink"
-                        />
-                    </button>
-                    <p class="price">$5.49</p>
-                </div>
+            <!-- Drinks seperated by tabs -->
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-tab="tea">Tea Series</button>
+                <button class="menu-tab" data-tab="fruit-tea">Fruit Tea Series</button>
+                <button class="menu-tab" data-tab="tea-latte">Tea Latte Series</button>
+                <button class="menu-tab" data-tab="traditional">Traditional Series</button>
+                <button class="menu-tab" data-tab="seasonal">Seasonal Series</button>
             </div>
 
-            <!-- Category: Fruit Tea -->
-            <h2>Fruit Tea Series</h2>
-            <div class="drink-items">
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="5"
-                        data-name="Yi Fang Fruit Tea"
-                        data-price="5.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/5.png" alt="Yi Fang Fruit Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.49</p>
+            <section class="tab-panel active" data-tab="tea">
+                <!-- Category: Tea -->
+                <h2>Tea Series</h2>
+                <div class="drink-items">
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="1"
+                            data-name="Puchong Green Tea"
+                            data-price="5.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/1.png" alt="Puchong Green Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="2"
+                            data-name="Lugu Oolong Tea"
+                            data-price="5.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/2.png" alt="Lugu Oolong Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="3"
+                            data-name="Sun Moon Lake Black Tea"
+                            data-price="5.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img
+                                src="/drinksImages/3.png"
+                                alt="Sun Moon Lake Black Tea"
+                                class="drink"
+                            />
+                        </button>
+                        <p class="price">$5.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="4"
+                            data-name="Songboling Mountain Tea"
+                            data-price="5.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img
+                                src="/drinksImages/4.png"
+                                alt="Songboling Mountain Tea"
+                                class="drink"
+                            />
+                        </button>
+                        <p class="price">$5.49</p>
+                    </div>
                 </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="6"
-                        data-name="Mango Fruit Tea"
-                        data-price="5.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/6.png" alt="Mango Fruit Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="7"
-                        data-name="Lemon Green Tea"
-                        data-price="5.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/7.png" alt="Lemon Green Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="8"
-                        data-name="Passion Fruit Green Tea"
-                        data-price="5.99"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img
-                            src="/drinksImages/8.png"
-                            alt="Passion Fruit Green Tea"
-                            class="drink"
-                        />
-                    </button>
-                    <p class="price">$5.99</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="9"
-                        data-name="Lychee Fruit Tea"
-                        data-price="5.99"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/9.png" alt="Lychee Fruit Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.99</p>
-                </div>
-            </div>
+            </section>
 
-            <!-- Category: Tea Latte -->
-            <h2>Tea Latte Series</h2>
-            <div class="drink-items">
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="10"
-                        data-name="Brown Sugar Pearl Latte"
-                        data-price="5.99"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img
-                            src="/drinksImages/10.png"
-                            alt="Brown Sugar Pearl Latte"
-                            class="drink"
-                        />
-                    </button>
-                    <p class="price">$5.99</p>
+            <section class="tab-panel" data-tab="fruit-tea">
+                <!-- Category: Fruit Tea -->
+                <h2>Fruit Tea Series</h2>
+                <div class="drink-items">
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="5"
+                            data-name="Yi Fang Fruit Tea"
+                            data-price="5.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/5.png" alt="Yi Fang Fruit Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="6"
+                            data-name="Mango Fruit Tea"
+                            data-price="5.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/6.png" alt="Mango Fruit Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="7"
+                            data-name="Lemon Green Tea"
+                            data-price="5.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/7.png" alt="Lemon Green Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="8"
+                            data-name="Passion Fruit Green Tea"
+                            data-price="5.99"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img
+                                src="/drinksImages/8.png"
+                                alt="Passion Fruit Green Tea"
+                                class="drink"
+                            />
+                        </button>
+                        <p class="price">$5.99</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="9"
+                            data-name="Lychee Fruit Tea"
+                            data-price="5.99"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/9.png" alt="Lychee Fruit Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.99</p>
+                    </div>
                 </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="11"
-                        data-name="Kyoto Uji Matcha Latte"
-                        data-price="6.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img
-                            src="/drinksImages/11.png"
-                            alt="Kyoto Uji Matcha Latte"
-                            class="drink"
-                        />
-                    </button>
-                    <p class="price">$6.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="12"
-                        data-name="Brown Sugar Pearl Matcha Latte"
-                        data-price="6.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img
-                            src="/drinksImages/12.png"
-                            alt="Brown Sugar Pearl Matcha Latte"
-                            class="drink"
-                        />
-                    </button>
-                    <p class="price">$6.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="13"
-                        data-name="Red Bean Matcha Latte"
-                        data-price="6.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/13.png" alt="Red Bean Matcha Latte" class="drink" />
-                    </button>
-                    <p class="price">$6.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="14"
-                        data-name="Brown Sugar Pearl Coco Latte"
-                        data-price="6.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img
-                            src="/drinksImages/14.png"
-                            alt="Brown Sugar Pearl Coco Latte"
-                            class="drink"
-                        />
-                    </button>
-                    <p class="price">$6.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="15"
-                        data-name="Red Bean Matcha Latte"
-                        data-price="6.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/15.png" alt="Red Bean Matcha Latte" class="drink" />
-                    </button>
-                    <p class="price">$6.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="16"
-                        data-name="Red Bean Purple Rice Coconut Latte"
-                        data-price="5.99"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img
-                            src="/drinksImages/16.png"
-                            alt="Red Bean Purple Rice Coconut Latte"
-                            class="drink"
-                        />
-                    </button>
-                    <p class="price">$5.99</p>
-                </div>
-            </div>
+            </section>
 
-            <!-- Category: Traditional -->
-            <h2>Traditional Series</h2>
-            <div class="drink-items">
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="17"
-                        data-name="Grass Jelly Milk Tea"
-                        data-price="6.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/17.png" alt="Grass Jelly Milk Tea" class="drink" />
-                    </button>
-                    <p class="price">$6.49</p>
+            <section class="tab-panel" data-tab="tea-latte">
+                <!-- Category: Tea Latte -->
+                <h2>Tea Latte Series</h2>
+                <div class="drink-items">
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="10"
+                            data-name="Brown Sugar Pearl Latte"
+                            data-price="5.99"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img
+                                src="/drinksImages/10.png"
+                                alt="Brown Sugar Pearl Latte"
+                                class="drink"
+                            />
+                        </button>
+                        <p class="price">$5.99</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="11"
+                            data-name="Kyoto Uji Matcha Latte"
+                            data-price="6.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img
+                                src="/drinksImages/11.png"
+                                alt="Kyoto Uji Matcha Latte"
+                                class="drink"
+                            />
+                        </button>
+                        <p class="price">$6.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="12"
+                            data-name="Brown Sugar Pearl Matcha Latte"
+                            data-price="6.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img
+                                src="/drinksImages/12.png"
+                                alt="Brown Sugar Pearl Matcha Latte"
+                                class="drink"
+                            />
+                        </button>
+                        <p class="price">$6.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="13"
+                            data-name="Red Bean Matcha Latte"
+                            data-price="6.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/13.png" alt="Red Bean Matcha Latte" class="drink" />
+                        </button>
+                        <p class="price">$6.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="14"
+                            data-name="Brown Sugar Pearl Coco Latte"
+                            data-price="6.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img
+                                src="/drinksImages/14.png"
+                                alt="Brown Sugar Pearl Coco Latte"
+                                class="drink"
+                            />
+                        </button>
+                        <p class="price">$6.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="15"
+                            data-name="Red Bean Matcha Latte"
+                            data-price="6.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/15.png" alt="Red Bean Matcha Latte" class="drink" />
+                        </button>
+                        <p class="price">$6.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="16"
+                            data-name="Red Bean Purple Rice Coconut Latte"
+                            data-price="5.99"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img
+                                src="/drinksImages/16.png"
+                                alt="Red Bean Purple Rice Coconut Latte"
+                                class="drink"
+                            />
+                        </button>
+                        <p class="price">$5.99</p>
+                    </div>
                 </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="18"
-                        data-name="Winter Melon Tea"
-                        data-price="4.99"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/18.png" alt="Winter Melon Tea" class="drink" />
-                    </button>
-                    <p class="price">$4.99</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="19"
-                        data-name="Grass Tea"
-                        data-price="4.99"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/19.png" alt="Grass Tea" class="drink" />
-                    </button>
-                    <p class="price">$4.99</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="20"
-                        data-name="Tradtional Milk Tea"
-                        data-price="5.99"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/20.png" alt="Tradtional Milk Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.99</p>
-                </div>
-            </div>
+            </section>
 
-            <!-- Category: Seasonal -->
-            <h2>Seasonal Series</h2>
-            <div class="drink-items">
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="21"
-                        data-name="Longan Ginger Tea"
-                        data-price="5.99"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/21.png" alt="Longan Ginger Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.99</p>
+            <section class="tab-panel" data-tab="traditional">
+                <!-- Category: Traditional -->
+                <h2>Traditional Series</h2>
+                <div class="drink-items">
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="17"
+                            data-name="Grass Jelly Milk Tea"
+                            data-price="6.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/17.png" alt="Grass Jelly Milk Tea" class="drink" />
+                        </button>
+                        <p class="price">$6.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="18"
+                            data-name="Winter Melon Tea"
+                            data-price="4.99"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/18.png" alt="Winter Melon Tea" class="drink" />
+                        </button>
+                        <p class="price">$4.99</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="19"
+                            data-name="Grass Tea"
+                            data-price="4.99"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/19.png" alt="Grass Tea" class="drink" />
+                        </button>
+                        <p class="price">$4.99</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="20"
+                            data-name="Tradtional Milk Tea"
+                            data-price="5.99"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/20.png" alt="Tradtional Milk Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.99</p>
+                    </div>
                 </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="22"
-                        data-name="Lemon Green Tea"
-                        data-price="5.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/22.png" alt="Lemon Green Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="23"
-                        data-name="Ginger Tea"
-                        data-price="5.49"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/23.png" alt="Ginger Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.49</p>
-                </div>
-                <div class="drink-item">
-                    <button
-                        type="button"
-                        drink-id="24"
-                        data-name="Pearl Ginger Milk Tea"
-                        data-price="5.99"
-                        popovertarget="toppings"
-                        popovertargetaction="toggle"
-                    >
-                        <img src="/drinksImages/24.png" alt="Pearl Ginger Milk Tea" class="drink" />
-                    </button>
-                    <p class="price">$5.99</p>
+            </section>
+
+            <section class="tab-panel" data-tab="seasonal">
+                <!-- Category: Seasonal -->
+                <h2>Seasonal Series</h2>
+                <div class="drink-items">
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="21"
+                            data-name="Longan Ginger Tea"
+                            data-price="5.99"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/21.png" alt="Longan Ginger Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.99</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="22"
+                            data-name="Lemon Green Tea"
+                            data-price="5.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/22.png" alt="Lemon Green Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="23"
+                            data-name="Ginger Tea"
+                            data-price="5.49"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/23.png" alt="Ginger Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.49</p>
+                    </div>
+                    <div class="drink-item">
+                        <button
+                            type="button"
+                            drink-id="24"
+                            data-name="Pearl Ginger Milk Tea"
+                            data-price="5.99"
+                            popovertarget="toppings"
+                            popovertargetaction="toggle"
+                        >
+                            <img src="/drinksImages/24.png" alt="Pearl Ginger Milk Tea" class="drink" />
+                        </button>
+                        <p class="price">$5.99</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Toppings Section-->
         <div id="toppings" popover>
@@ -504,12 +523,29 @@
             </div>
         </footer>
 
-        <!-- Lets a cashier click a drink, pick attributes, and add that configured drink to the cart stored in localStorage -->
         <script type="module">
             import { addToCart } from '/js/cart.js';
 
             let pendingDrink = null;
 
+            // Tab switching
+            const tabButtons = document.querySelectorAll('.menu-tab');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            tabButtons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const target = btn.dataset.tab;
+
+                    tabButtons.forEach((b) => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    tabPanels.forEach((panel) => {
+                        panel.classList.toggle('active', panel.dataset.tab === target);
+                    });
+                });
+            });
+
+            // Lets a cashier click a drink, pick attributes, and add that configured drink to the cart stored in localStorage 
             document.querySelectorAll('button[drink-id]').forEach((btn) => {
                 btn.addEventListener('click', () => {
                     pendingDrink = {

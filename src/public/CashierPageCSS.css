@@ -87,6 +87,38 @@ body {
   transition:background-color .25s ease, transform .2s ease;
 }
 
+/* CSS for tabs */
+.menu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.menu-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 800px;
+  background: #f9fafb;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.menu-tab.active {
+  background: #111827;
+  color: #fff;
+}
+
+/* Displays 1 tab at a time */
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
 /* Group all drinks from the category */
 .menu-items{
   max-width:1200px;
