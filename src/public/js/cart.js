@@ -1,4 +1,3 @@
-// ----- Cart storage helpers (localStorage) -----
 const CART_KEY = 'yf_cart_v1';
 
 export function getCart() {
@@ -22,12 +21,10 @@ export function clearCart() {
     localStorage.removeItem(CART_KEY);
 }
 
-// ----- Money helpers -----
 export function dollars(num) {
     return Number(num).toFixed(2);
 }
 
-// Price adjustments (keep in one place so both pages use same rules)
 export const PRICING = {
     toppingEach: 0.5,
     milkAdders: { soy: 1.0, oat: 1.0, original: 0 },
@@ -41,7 +38,6 @@ export function computePrice(basePrice, { size, milk, toppings }) {
     return Number(basePrice) + sizeAdd + milkAdd + topsAdd;
 }
 
-// Optional: render list items on Payment page
 export function renderCartInto(container) {
     const cart = getCart();
     container.innerHTML = '';
@@ -54,11 +50,9 @@ export function renderCartInto(container) {
     cart.forEach((item, idx) => {
         const price = computePrice(item.basePrice, item);
 
-        // <div class="cart-line">
         const line = document.createElement('div');
         line.className = 'cart-line';
 
-        // LEFT
         const left = document.createElement('div');
         left.className = 'cart-line-left';
 
@@ -69,7 +63,6 @@ export function renderCartInto(container) {
         const attrsEl = document.createElement('div');
         attrsEl.className = 'cart-line-attrs';
 
-        // one attribute per line (toppings optional)
         const attrTexts = [
             item.size ? `Size: ${item.size}` : null,
             item.temp ? `Temperature: ${item.temp}` : null,
@@ -79,7 +72,6 @@ export function renderCartInto(container) {
             item.toppings && item.toppings.length ? `Toppings: ${item.toppings.join(', ')}` : null,
         ].filter(Boolean);
 
-        // create <div> for each attribute line
         if (attrTexts.length === 0) {
             const d = document.createElement('div');
             d.textContent = 'No attributes selected';
@@ -95,7 +87,6 @@ export function renderCartInto(container) {
         left.appendChild(nameEl);
         left.appendChild(attrsEl);
 
-        // RIGHT
         const right = document.createElement('div');
         right.className = 'cart-line-right';
 
