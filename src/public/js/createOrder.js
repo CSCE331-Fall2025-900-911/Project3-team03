@@ -5,6 +5,32 @@ async function createOrder() {
         return alert('Nothing to order!');
     }
 
+    const isEmployee = getCookie('loggedIn') != null;
+
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
+    let data = {
+        drinksInfo: await cleanDrinkOrder(drinkOrder),
+    };
+
+    if (isEmployee) {
+        data.employeeId = getCookie('loggedIn');
+    }
+
+    const endpoint = isEmployee ? '/api/cashierOrder' : '/api/kioskOrder';
+
+    await fetch(endpoint, {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(data),
+    })
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+}
+
+async function cleanDrinkOrder(drinkOrder) {
     for (let drink of drinkOrder) {
         drink.drink_id = drink.drinkId;
         drink.ice = Number.parseInt(drink.ice);
@@ -21,20 +47,12 @@ async function createOrder() {
         drink.toppings = transformedToppings;
     }
 
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    return drinkOrder;
+}
 
-    const data = JSON.stringify({
-        employeeId: '1',
-        drinksInfo: drinkOrder,
-    });
-
-    await fetch('/api/cashierOrder', {
-        method: 'POST',
-        headers: myHeaders,
-        body: data,
-    })
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.error(error));
+function getCookie(name) {
+    return document.cookie
+        .split('; ')
+        .find((row) => row.startsWith(name + '='))
+        ?.split('=')[1];
 }
