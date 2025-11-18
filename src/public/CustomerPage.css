@@ -299,12 +299,21 @@ body {
 .drink-attributes{
   margin-top: 14px;
 }
+.phone-number {
+  margin-top: 14px;
+}
 
 .toppings-section{
   margin-top: 14px;
 }
 
 .drink-attributes > h3{
+  margin: 0 0 10px 0;
+  font-size: 1.05rem;
+  color: #532e1d;
+}
+
+.phone-number > h3{
   margin: 0 0 10px 0;
   font-size: 1.05rem;
   color: #532e1d;
