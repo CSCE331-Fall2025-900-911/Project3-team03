@@ -12,8 +12,7 @@ async function createOrder(employeeId, drinksInfo) {
     const orderId = res.rows[0].id;
 
     for (const drink of drinksInfo) {
-        let { drinkId, attributeId, toppingId, drinkPrice } =
-            await parseDrinkOrder(worker, drink);
+        let { drinkId, attributeId, toppingId, drinkPrice } = await parseDrinkOrder(worker, drink);
 
         await worker.query(
             'INSERT INTO drink_order (order_id, drink_id, attributes_id, toppings_id, price) VALUES ($1,$2,$3,$4,$5)',
@@ -36,7 +35,7 @@ async function createOrder(employeeId, drinksInfo) {
 
     console.log(`Order ${orderId} created with total price ${totalPrice}`);
     (await worker).release();
-    return {orderId, totalPrice};
+    return { orderId, totalPrice };
 }
 
 module.exports = {
