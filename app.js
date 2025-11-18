@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -22,6 +23,7 @@ const SERVER_PORT = process.env.SERVER_PORT || 3000;
 const app = express();
 
 app.use(express.static(path.join(process.cwd(), 'src/public')));
+app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'src/views'));
@@ -48,7 +50,7 @@ app.get('/', (req, res) => {
     res.render('LandingPage', { title: 'Hello from Yifang!!' });
 });
 
-app.get('/login', (req, res) => {
+app.get('/login', loginNotAllowed, (req, res) => {
     res.render('LoginPage', { title: 'Employee Login' });
 });
 
@@ -56,11 +58,11 @@ app.get('/menu', (req, res) => {
     res.render('CustomerPage', { title: 'Yi Fang Tea - Menu' });
 });
 
-app.get('/employee', (req, res) => {
+app.get('/employee', requireLogin, (req, res) => {
     res.render('EmployeePage', { title: 'Employee Page' });
 });
 
-app.get('/cashier', (req, res) => {
+app.get('/cashier', requireLogin, (req, res) => {
     res.render('CashierPage', { title: 'Cashier Page' });
 });
 
@@ -68,10 +70,24 @@ app.get('/payment', (req, res) => {
     res.render('PaymentPage', { title: 'Payment Page' });
 });
 
+app.get('/manager', requireLogin, (req, res) => {
+    res.render('ManagerPage', { title: 'Manager Dashboard' });
+});
+
+function requireLogin(req, res, next) {
+    if (!req.cookies.loggedIn) {
+        return res.redirect('/login');
+    }
+    next();
+}
+
+function loginNotAllowed(req, res, next) {
+    if (req.cookies.loggedIn) {
+        return res.redirect('/employee');
+    }
+    next();
+}
+
 app.listen(SERVER_PORT, () =>
     console.log(`App started on ${SERVER_PORT} | http://localhost:${SERVER_PORT}/`)
 );
-
-app.get('/manager', (req, res) => {
-    res.render('ManagerPage', { title: 'Manager Dashboard' });
-});
