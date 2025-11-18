@@ -4,7 +4,7 @@ const { createKioskOrder } = require('../models/createKioskOrder');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    if (!req.body.drinksInfo) {
+    if (!req.body || !req.body.drinksInfo) {
         return res.status(400).send('Invalid Request');
     }
 
