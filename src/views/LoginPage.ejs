@@ -70,13 +70,16 @@
 
                 if (data.success) {
                     window.location.href = '/employee';
+                    document.cookie = 'loggedIn=true; path=/; max-age=86400';
                 } else {
                     alert(data.message);
                 }
             });
         </script>
         <script>
-            try { localStorage.removeItem('yf_cart_v1'); } catch (e) {}
+            try {
+                localStorage.removeItem('yf_cart_v1');
+            } catch (e) {}
         </script>
     </body>
 </html>
