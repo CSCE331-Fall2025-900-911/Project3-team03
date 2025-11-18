@@ -28,6 +28,12 @@ async function createOrder() {
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.error(error));
+
+    if (isEmployee) {
+        window.location.href = '/employee';
+    } else {
+        window.location.href = '/';
+    }
 }
 
 async function cleanDrinkOrder(drinkOrder) {
