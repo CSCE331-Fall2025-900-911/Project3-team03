@@ -5,31 +5,38 @@ async function createOrder() {
         return alert('Nothing to order!');
     }
 
-    const isEmployee = getCookie('loggedIn') != null;
+    const jwtInfo = await fetch('/api/jwt', {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getCookie('authToken')}`,
+        },
+    });
 
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    const employeeId = jwtInfo.json().employeeId;
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
 
     let data = {
         drinksInfo: await cleanDrinkOrder(drinkOrder),
     };
 
-    if (isEmployee) {
-        data.employeeId = getCookie('loggedIn');
+    if (employeeId) {
+        jwtInfo.employeeId = employeeId;
     }
 
-    const endpoint = isEmployee ? '/api/cashierOrder' : '/api/kioskOrder';
+    const endpoint = employeeId ? '/api/cashierOrder' : '/api/kioskOrder';
 
     await fetch(endpoint, {
         method: 'POST',
-        headers: myHeaders,
+        headers: headers,
         body: JSON.stringify(data),
     })
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.error(error));
 
-    if (isEmployee) {
+    if (jwtInfo) {
         window.location.href = '/employee';
     } else {
         window.location.href = '/';

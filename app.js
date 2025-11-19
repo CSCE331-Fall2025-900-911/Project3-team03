@@ -15,6 +15,10 @@ const cashierOrder = require('./src/routes/createOrder');
 const kioskOrder = require('./src/routes/createKioskOrder');
 const login = require('./src/routes/login');
 const wiki = require('./src/routes/wiki');
+const auth = require('./src/routes/auth');
+const callback = require('./src/routes/callback');
+const jwtAPI = require('./src/routes/jwt');
+const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 dotenv.config();
@@ -43,6 +47,9 @@ app.use('/api/employees', employees);
 app.use('/api/cashierOrder', cashierOrder);
 app.use('/api/kioskOrder', kioskOrder);
 app.use('/api/login', login);
+app.use('/api/auth/google', auth);
+app.use('/api/auth/google/callback', callback);
+app.use('/api/jwt', jwtAPI);
 
 app.get('/routes/cart.js', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'src/routes/cart.js'));
@@ -77,17 +84,35 @@ app.get('/manager', requireLogin, (req, res) => {
 });
 
 function requireLogin(req, res, next) {
-    if (!req.cookies.loggedIn) {
+    const token = req.cookies.authToken;
+
+    if (!token) {
         return res.redirect('/login');
     }
-    next();
+
+    try {
+        jwt.decode(token, process.env.JWT_SECRET);
+        return next();
+    } catch (e) {
+        res.clearCookie('authToken');
+        return res.redirect('/login');
+    }
 }
 
 function loginNotAllowed(req, res, next) {
-    if (req.cookies.loggedIn) {
-        return res.redirect('/employee');
+    const token = req.cookies.authToken;
+
+    if (!token) {
+        return next();
     }
-    next();
+
+    try {
+        jwt.decode(token, process.env.JWT_SECRET);
+        return res.redirect('/employee');
+    } catch (e) {
+        res.clearCookie('authToken');
+        return next();
+    }
 }
 
 app.listen(SERVER_PORT, () =>
