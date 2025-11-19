@@ -1,8 +1,5 @@
 async function parseDrinkOrder(worker, drink) {
-    let { id: drinkId, price: drinkPrice } = await getDrinkInfo(
-        worker,
-        drink.drink_id
-    );
+    let { id: drinkId, price: drinkPrice } = await getDrinkInfo(worker, drink.drink_id);
     const attributeId = await createAttributes(
         worker,
         drink.ice ?? 0,
@@ -24,18 +21,18 @@ async function parseDrinkOrder(worker, drink) {
         drinkToppings.custard_pudding,
         drinkToppings.salty_cream
     );
-
-    drinkPrice +=
-        Object.values(drinkToppings).filter((v) => v === true).length * 0.5;
+    drinkPrice += Object.values(drinkToppings).filter((v) => v === true).length * 0.5;
+    drinkPrice += drink.size === 'large' ? 1.5 : 0;
+    drinkPrice += drink.size === 'medium' ? 0.5 : 0;
+    drinkPrice += drink.milk !== 'original' ? 1 : 0;
 
     return { drinkId, attributeId, toppingId, drinkPrice };
 }
 
 async function getDrinkInfo(worker, drinkId) {
-    const res = await worker.query(
-        'SELECT drink_id, price FROM drinks WHERE drink_id = $1',
-        [Number(drinkId)]
-    );
+    const res = await worker.query('SELECT drink_id, price FROM drinks WHERE drink_id = $1', [
+        Number(drinkId),
+    ]);
     if (res) {
         return { id: res.rows[0].drink_id, price: res.rows[0].price };
     } else {
