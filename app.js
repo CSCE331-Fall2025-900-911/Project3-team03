@@ -55,6 +55,14 @@ app.get('/routes/cart.js', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'src/routes/cart.js'));
 });
 
+app.get('/routes/ADHDFocus.js', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'src/routes/ADHDFocus.js'));
+});
+
+app.get('/routes/keyboardShortcuts.js', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'src/routes/keyboardShortcuts.js'));
+});
+
 app.get('/', (req, res) => {
     res.render('LandingPage', { title: 'Hello from Yifang!!' });
 });
