@@ -8,13 +8,13 @@ router.post('/', async (req, res) => {
         return res.status(400).send('Invalid Request');
     }
 
-    const { drinksInfo } = req.body;
+    const { drinksInfo, rewardApplied, phoneNumber } = req.body;
 
     if (drinksInfo == null) {
         return res.status(400).send('Invalid Request');
     }
 
-    const { orderId, totalPrice } = await createKioskOrder(drinksInfo);
+    const { orderId, totalPrice } = await createKioskOrder(drinksInfo, rewardApplied, phoneNumber);
 
     if (orderId == null || totalPrice == null) {
         return res.status(500).send('Server Error');

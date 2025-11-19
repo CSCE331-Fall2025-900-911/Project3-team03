@@ -1,4 +1,6 @@
 const CART_KEY = 'yf_cart_v1';
+window.getCart = getCart;
+window.computePrice = computePrice;
 
 export function getCart() {
     try {

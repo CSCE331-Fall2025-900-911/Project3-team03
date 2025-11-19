@@ -1,5 +1,44 @@
+
+let rewardApplied = false;
+
+async function checkRewards() {
+    const phone = document.getElementById('phone').value;
+
+    try {
+        const res = await fetch('/api/rewards/' + phone);
+        if (!res.ok) {
+            document.getElementById('reward-message').textContent = 'Phone number not found';
+            return;
+        }
+
+        const data = await res.json();
+        const count = data.order_count;
+        const totalNode = document.querySelector('.cart-total-price');
+
+        const cart = getCart();
+
+        let total = cart.reduce((sum, item) => sum + computePrice(item.basePrice, item), 0);
+
+        if (count % 5 === 0 && count !== 0) {
+            total -= 5;
+            total = Math.max(total, 0);
+            rewardApplied = true;
+            document.getElementById('reward-message').textContent = 'Congrats! $5 reward applied!';
+        } else {
+            document.getElementById('reward-message').textContent = 'No reward this time.';
+        }
+
+        totalNode.textContent = `$${total.toFixed(2)}`;
+    } catch (err) {
+        console.error('Error checking rewards:', err);
+        document.getElementById('reward-message').textContent = 'Error checking rewards';
+    }
+}
+
+
 async function createOrder() {
     const drinkOrder = JSON.parse(localStorage.getItem('yf_cart_v1'));
+    const phone = document.getElementById('phone').value;
 
     if (!drinkOrder) {
         return alert('Nothing to order!');
@@ -19,6 +58,8 @@ async function createOrder() {
 
     let data = {
         drinksInfo: await cleanDrinkOrder(drinkOrder),
+        rewardApplied: rewardApplied,
+        phoneNumber: phone
     };
 
     if (employeeId) {

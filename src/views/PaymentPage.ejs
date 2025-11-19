@@ -35,6 +35,27 @@
                         </span>
                     </div>
 
+                    <div class="phone-number">
+                        <h3>Rewards System</h3>
+                        <div class="attribute">
+                            <p class="attribute-title"><strong>Phone Number</strong></p>
+                            <div class="phone-row">
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="e.g. 5551234567"
+                                    inputmode="numeric"
+                                    pattern="[0-9]*"
+                                />
+                                <button type="button" class="apply-rewards" onclick="checkRewards()" id="apply-rewards">
+                                    Apply
+                                </button>
+                            </div>
+                            <p class="reward-message" id="reward-message" aria-live="polite"></p>
+                        </div>
+                    </div>
+
                     <button type="button" class="complete-order" onclick="createOrder()">
                         Complete Order
                     </button>
@@ -74,5 +95,6 @@
         </script>
 
         <script src="/js/createOrder.js"></script>
+        <script src="/js/cart.js"></script>
     </body>
 </html>
