@@ -1,17 +1,9 @@
 {
-    "builds": [
-        { "src": "app.js", "use": "@vercel/node" },
-        { "src": "src/public/js/cart.js", "use": "@vercel/static" },
-        { "src": "src/public/js/ADHDFocus.js", "use": "@vercel/static" },
-        { "src": "src/public/js/keyboardShortcuts.js", "use": "@vercel/static" }
-    ],
+    "builds": [{ "src": "app.js", "use": "@vercel/node" }],
     "routes": [
-        { "src": "/js/cart.js", "dest": "src/public/js/cart.js" },
-        { "src": "src/public/js/ADHDFocus.js", "use": "src/public/js/ADHDFocus.js" },
-        {
-            "src": "src/public/js/keyboardShortcuts.js",
-            "use": "src/public/js/keyboardShortcuts.js"
-        },
+        { "src": "/js/cart.js", "dest": "/src/public/js/cart.js" },
+        { "src": "/js/ADHDFocus.js", "dest": "/src/public/js/ADHDFocus.js" },
+        { "src": "/js/keyboardShortcuts.js", "dest": "/src/public/js/keyboardShortcuts.js" },
         { "src": "/(.*)", "dest": "app.js" }
     ]
 }
