@@ -1,4 +1,3 @@
-
 let rewardApplied = false;
 
 async function checkRewards() {
@@ -35,7 +34,6 @@ async function checkRewards() {
     }
 }
 
-
 async function createOrder() {
     const drinkOrder = JSON.parse(localStorage.getItem('yf_cart_v1'));
     const phone = document.getElementById('phone').value;
@@ -59,7 +57,7 @@ async function createOrder() {
     let data = {
         drinksInfo: await cleanDrinkOrder(drinkOrder),
         rewardApplied: rewardApplied,
-        phoneNumber: phone
+        phoneNumber: phone,
     };
 
     if (employeeId) {
@@ -77,10 +75,19 @@ async function createOrder() {
         .then((result) => console.log(result))
         .catch((error) => console.error(error));
 
-    if (jwtInfo) {
+    const referrer = document.referrer;
+    console.log(referrer);
+
+    if (referrer && referrer.includes('/cashier')) {
         window.location.href = '/employee';
-    } else {
+    } else if (referrer && referrer.includes('/menu')) {
         window.location.href = '/';
+    } else {
+        if (jwtInfo) {
+            window.location.href = '/employee';
+        } else {
+            window.location.href = '/';
+        }
     }
 }
 
