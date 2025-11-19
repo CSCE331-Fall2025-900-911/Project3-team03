@@ -11,7 +11,7 @@
         <!-- dark blue bar and logo -->
         <header class="header-container">
             <nav class="nav-left">
-                <a href="/cashier">Back to Menu</a>
+                <a id="back-link" href="/cashier">Back to Menu</a>
             </nav>
             <div class="logo-container">
                 <a href="/"><img src="/logo.png" alt="logo" class="logo" /></a>
@@ -57,6 +57,20 @@
 
             const container = document.getElementById('cart-content');
             const { total } = renderCartInto(container);
+
+            const referrer = document.referrer;
+            console.log(referrer);
+            const backLink = document.getElementById('back-link');
+            if (backLink && referrer) {
+                try {
+                    const refUrl = new URL(referrer, window.location.origin);
+                    if (refUrl.origin === window.location.origin) {
+                        backLink.href = refUrl.pathname + refUrl.search + refUrl.hash;
+                    }
+                } catch (_err) {
+                    // ignore invalid referrer
+                }
+            }
 
             // Initialize total on first load
             const totalNode = document.querySelector('.cart-total-price');
