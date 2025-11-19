@@ -14,6 +14,7 @@ const employees = require('./src/routes/employees');
 const cashierOrder = require('./src/routes/createOrder');
 const kioskOrder = require('./src/routes/createKioskOrder');
 const login = require('./src/routes/login');
+const wiki = require('./src/routes/wiki');
 const fs = require('fs');
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use('/api/user', user);
 app.use('/api/peak', peak);
 app.use('/api/profit', profit);
 app.use('/api/sales', sales);
+app.use('/api/wiki', wiki);
 app.use('/api/weeklyInventory', weeklyInventory);
 app.use('/api/xreport', xreport);
 app.use('/api/inventory', inventory);
