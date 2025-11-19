@@ -19,6 +19,7 @@ const auth = require('./src/routes/auth');
 const callback = require('./src/routes/callback');
 const jwtAPI = require('./src/routes/jwt');
 const jwt = require('jsonwebtoken');
+const rewards = require('./src/routes/rewards')
 const fs = require('fs');
 
 dotenv.config();
@@ -50,6 +51,7 @@ app.use('/api/login', login);
 app.use('/api/auth/google', auth);
 app.use('/api/auth/google/callback', callback);
 app.use('/api/jwt', jwtAPI);
+app.use('/api/rewards', rewards);
 
 app.get('/routes/cart.js', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'src/routes/cart.js'));

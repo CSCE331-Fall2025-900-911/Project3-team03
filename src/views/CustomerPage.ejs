@@ -508,14 +508,6 @@
                 </div>
             </div>
 
-            <div class="phone-number">
-                <h3>Rewards System</h3>
-                <div class="attribute">
-                    <p class="attribute-title"><strong>Enter Phone Number</strong></p>
-                    <input type="number" id="phone" name="phone">
-                </div>
-            </div>
-
             <div class="toppings-footer">
                 <button class="add-to-cart">Add to Cart</button>
             </div>
@@ -642,10 +634,8 @@
                     milk: pick('milk'),
                     toppings,
                     imgSrc: pendingDrink.imgSrc,
-                    phone: document.querySelector("#phone")?.value || "",
                 };
                 addToCart(item);
-                console.log(item);
 
                 const btn = document.querySelector('.add-to-cart');
                 const orig = btn.textContent;

@@ -13,12 +13,18 @@ router.get('/:phoneNumber', async (req, res) => {
         FROM rewards
         WHERE phone_number = $1;
         `;
-
-        const result = await pool.query(query, [phoneNumber]);
+        let result = await pool.query(query, [phoneNumber]);
         if (result.rows.length === 0) {
-            return res.status(404).json({ error: 'Phone number not found' });
+            const insertQuery =  `
+            INSERT INTO rewards (phone_number, order_count)
+            VALUES ($1, 0)
+            RETURNING order_count;
+            `
+            result = await pool.query(insertQuery, [phoneNumber])
         }
-        res.status(200).json(result.rows);
+        return res.status(200).json({
+            order_count: result.rows[0].order_count
+        });
     } catch (error) {
         console.error('Error fetching profit data:', error);
         res.status(500).json({ error: 'Internal server error' });
