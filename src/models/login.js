@@ -1,13 +1,11 @@
 const pool = require('./pool');
 
-async function employeeExists(employeeId) {
+async function employeeExists(employeeEmail) {
     const worker = await pool.connect();
 
-    const res = await worker.query('SELECT * FROM employee WHERE id = $1', [
-        employeeId,
-    ]);
+    const res = await worker.query('SELECT id FROM employee WHERE email = $1', [employeeEmail]);
 
-    return res.rows.length > 0;
+    return res.rows[0];
 }
 
 module.exports = { employeeExists };

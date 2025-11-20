@@ -1,410 +1,438 @@
 /* expands the dark blue logo across whole page */
-html, body { 
-  margin: 0; 
-  padding: 0; 
+html,
+body {
+    margin: 0;
+    padding: 0;
 }
 
 /* background color of website */
-body { 
-  background: #FBF8F2; 
+body {
+    background: #fbf8f2;
 }
 
 /* CSS for dark blue header */
-.header-container{
-  background-color: #0b0d17;
-  color:#fff;
-  width:100%;
-  padding:12px 0;
-  position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.header-container {
+    background-color: #0b0d17;
+    color: #fff;
+    width: 100%;
+    padding: 12px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* CSS for img of logo */
-.header-container .logo-container img.logo{
-  height:60px;
-  display:block;
+.header-container .logo-container img.logo {
+    height: 60px;
+    display: block;
 }
 
 /* Navigation for button */
-.nav-left{
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+.nav-left {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.nav-left a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-  padding:8px 12px;
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:8px;
+.nav-left a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
 }
 
-.nav-left a:hover{ 
-  background:rgba(255,255,255,.08); 
+.nav-left a:hover {
+    background: rgba(255, 255, 255, 0.08);
 }
 
 /* Navigation for button */
-.nav-left{
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+.nav-left {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.nav-left a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-  padding:8px 12px;
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:8px;
+.nav-left a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
 }
 
-.nav-left a:hover{ 
-  background:rgba(255,255,255,.08); 
-}
-
-/* Button CSS */
-.nav-left button{
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-  padding:8px 12px;
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:8px;
+.nav-left a:hover {
+    background: rgba(255, 255, 255, 0.08);
 }
 
 /* Button CSS */
-.nav-left button:hover{ 
-  background:rgba(255,255,255,.08); 
+.nav-left button {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+}
+
+/* Button CSS */
+.nav-left button:hover {
+    background: rgba(255, 255, 255, 0.08);
 }
 
 /* Menu title CSS */
-.menu-title{
-  text-align:center;
-  padding:2rem 1rem 1rem;
-  margin: 0 auto;
-  
+.menu-title {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+    margin: 0 auto;
 }
 
 /* CSS for button */
-.proceed-button{
-  position: absolute;
-  top: 7rem;
-  right: 1rem;
-  display:inline-block;
-  padding:1rem 2rem;
-  background:#111827;
-  color:#fff;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:600;
-  font-size:1.1rem;
-  transition:background-color .25s ease, transform .2s ease;
+.proceed-button {
+    position: absolute;
+    top: 7rem;
+    right: 1rem;
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #111827;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: background-color 0.25s ease, transform 0.2s ease;
 }
 
 /* CSS for tabs */
 .menu-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .menu-tab {
-  padding: 0.5rem 1rem;
-  border-radius: 800px;
-  background: #f9fafb;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 800px;
+    background: #f9fafb;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
 }
 
 .menu-tab.active {
-  background: #111827;
-  color: #fff;
+    background: #111827;
+    color: #fff;
 }
 
 /* Displays 1 tab at a time */
 .tab-panel {
-  display: none;
+    display: none;
 }
 
 .tab-panel.active {
-  display: block;
+    display: block;
 }
 
-
 /* Group all drinks from the category */
-.menu-items{
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 1rem 2rem;
+.menu-items {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem 14rem; /* increased bottom padding to ensure footer/banner doesn't overlap content */
 }
 
 /* Organzie the group of drinks */
-.drink-items{
-  display:grid;
-  grid-template-columns:repeat(4, 260px);
-  justify-content:center;
-  gap:1.5rem;
-  margin:1.25rem 0 2.5rem;
+.drink-items {
+    display: grid;
+    grid-template-columns: repeat(4, 260px);
+    justify-content: center;
+    gap: 2rem; /* slightly larger gap to prevent visual crowding between rows */
+    margin: 1.25rem 0 2.5rem;
+    align-items: start; /* prevent grid items from stretching to equal heights */
 }
 
-
 /* Organize the group of drinks */
-.drink-item{
-  width:260px;
-  height:420px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:space-between;
-  animation: drink-fade 200ms ease;
+.drink-item {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* keep price/desc close under the image */
+    gap: 0.5rem;
+    animation: drink-fade 200ms ease;
 }
 
 @keyframes drink-fade {
-    from {opacity: 0;}
-    to   {opacity: 1;}
-  }
-
-/* CSS for individual drink */
-.drink{
-  width:100%;
-  height:360px;
-  object-fit:cover;
-  display:block;
-  box-shadow:0 16px 16px rgba(0,0,0,.35);
-  transition:transform .15s ease, box-shadow .15s ease;
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* CSS for individual drink */
-.drink:hover{
-  transform:scale(1.05);
-  box-shadow:0 12px 30px rgba(0,0,0,.45);
+.drink {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 16px 16px rgba(0, 0, 0, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* CSS for individual drink */
+.drink:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
 /* CSS for text */
-.price{ 
-  font-weight:600; 
-}
-
-
-
-/* Popover button*/
-.drink-item button{
-  all: unset;
-  display: block;
-  width: 100%;
-  height: 360px;
+.price {
+    font-weight: 600;
+    margin: 0.25rem 0 0;
 }
 
 /* Popover button*/
-.drink-item button img{
-  display: block;
-  width: 100%;
-  height: 100%;
+.drink-item button {
+    all: unset;
+    display: block;
+    width: 100%;
+    height: 360px; /* fixed image area height */
 }
 
+/* Popover button*/
+.drink-item button img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
 
+.description {
+    background: #fafafa;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    line-height: 1.55;
+    white-space: pre-line;
+    font-size: 0.95rem;
+    color: #333;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    text-align: left;
+}
 
 /* ========== Design Tokens ========== */
 :root {
-  --bg: #ffffff;
-  --text: #1f2937;           /* slate-800 */
-  --muted: #6b7280;          /* slate-500 */
-  --border: #e5e7eb;         /* gray-200 */
-  --surface: #f8fafc;        /* slate-50 */
-  --accent: #111827;         /* green-600 */
-  --accent-weak: #dcfce7;    /* green-100 */
-  --danger: #ef4444;         /* red-500 */
-  --radius: 14px;
-  --shadow: 0 10px 30px rgba(0,0,0,0.12);
-  --space-1: 6px;
-  --space-2: 10px;
-  --space-3: 14px;
-  --space-4: 20px;
-  --space-5: 28px;
-  --transition: 160ms ease;
-  --maxw: 720px;
+    --bg: #ffffff;
+    --text: #1f2937; /* slate-800 */
+    --muted: #6b7280; /* slate-500 */
+    --border: #e5e7eb; /* gray-200 */
+    --surface: #f8fafc; /* slate-50 */
+    --accent: #111827; /* green-600 */
+    --accent-weak: #dcfce7; /* green-100 */
+    --danger: #ef4444; /* red-500 */
+    --radius: 14px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --space-1: 6px;
+    --space-2: 10px;
+    --space-3: 14px;
+    --space-4: 20px;
+    --space-5: 28px;
+    --transition: 160ms ease;
+    --maxw: 720px;
 }
 
 /*Toppings panel design*/
-#toppings[popover]{
-  border-radius: 20px;
-  background: #FBF8F2;
-  box-shadow:0 16px 50px rgba(0,0,0,.35);
-  padding: 20px;
-  max-width: 600px;
-  max-height: 80vh;
-  overflow-y: auto;
+#toppings[popover] {
+    border-radius: 20px;
+    background: #fbf8f2;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
+    padding: 20px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
 
-  inset: auto;
-  border: none;
-  margin:auto;
+    inset: auto;
+    border: none;
+    margin: auto;
 
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /*Panel animation*/
-#toppings[popover]:popover-open{
-  animation: top-fade 300ms ease;
+#toppings[popover]:popover-open {
+    animation: top-fade 300ms ease;
 }
-@keyframes top-fade{
-  from {opacity: 0;}
-  to   {opacity: 1;}
+@keyframes top-fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Popover Header */
-.toppings-header{
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #939394;
-  margin-bottom: 14px;
-  padding-bottom: 14px;
+.toppings-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #939394;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
 }
 
 /*Choose your toppings title*/
-.toppings-title{
-  text-align: center;
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.2;
-  letter-spacing: 0.2px;
+.toppings-title {
+    text-align: center;
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
 }
 
 /*Close button*/
-.toppings-close{
-  all: unset;
-  margin-left: auto; 
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  cursor: pointer;
+.toppings-close {
+    all: unset;
+    margin-left: auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    cursor: pointer;
 }
-.toppings-close:hover{
-  transform:scale(1.1);
+.toppings-close:hover {
+    transform: scale(1.1);
 }
 
 /*Toppings title and Drink attributes title*/
-.drink-attributes{
-  margin-top: 14px;
+.drink-attributes {
+    margin-top: 14px;
 }
 
-.toppings-section{
-  margin-top: 14px;
+.toppings-section {
+    margin-top: 14px;
 }
 
-.drink-attributes > h3{
-  margin: 0 0 10px 0;
-  font-size: 1.05rem;
-  color: #532e1d;
+.drink-info {
+    width: 100%;
+    padding: 0.5rem 1rem 1rem;
+    background: #fff;
 }
 
-.toppings-section > h3{
-  margin: 0 0 10px 0;
-  font-size: 1.05rem;
-  color: #532e1d;
+.drink-attributes > h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.05rem;
+    color: #532e1d;
+}
+
+.toppings-section > h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.05rem;
+    color: #532e1d;
 }
 
 /*Toppings checkbox*/
-.topping-grid{
-  display: grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap: 10px;
+.topping-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
 }
 
-.topping label{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #939394;
-  background: #f8fafc;
-  padding: 10px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 50ms ease;
-  user-select: none;
+.topping label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #939394;
+    background: #f8fafc;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 50ms ease;
+    user-select: none;
 }
 
 /*checkbox*/
-.topping input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #303134;
-  cursor: pointer;
+.topping input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    accent-color: #303134;
+    cursor: pointer;
 }
 
 /* highlight when checked*/
 .topping label:has(input:checked) {
-  border-color: #303134;
-  background: #bbbbbe;
+    border-color: #303134;
+    background: #bbbbbe;
 }
 
 /*Drink Attributes*/
 .attribute {
-  margin-top: 10px;
-  padding: 14px;
-  border: 1px solid #939394;
-  border-radius: 12px;
-  background:#f8fafc;
+    margin-top: 10px;
+    padding: 14px;
+    border: 1px solid #939394;
+    border-radius: 12px;
+    background: #f8fafc;
 }
 
 .attribute-title {
-  margin: 0 0 10px 0;
-  color: #6b7280;
+    margin: 0 0 10px 0;
+    color: #6b7280;
 }
 
 .attribute label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-right: 14px;
-  margin-bottom: 4px;
-  cursor: pointer;
-  border: 1px solid #939394;
-  padding: 6px 10px;
-  border-radius: 999px;
-  transition: background 50ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 14px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border: 1px solid #939394;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: background 50ms ease;
 }
 
-.attribute input[type="radio"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #303134;
-  cursor: pointer;
+.attribute input[type='radio'] {
+    width: 18px;
+    height: 18px;
+    accent-color: #303134;
+    cursor: pointer;
 }
 .attribute label:has(input:checked) {
-  border-color: #303134;
-  background: #bbbbbe;
+    border-color: #303134;
+    background: #bbbbbe;
 }
 
 /*Footer*/
 .toppings-footer {
-  display: flex;
-  margin-top: 16px;
-  justify-content: flex-end;
-  gap: 10px;
+    display: flex;
+    margin-top: 16px;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .add-to-cart {
-  border-radius: 12px;
-  background: #111827;
-  color: #fff;
-  padding: 12px 18px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow:0 12px 12px rgba(0,0,0,.35);
+    border-radius: 12px;
+    background: #111827;
+    color: #fff;
+    padding: 12px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 12px 12px rgba(0, 0, 0, 0.35);
 }
 
-.add-to-cart:hover {transform:scale(1.05);}
-.add-to-cart:active {transform: translateY(1px);}
+.add-to-cart:hover {
+    transform: scale(1.05);
+}
+.add-to-cart:active {
+    transform: translateY(1px);
+}

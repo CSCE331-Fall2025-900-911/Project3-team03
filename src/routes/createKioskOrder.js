@@ -4,21 +4,23 @@ const { createKioskOrder } = require('../models/createKioskOrder');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const { drinksInfo } = req.body;
+    if (!req.body || !req.body.drinksInfo) {
+        return res.status(400).send('Invalid Request');
+    }
+
+    const { drinksInfo, rewardApplied, phoneNumber } = req.body;
 
     if (drinksInfo == null) {
         return res.status(400).send('Invalid Request');
     }
 
-    const { orderId, totalPrice } = await createKioskOrder(drinksInfo);
+    const { orderId, totalPrice } = await createKioskOrder(drinksInfo, rewardApplied, phoneNumber);
 
     if (orderId == null || totalPrice == null) {
         return res.status(500).send('Server Error');
     }
 
-    return res
-        .status(201)
-        .send(`Order ${orderId} created with a total price of ${totalPrice}!`);
+    return res.status(201).send(`Order ${orderId} created with a total price of ${totalPrice}!`);
 });
 
 module.exports = router;
