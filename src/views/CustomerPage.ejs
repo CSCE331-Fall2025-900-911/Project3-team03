@@ -657,6 +657,53 @@
 
                 document.querySelector('.toppings-close')?.click();
             });
+
+            // Weather Widget
+            async function loadWeather() {
+                const lat = 30.628;
+                const lon = -96.334;
+
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+
+                try {
+                    const res = await fetch(url);
+                    const data = await res.json();
+
+                    const temp = data.current_weather.temperature;
+                    const code = data.current_weather.weathercode;
+
+                    const descriptions = {
+                        0: "Clear sky",
+                        1: "Mainly clear",
+                        2: "Partly cloudy",
+                        3: "Overcast",
+                        45: "Foggy",
+                        48: "Rime fog",
+                        51: "Light drizzle",
+                        53: "Drizzle",
+                        55: "Dense drizzle",
+                        61: "Light rain",
+                        63: "Rain",
+                        65: "Heavy rain",
+                        71: "Light snow",
+                        73: "Snow",
+                        75: "Heavy snow",
+                        95: "Thunderstorm"
+                    };
+
+                    document.getElementById("weather-location").textContent = "College Station Weather";
+                    document.getElementById("weather-temp").textContent = `${temp}°F`;
+                    document.getElementById("weather-desc").textContent =
+                        descriptions[code] || "N/A";
+
+                } catch (err) {
+                    document.getElementById("weather-location").textContent = "Weather unavailable";
+                    document.getElementById("weather-temp").textContent = "";
+                    document.getElementById("weather-desc").textContent = "";
+                }
+            }
+
+            loadWeather();
         </script>
     </body>
 </html>
