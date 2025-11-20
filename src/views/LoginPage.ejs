@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Employee Login</title>
         <link rel="stylesheet" href="/LoginPageCSS.css" />
+        <link rel="stylesheet" href="/Accessibility.css" />
     </head>
     <body>
         <!-- dark blue bar and logo -->
@@ -59,6 +60,11 @@
                 <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
             </div>
         </footer>
+
+        <%- include("accessibilityFeaturesPage") %>
+        <script type="module" src="/js/ADHDFocus.js"></script>
+        <script src="/js/translation.js"></script>
+
         <script>
             try {
                 localStorage.removeItem('yf_cart_v1');

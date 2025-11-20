@@ -167,3 +167,23 @@
   top: 0;
 }
 
+/* ========== Language Overlays ========== */
+.accessibility-language {
+  margin-top: 1rem;
+}
+
+.accessibility-language #google_translate_element {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Shrink the default Google dropdown a bit */
+.goog-te-gadget {
+  font-family: inherit !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
