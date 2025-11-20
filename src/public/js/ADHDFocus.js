@@ -1,6 +1,5 @@
 // ADHD Focus: darken entire screen except for a horizontal strip that follows the mouse.
 // Controlled by a toggle inside an accessibility panel opened from the floating icon.
-
 const STORAGE_KEY = 'yf_adhd_focus';
 const BAND_HEIGHT = 200; // height of the visible strip in pixels
 

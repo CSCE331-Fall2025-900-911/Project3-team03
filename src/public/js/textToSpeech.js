@@ -1,4 +1,5 @@
 // uses Web Speech API (SpeechSynthesis)
+// Reads out loud the text thats being clicked on or highlighted
 (function () {
   if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance === 'undefined') {
     console.warn('[TTS] Web Speech API not supported in this browser.');
