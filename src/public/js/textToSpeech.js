@@ -20,21 +20,19 @@
     return window.getSelection().toString().trim();
   }
 
-    function getSemanticLabel(el) {
+   // get data-name or acessibility label or alt text on img
+   function getSemanticLabel(el) {
         let node = el;
 
         while (node && node !== document.body) {
-            // 1) Prefer a data-name if present (like your drink buttons)
             if (node.dataset && node.dataset.name) {
             return node.dataset.name.trim();
             }
 
-            // 2) aria-label (common for accessibility)
             if (node.getAttribute) {
             const aria = node.getAttribute('aria-label');
             if (aria) return aria.trim();
 
-            // 3) alt text on images
             const alt = node.getAttribute('alt');
             if (alt) return alt.trim();
             }
@@ -43,7 +41,7 @@
         }
 
         return '';
-    }
+   }
 
     function getElementText(el) {
         if (!el) return '';
