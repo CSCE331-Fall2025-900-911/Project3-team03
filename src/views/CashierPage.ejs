@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Yi Fang Tea - Cashier</title>
         <link rel="stylesheet" href="/CashierPageCSS.css" />
+        <link rel="stylesheet" href="/Accessibility.css" />
     </head>
     <body>
         <!-- dark blue bar and logo -->
@@ -517,6 +518,9 @@
                 <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
             </div>
         </footer>
+
+        <%- include("accessibilityFeaturesPage") %>
+        <script type="module" src="/js/ADHDFocus.js"></script>
 
         <script type="module">
             import { addToCart } from '/js/cart.js';
