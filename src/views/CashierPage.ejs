@@ -25,16 +25,6 @@
 
         <!-- All drinks showing name/price -->
         <div class="menu-items">
-            <!-- Drinks seperated by tabs -->
-            <div class="menu-tabs">
-                <button class="menu-tab active" data-tab="tea">Tea Series</button>
-                <button class="menu-tab" data-tab="fruit-tea">Fruit Tea Series</button>
-                <button class="menu-tab" data-tab="tea-latte">Tea Latte Series</button>
-                <button class="menu-tab" data-tab="traditional">Traditional Series</button>
-                <button class="menu-tab" data-tab="seasonal">Seasonal Series</button>
-            </div>
-
-            <section class="tab-panel active" data-tab="tea">
                 <!-- Category: Tea -->
                 <div class="drink-items">
                     <div class="drink-item">
@@ -100,7 +90,6 @@
                 </div>
             </section>
 
-            <section class="tab-panel" data-tab="fruit-tea">
                 <!-- Category: Fruit Tea -->
                 <div class="drink-items">
                     <div class="drink-item">
@@ -175,7 +164,6 @@
                 </div>
             </section>
 
-            <section class="tab-panel" data-tab="tea-latte">
                 <!-- Category: Tea Latte -->
                 <div class="drink-items">
                     <div class="drink-item">
@@ -292,7 +280,6 @@
                 </div>
             </section>
 
-            <section class="tab-panel" data-tab="traditional">
                 <!-- Category: Traditional -->
                 <div class="drink-items">
                     <div class="drink-item">
@@ -350,7 +337,6 @@
                 </div>
             </section>
 
-            <section class="tab-panel" data-tab="seasonal">
                 <!-- Category: Seasonal -->
                 <div class="drink-items">
                     <div class="drink-item">
@@ -523,23 +509,6 @@
 
             let pendingDrink = null;
 
-            // Tab switching
-            const tabButtons = document.querySelectorAll('.menu-tab');
-            const tabPanels = document.querySelectorAll('.tab-panel');
-
-            tabButtons.forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    const target = btn.dataset.tab;
-
-                    tabButtons.forEach((b) => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    tabPanels.forEach((panel) => {
-                        panel.classList.toggle('active', panel.dataset.tab === target);
-                    });
-                });
-            });
-            // Tab Switch end
 
             // Lets a cashier click a drink, pick attributes, and add that configured drink to the cart stored in localStorage 
             document.querySelectorAll('button[drink-id]').forEach((btn) => {
