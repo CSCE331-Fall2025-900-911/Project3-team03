@@ -169,7 +169,23 @@ body {
 }
 
 /*Toppings panel design*/
-#toppings[popover] {
+.toppings-modal {
+    position: fixed;
+    inset: 0;
+    display: none;            
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;             
+}
+
+/* When open */
+.toppings-modal.open {
+    display: flex;
+    animation: top-fade 300ms ease;
+}
+
+/* Actual dialog content */
+.toppings-content {
     border-radius: 20px;
     background: #fbf8f2;
     box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
@@ -177,21 +193,8 @@ body {
     max-width: 600px;
     max-height: 80vh;
     overflow-y: auto;
-
-    inset: auto;
-    border: none;
-    margin: auto;
-
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
-/*Panel animation*/
-#toppings[popover]:popover-open {
-    animation: top-fade 300ms ease;
-}
 @keyframes top-fade {
     from {
         opacity: 0;

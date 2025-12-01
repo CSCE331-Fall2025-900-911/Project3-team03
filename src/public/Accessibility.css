@@ -159,8 +159,8 @@
   right: 0;
   background: #000000;
   opacity: 0.88;
-  z-index: 999;
-  pointer-events: none; /* don’t block clicks */
+  z-index: 10000;
+  pointer-events: none; 
 }
 
 .adhd-focus-overlay-top {
