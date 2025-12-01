@@ -38,9 +38,9 @@ async function createOrder() {
     const drinkOrder = JSON.parse(localStorage.getItem('yf_cart_v1'));
     const phone = document.getElementById('phone').value;
 
-    // if (!drinkOrder) {
-    //     return alert('Nothing to order!');
-    // }
+    if (!drinkOrder) {
+        return alert('Nothing to order!');
+    }
 
     const jwtInfo = await (
         await fetch('/api/jwt', {
@@ -61,6 +61,10 @@ async function createOrder() {
         rewardApplied: rewardApplied,
         phoneNumber: phone,
     };
+
+    if (employeeId) {
+        data.employeeId = employeeId;
+    }
 
     const endpoint = employeeId ? '/api/cashierOrder' : '/api/kioskOrder';
 
