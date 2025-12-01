@@ -193,6 +193,7 @@ body {
     max-width: 600px;
     max-height: 80vh;
     overflow-y: auto;
+    max-height: 95vh;
 }
 
 @keyframes top-fade {

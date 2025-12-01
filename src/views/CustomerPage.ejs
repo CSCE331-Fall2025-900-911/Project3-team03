@@ -234,7 +234,11 @@
                             data-name="Red Bean Matcha Latte"
                             data-price="6.49"
                         >
-                            <img src="/drinksImages/13.png" alt="Red Bean Matcha Latte" class="drink" />
+                            <img
+                                src="/drinksImages/13.png"
+                                alt="Red Bean Matcha Latte"
+                                class="drink"
+                            />
                         </button>
                         <p class="price">$6.49</p>
                         <p class="description"></p>
@@ -285,7 +289,11 @@
                             data-name="Grass Jelly Milk Tea"
                             data-price="6.49"
                         >
-                            <img src="/drinksImages/17.png" alt="Grass Jelly Milk Tea" class="drink" />
+                            <img
+                                src="/drinksImages/17.png"
+                                alt="Grass Jelly Milk Tea"
+                                class="drink"
+                            />
                         </button>
                         <p class="price">$6.49</p>
                         <p class="description"></p>
@@ -303,12 +311,7 @@
                         <p class="description"></p>
                     </div>
                     <div class="drink-item">
-                        <button
-                            type="button"
-                            drink-id="19"
-                            data-name="Grass Tea"
-                            data-price="4.99"
-                        >
+                        <button type="button" drink-id="19" data-name="Grass Tea" data-price="4.99">
                             <img src="/drinksImages/19.png" alt="Grass Tea" class="drink" />
                         </button>
                         <p class="price">$4.99</p>
@@ -321,7 +324,11 @@
                             data-name="Traditional Milk Tea"
                             data-price="5.99"
                         >
-                            <img src="/drinksImages/20.png" alt="Traditional Milk Tea" class="drink" />
+                            <img
+                                src="/drinksImages/20.png"
+                                alt="Traditional Milk Tea"
+                                class="drink"
+                            />
                         </button>
                         <p class="price">$5.99</p>
                         <p class="description"></p>
@@ -364,7 +371,11 @@
                             data-name="Pearl Ginger Milk Tea"
                             data-price="5.99"
                         >
-                            <img src="/drinksImages/24.png" alt="Pearl Ginger Milk Tea" class="drink" />
+                            <img
+                                src="/drinksImages/24.png"
+                                alt="Pearl Ginger Milk Tea"
+                                class="drink"
+                            />
                         </button>
                         <p class="price">$5.99</p>
                         <p class="description"></p>
@@ -378,9 +389,7 @@
             <div class="toppings-content">
                 <div class="toppings-header">
                     <h2 class="toppings-title">Choose your toppings</h2>
-                    <button class="toppings-close">
-                        ✕
-                    </button>
+                    <button class="toppings-close">✕</button>
                 </div>
 
                 <div class="toppings-section">
@@ -436,12 +445,15 @@
                     <div class="attribute">
                         <p class="attribute-title"><strong>Select Size:</strong></p>
                         <label><input type="radio" name="size" value="small" />Small</label>
-                        <label><input type="radio" name="size" value="medium" />Medium (+$0.5)</label>
+                        <label
+                            ><input type="radio" name="size" value="medium" checked />Medium
+                            (+$0.5)</label
+                        >
                         <label><input type="radio" name="size" value="large" />Large (+$1.5)</label>
                     </div>
                     <div class="attribute">
                         <p class="attribute-title"><strong>Select Temp:</strong></p>
-                        <label><input type="radio" name="temp" value="hot" />Hot</label>
+                        <label><input type="radio" name="temp" value="hot" checked />Hot</label>
                         <label><input type="radio" name="temp" value="cold" />Cold</label>
                     </div>
                     <div class="attribute">
@@ -450,7 +462,7 @@
                         <label><input type="radio" name="sugar" value="25" />25%</label>
                         <label><input type="radio" name="sugar" value="50" />50%</label>
                         <label><input type="radio" name="sugar" value="75" />75%</label>
-                        <label><input type="radio" name="sugar" value="100" />100%</label>
+                        <label><input type="radio" name="sugar" value="100" checked />100%</label>
                     </div>
                     <div class="attribute">
                         <p class="attribute-title"><strong>Ice Level:</strong></p>
@@ -458,13 +470,20 @@
                         <label><input type="radio" name="ice" value="25" />25%</label>
                         <label><input type="radio" name="ice" value="50" />50%</label>
                         <label><input type="radio" name="ice" value="75" />75%</label>
-                        <label><input type="radio" name="ice" value="100" />100%</label>
+                        <label><input type="radio" name="ice" value="100" checked />100%</label>
                     </div>
                     <div class="attribute">
                         <p class="attribute-title"><strong>Milk type:</strong></p>
                         <label><input type="radio" name="milk" value="soy" />Soy (+$1.0)</label>
                         <label><input type="radio" name="milk" value="oat" />Oat (+$1.0)</label>
-                        <label><input type="radio" name="milk" value="original" />Original</label>
+                        <label
+                            ><input
+                                type="radio"
+                                name="milk"
+                                value="original"
+                                checked
+                            />Original</label
+                        >
                     </div>
                 </div>
 
@@ -503,7 +522,7 @@
             }
 
             let pendingDrink = null;
-            
+
             const toppingsModal = document.getElementById('toppings');
             const toppingsCloseBtn = toppingsModal.querySelector('.toppings-close');
 
@@ -522,7 +541,7 @@
                     closeToppings();
                 });
             }
-            
+
             // Tab switching
             const tabButtons = document.querySelectorAll('.menu-tab');
             const tabPanels = document.querySelectorAll('.tab-panel');
@@ -540,7 +559,7 @@
                 });
             });
 
-            // Lets a cashier click a drink, pick attributes, and add that configured drink to the cart stored in localStorage 
+            // Lets a cashier click a drink, pick attributes, and add that configured drink to the cart stored in localStorage
             document.querySelectorAll('button[drink-id]').forEach((btn) => {
                 btn.addEventListener('click', () => {
                     pendingDrink = {
@@ -557,7 +576,7 @@
                         .forEach((i) => (i.checked = false));
                     scope
                         .querySelectorAll('input[type="radio"]')
-                        .forEach((i) => (i.checked = false));
+                        .forEach((i) => (i.checked = i.defaultChecked));
                     scope
                         .querySelectorAll('.attribute.invalid')
                         .forEach((el) => el.classList.remove('invalid'));
@@ -637,8 +656,6 @@
                 const lon = -96.334;
 
                 const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&temperature_unit=fahrenheit`;
-;
-
                 try {
                     const res = await fetch(url);
                     const data = await res.json();
@@ -647,33 +664,33 @@
                     const code = data.current_weather.weathercode;
 
                     const descriptions = {
-                        0: "Clear sky",
-                        1: "Mainly clear",
-                        2: "Partly cloudy",
-                        3: "Overcast",
-                        45: "Foggy",
-                        48: "Rime fog",
-                        51: "Light drizzle",
-                        53: "Drizzle",
-                        55: "Dense drizzle",
-                        61: "Light rain",
-                        63: "Rain",
-                        65: "Heavy rain",
-                        71: "Light snow",
-                        73: "Snow",
-                        75: "Heavy snow",
-                        95: "Thunderstorm"
+                        0: 'Clear sky',
+                        1: 'Mainly clear',
+                        2: 'Partly cloudy',
+                        3: 'Overcast',
+                        45: 'Foggy',
+                        48: 'Rime fog',
+                        51: 'Light drizzle',
+                        53: 'Drizzle',
+                        55: 'Dense drizzle',
+                        61: 'Light rain',
+                        63: 'Rain',
+                        65: 'Heavy rain',
+                        71: 'Light snow',
+                        73: 'Snow',
+                        75: 'Heavy snow',
+                        95: 'Thunderstorm',
                     };
 
-                    document.getElementById("weather-location").textContent = "College Station Weather";
-                    document.getElementById("weather-temp").textContent = `${temp}°F`;
-                    document.getElementById("weather-desc").textContent =
-                        descriptions[code] || "N/A";
-
+                    document.getElementById('weather-location').textContent =
+                        'College Station Weather';
+                    document.getElementById('weather-temp').textContent = `${temp}°F`;
+                    document.getElementById('weather-desc').textContent =
+                        descriptions[code] || 'N/A';
                 } catch (err) {
-                    document.getElementById("weather-location").textContent = "Weather unavailable";
-                    document.getElementById("weather-temp").textContent = "";
-                    document.getElementById("weather-desc").textContent = "";
+                    document.getElementById('weather-location').textContent = 'Weather unavailable';
+                    document.getElementById('weather-temp').textContent = '';
+                    document.getElementById('weather-desc').textContent = '';
                 }
             }
 

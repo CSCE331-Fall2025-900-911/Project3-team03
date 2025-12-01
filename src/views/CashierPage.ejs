@@ -355,12 +355,12 @@
                     <div class="attribute">
                         <p class="attribute-title"><strong>Select Size:</strong></p>
                         <label><input type="radio" name="size" value="small" />Small</label>
-                        <label><input type="radio" name="size" value="medium" />Medium (+$0.5)</label>
+                        <label><input type="radio" name="size" value="medium" checked/>Medium (+$0.5)</label>
                         <label><input type="radio" name="size" value="large" />Large (+$1.5)</label>
                     </div>
                     <div class="attribute">
                         <p class="attribute-title"><strong>Select Temp:</strong></p>
-                        <label><input type="radio" name="temp" value="hot" />Hot</label>
+                        <label><input type="radio" name="temp" value="hot" checked/>Hot</label>
                         <label><input type="radio" name="temp" value="cold" />Cold</label>
                     </div>
                     <div class="attribute">
@@ -369,7 +369,7 @@
                         <label><input type="radio" name="sugar" value="25" />25%</label>
                         <label><input type="radio" name="sugar" value="50" />50%</label>
                         <label><input type="radio" name="sugar" value="75" />75%</label>
-                        <label><input type="radio" name="sugar" value="100" />100%</label>
+                        <label><input type="radio" name="sugar" value="100" checked/>100%</label>
                     </div>
                     <div class="attribute">
                         <p class="attribute-title"><strong>Ice Level:</strong></p>
@@ -377,13 +377,13 @@
                         <label><input type="radio" name="ice" value="25" />25%</label>
                         <label><input type="radio" name="ice" value="50" />50%</label>
                         <label><input type="radio" name="ice" value="75" />75%</label>
-                        <label><input type="radio" name="ice" value="100" />100%</label>
+                        <label><input type="radio" name="ice" value="100" checked/>100%</label>
                     </div>
                     <div class="attribute">
                         <p class="attribute-title"><strong>Milk type:</strong></p>
                         <label><input type="radio" name="milk" value="soy" />Soy (+$1.0)</label>
                         <label><input type="radio" name="milk" value="oat" />Oat (+$1.0)</label>
-                        <label><input type="radio" name="milk" value="original" />Original</label>
+                        <label><input type="radio" name="milk" value="original" checked/>Original</label>
                     </div>
                 </div>
 
@@ -447,7 +447,7 @@
                         .forEach((i) => (i.checked = false));
                     scope
                         .querySelectorAll('input[type="radio"]')
-                        .forEach((i) => (i.checked = false));
+                        .forEach((i) => (i.checked = i.defaultChecked));
                     scope
                         .querySelectorAll('.attribute.invalid')
                         .forEach((el) => el.classList.remove('invalid'));
