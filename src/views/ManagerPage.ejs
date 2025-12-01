@@ -50,7 +50,7 @@
                     <div class="card">
                         <h2>Sales Chart</h2>
                         <div class="chart-container">
-                          <canvas id="sales-chart" height="220"></canvas>
+                            <canvas id="sales-chart" height="220"></canvas>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     <div class="card">
                         <h2>Top Revenue (Bar)</h2>
                         <div class="chart-container">
-                          <canvas id="profit-chart" height="220"></canvas>
+                            <canvas id="profit-chart" height="220"></canvas>
                         </div>
                     </div>
                 </div>
@@ -120,19 +120,114 @@
 
             <!-- Employees -->
             <section id="tab-employees" class="tab">
-                <div class="card">
-                    <h2>Employees</h2>
-                    <table class="table" id="employees-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Permissions</th>
-                                <th>Gender</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                <div class="grid">
+                    <div class="card">
+                        <h2>Add/Edit Employee</h2>
+                        <form id="employee-form">
+                            <input type="hidden" id="employee-id" />
+                            <div style="margin-bottom: 10px">
+                                <label
+                                    for="employee-name"
+                                    style="display: block; margin-bottom: 4px"
+                                    >Name:</label
+                                >
+                                <input
+                                    type="text"
+                                    id="employee-name"
+                                    required
+                                    style="
+                                        width: 100%;
+                                        padding: 6px;
+                                        border: 1px solid #cbd5e1;
+                                        border-radius: 6px;
+                                    "
+                                />
+                            </div>
+                            <div style="margin-bottom: 10px">
+                                <label
+                                    for="employee-permissions"
+                                    style="display: block; margin-bottom: 4px"
+                                    >Permissions:</label
+                                >
+                                <input
+                                    type="text"
+                                    id="employee-permissions"
+                                    required
+                                    style="
+                                        width: 100%;
+                                        padding: 6px;
+                                        border: 1px solid #cbd5e1;
+                                        border-radius: 6px;
+                                    "
+                                />
+                            </div>
+                            <div style="margin-bottom: 10px">
+                                <label
+                                    for="employee-gender"
+                                    style="display: block; margin-bottom: 4px"
+                                    >Gender:</label
+                                >
+                                <input
+                                    type="text"
+                                    id="employee-gender"
+                                    required
+                                    style="
+                                        width: 100%;
+                                        padding: 6px;
+                                        border: 1px solid #cbd5e1;
+                                        border-radius: 6px;
+                                    "
+                                />
+                            </div>
+                            <div style="margin-bottom: 10px">
+                                <label
+                                    for="employee-email"
+                                    style="display: block; margin-bottom: 4px"
+                                    >Email:</label
+                                >
+                                <input
+                                    type="email"
+                                    id="employee-email"
+                                    required
+                                    style="
+                                        width: 100%;
+                                        padding: 6px;
+                                        border: 1px solid #cbd5e1;
+                                        border-radius: 6px;
+                                    "
+                                />
+                            </div>
+                            <div style="display: flex; gap: 8px">
+                                <button type="submit" class="button" id="submit-btn">
+                                    Add Employee
+                                </button>
+                                <button
+                                    type="button"
+                                    class="button"
+                                    id="cancel-btn"
+                                    style="display: none; background: #6b7280"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card">
+                        <h2>Employees</h2>
+                        <table class="table" id="employees-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Permissions</th>
+                                    <th>Gender</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
         </main>

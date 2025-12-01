@@ -7,6 +7,12 @@ tabButtons.forEach((btn) => {
         tabs.forEach((t) => t.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+
+        // Load data when specific tabs are clicked
+        if (btn.dataset.tab === 'employees') {
+            console.log('Employees tab clicked, loading employees...');
+            loadEmployees();
+        }
     });
 });
 
@@ -91,4 +97,139 @@ document.getElementById('load-week').addEventListener('click', async () => {
     } catch (e) {
         console.error('Weekly inventory load failed', e);
     }
+});
+
+// EMPLOYEES
+let editingEmployeeId = null;
+
+async function loadEmployees() {
+    try {
+        const tbody = document.querySelector('#employees-table tbody');
+        if (!tbody) {
+            console.error('Employees table tbody not found');
+            return;
+        }
+
+        const data = await getJSON('/api/employees'); // [{id, employee_name, permissions, gender}]
+        console.log('Loaded employees:', data);
+
+        if (!data || !Array.isArray(data)) {
+            console.error('Invalid employees data:', data);
+            return;
+        }
+
+        fillTable(tbody, data, (r) => {
+            const name = String(r.employee_name ?? '');
+            const permissions = String(r.permissions ?? '');
+            const gender = String(r.gender ?? '');
+            const email = String(r.email ?? '');
+            return `<tr>
+                    <td>${r.id}</td>
+                    <td>${name}</td>
+                    <td>${permissions}</td>
+                    <td>${gender}</td>
+                    <td>${email}</td>
+                    <td>
+                        <button class="button edit-employee-btn" style="padding: 4px 8px; font-size: 12px;" 
+                                data-id="${r.id}" 
+                                data-name="${name.replace(/"/g, '&quot;')}" 
+                                data-permissions="${permissions.replace(/"/g, '&quot;')}" 
+                                data-gender="${gender.replace(/"/g, '&quot;')}"
+                                data-email="${email.replace(/"/g, '&quot;')}">Edit</button>
+                    </td>
+                </tr>`;
+        });
+    } catch (e) {
+        console.error('Employees load failed', e);
+        const tbody = document.querySelector('#employees-table tbody');
+        if (tbody) {
+            tbody.innerHTML =
+                '<tr><td colspan="6" style="text-align: center; color: red;">Error loading employees. Check console for details.</td></tr>';
+        }
+    }
+}
+
+// Event delegation for edit buttons
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('edit-employee-btn')) {
+        const btn = e.target;
+        const id = btn.dataset.id;
+        const name = btn.dataset.name;
+        const permissions = btn.dataset.permissions;
+        const gender = btn.dataset.gender;
+        const email = btn.dataset.email;
+        editEmployee(id, name, permissions, gender, email);
+    }
+});
+
+// Load employees on initial page load if employees tab is active
+if (document.querySelector('.tab-btn[data-tab="employees"]')?.classList.contains('active')) {
+    loadEmployees();
+}
+
+// Employee form submission
+document.getElementById('employee-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('employee-id').value;
+    const name = document.getElementById('employee-name').value;
+    const permissions = document.getElementById('employee-permissions').value;
+    const gender = document.getElementById('employee-gender').value;
+    const email = document.getElementById('employee-email').value;
+
+    try {
+        const url = id ? `/api/employees/${id}` : '/api/employees';
+        const method = id ? 'PUT' : 'POST';
+
+        console.log('Sending:', { name, permissions, gender, email });
+        const response = await fetch(url, {
+            method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, permissions, gender, email }),
+        });
+
+        if (!response.ok) {
+            let errorMessage = 'Failed to save employee';
+            try {
+                const error = await response.json();
+                errorMessage = error.error || error.message || errorMessage;
+            } catch (e) {
+                errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+            }
+            throw new Error(errorMessage);
+        }
+
+        // Reset form
+        document.getElementById('employee-form').reset();
+        document.getElementById('employee-id').value = '';
+        document.getElementById('submit-btn').textContent = 'Add Employee';
+        document.getElementById('cancel-btn').style.display = 'none';
+        editingEmployeeId = null;
+
+        // Reload employees
+        await loadEmployees();
+    } catch (e) {
+        console.error('Employee save failed', e);
+        alert('Failed to save employee: ' + e.message);
+    }
+});
+
+// Edit employee function
+function editEmployee(id, name, permissions, gender, email) {
+    document.getElementById('employee-id').value = id;
+    document.getElementById('employee-name').value = name;
+    document.getElementById('employee-permissions').value = permissions;
+    document.getElementById('employee-gender').value = gender;
+    document.getElementById('employee-email').value = email;
+    document.getElementById('submit-btn').textContent = 'Update Employee';
+    document.getElementById('cancel-btn').style.display = 'inline-block';
+    editingEmployeeId = id;
+}
+
+// Cancel edit
+document.getElementById('cancel-btn').addEventListener('click', () => {
+    document.getElementById('employee-form').reset();
+    document.getElementById('employee-id').value = '';
+    document.getElementById('submit-btn').textContent = 'Add Employee';
+    document.getElementById('cancel-btn').style.display = 'none';
+    editingEmployeeId = null;
 });
