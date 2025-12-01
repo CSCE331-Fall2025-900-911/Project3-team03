@@ -38,18 +38,16 @@ async function createOrder() {
     const drinkOrder = JSON.parse(localStorage.getItem('yf_cart_v1'));
     const phone = document.getElementById('phone').value;
 
-    if (!drinkOrder) {
-        return alert('Nothing to order!');
-    }
+    const jwtInfo = await (
+        await fetch('/api/jwt', {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${getCookie('authToken')}`,
+            },
+        })
+    ).json();
 
-    const jwtInfo = await fetch('/api/jwt', {
-        method: 'GET',
-        headers: {
-            Authorization: `Bearer ${getCookie('authToken')}`,
-        },
-    });
-
-    const employeeId = jwtInfo.json().employeeId;
+    const employeeId = jwtInfo.employeeId;
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
