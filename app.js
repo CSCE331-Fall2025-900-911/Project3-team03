@@ -19,7 +19,7 @@ const auth = require('./src/routes/auth');
 const callback = require('./src/routes/callback');
 const jwtAPI = require('./src/routes/jwt');
 const jwt = require('jsonwebtoken');
-const rewards = require('./src/routes/rewards')
+const rewards = require('./src/routes/rewards');
 const fs = require('fs');
 
 dotenv.config();
@@ -93,7 +93,7 @@ function requireLogin(req, res, next) {
     }
 
     try {
-        jwt.decode(token, process.env.JWT_SECRET);
+        jwt.verify(token, process.env.JWT_SECRET);
         return next();
     } catch (e) {
         res.clearCookie('authToken');
@@ -109,7 +109,7 @@ function loginNotAllowed(req, res, next) {
     }
 
     try {
-        jwt.decode(token, process.env.JWT_SECRET);
+        jwt.verify(token, process.env.JWT_SECRET);
         return res.redirect('/employee');
     } catch (e) {
         res.clearCookie('authToken');
