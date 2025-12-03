@@ -56,6 +56,10 @@
                         </div>
                     </div>
 
+                    <button type="button" class="remove-all">
+                        Remove All
+                    </button>
+
                     <button type="button" class="complete-order" onclick="createOrder()">
                         Complete Order
                     </button>
@@ -108,8 +112,17 @@
                 clearCart();
                 // Then navigate (your existing onclick can stay, this just ensures clear first)
             });
-        </script>
 
+            const removeAllBtn = document.querySelector('.remove-all');
+            if (removeAllBtn) {
+                removeAllBtn.addEventListener('click', () => {
+                    clearCart();
+                    renderCartInto(container);
+                    totalNode.textContent = `$${dollars(0)}`;
+                    if (rewardMsg) rewardMsg.textContent = '';
+                });
+            }
+        </script>
         <script src="/js/createOrder.js"></script>
         <script src="/js/cart.js"></script>
     </body>
