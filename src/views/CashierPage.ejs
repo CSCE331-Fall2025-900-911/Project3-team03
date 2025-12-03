@@ -69,7 +69,6 @@
                         <p class="price">$5.49</p>
                     </div>
                 </div>
-            </section>
 
                 <!-- Category: Fruit Tea -->
                 <div class="drink-items">
@@ -124,7 +123,6 @@
                         <p class="price">$5.99</p>
                     </div>
                 </div>
-            </section>
 
                 <!-- Category: Tea Latte -->
                 <div class="drink-items">
@@ -199,7 +197,6 @@
                         <p class="price">$5.99</p>
                     </div>
                 </div>
-            </section>
 
                 <!-- Category: Traditional -->
                 <div class="drink-items">
@@ -244,7 +241,6 @@
                         <p class="price">$5.99</p>
                     </div>
                 </div>
-            </section>
 
                 <!-- Category: Seasonal -->
                 <div class="drink-items">
@@ -290,7 +286,6 @@
                     </div>
                 </div>
             </div>
-        </section>
 
         <!-- Toppings Section -->
         <div id="toppings" class="toppings-modal" hidden>
@@ -388,6 +383,20 @@
                 </div>
 
                 <div class="toppings-footer">
+                    <div class="quantity-control">
+                        <button
+                            type="button"
+                            class="qty-decrease"
+                            aria-label="Decrease quantity"
+                        >−</button>
+                        <span class="qty-value" aria-live="polite">1</span>
+                        <button
+                            type="button"
+                            class="qty-increase"
+                            aria-label="Increase quantity"
+                        >+</button>
+                    </div>
+
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
@@ -414,7 +423,21 @@
             const toppingsModal = document.getElementById('toppings');
             const toppingsCloseBtn = toppingsModal.querySelector('.toppings-close');
 
+            let quantity = 1; // user can set the amount of drinks to add to cart
+
+            const qtyValue = toppingsModal.querySelector('.qty-value');      
+            const qtyDecBtn = toppingsModal.querySelector('.qty-decrease'); 
+            const qtyIncBtn = toppingsModal.querySelector('.qty-increase'); 
+
+            function setQuantity(newQty) {                                   
+                quantity = Math.max(1, newQty);
+                if (qtyValue) {
+                    qtyValue.textContent = String(quantity);
+                }
+            }
+
             function openToppings() {
+                setQuantity(1);
                 toppingsModal.hidden = false;
                 toppingsModal.classList.add('open');
             }
@@ -427,6 +450,18 @@
             if (toppingsCloseBtn) {
                 toppingsCloseBtn.addEventListener('click', () => {
                     closeToppings();
+                });
+            }
+
+            if (qtyDecBtn) {
+                qtyDecBtn.addEventListener('click', () => {
+                    setQuantity(quantity - 1); 
+                });
+            }
+
+            if (qtyIncBtn) {
+                qtyIncBtn.addEventListener('click', () => {
+                    setQuantity(quantity + 1);
                 });
             }
 
@@ -510,7 +545,11 @@
                     imgSrc: pendingDrink.imgSrc,
                 };
 
-                addToCart(item);
+                // add as many copies as the selected quantity
+                const qtyToAdd = quantity || 1;
+                for (let i = 0; i < qtyToAdd; i++) {
+                    addToCart(item);
+                }
 
                 const btn = document.querySelector('.add-to-cart');
                 const orig = btn.textContent;

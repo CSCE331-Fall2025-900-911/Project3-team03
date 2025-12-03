@@ -452,3 +452,40 @@ body {
     font-size: 0.9rem;
     box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
+
+/* white wrapper around quantity*/
+.quantity-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;             
+    padding: 0.35rem 1.75rem; 
+    border: 2px solid #c4c4c4;
+    border-radius: 999px;    
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 1.2rem;
+}
+
+/* Quantity number in the middle */
+.quantity-control .qty-value {
+    min-width: 1.5rem;
+    text-align: center;
+}
+
+/* buttons */
+.quantity-control .qty-decrease,
+.quantity-control .qty-increase {
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;       
+    cursor: pointer;
+    line-height: 1;
+}
+
+.quantity-control .qty-decrease:focus-visible,
+.quantity-control .qty-increase:focus-visible {
+    outline: 2px solid #0078d4;
+    outline-offset: 2px;
+}
