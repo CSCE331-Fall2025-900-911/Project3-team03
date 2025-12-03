@@ -487,6 +487,20 @@
                 </div>
 
                 <div class="toppings-footer">
+                    <div class="quantity-control">
+                        <button
+                            type="button"
+                            class="qty-decrease"
+                            aria-label="Decrease quantity"
+                        >−</button>
+                        <span class="qty-value" aria-live="polite">1</span>
+                        <button
+                            type="button"
+                            class="qty-increase"
+                            aria-label="Increase quantity"
+                        >+</button>
+                    </div>
+
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
@@ -525,7 +539,21 @@
             const toppingsModal = document.getElementById('toppings');
             const toppingsCloseBtn = toppingsModal.querySelector('.toppings-close');
 
+            let quantity = 1; // user can set the amount of drinks to add to cart
+
+            const qtyValue = toppingsModal.querySelector('.qty-value');      
+            const qtyDecBtn = toppingsModal.querySelector('.qty-decrease'); 
+            const qtyIncBtn = toppingsModal.querySelector('.qty-increase'); 
+
+            function setQuantity(newQty) {                                   
+                quantity = Math.max(1, newQty);
+                if (qtyValue) {
+                    qtyValue.textContent = String(quantity);
+                }
+            }
+
             function openToppings() {
+                setQuantity(1);
                 toppingsModal.hidden = false;
                 toppingsModal.classList.add('open');
             }
@@ -541,6 +569,18 @@
                 });
             }
 
+            if (qtyDecBtn) {
+                qtyDecBtn.addEventListener('click', () => {
+                    setQuantity(quantity - 1); 
+                });
+            }
+
+            if (qtyIncBtn) {
+                qtyIncBtn.addEventListener('click', () => {
+                    setQuantity(quantity + 1);
+                });
+            }
+            
             // Tab switching
             const tabButtons = document.querySelectorAll('.menu-tab');
             const tabPanels = document.querySelectorAll('.tab-panel');
@@ -637,7 +677,12 @@
                     toppings,
                     imgSrc: pendingDrink.imgSrc,
                 };
-                addToCart(item);
+
+                // add as many copies as the selected quantity
+                const qtyToAdd = quantity || 1;
+                for (let i = 0; i < qtyToAdd; i++) {
+                    addToCart(item);
+                }
 
                 const btn = document.querySelector('.add-to-cart');
                 const orig = btn.textContent;
