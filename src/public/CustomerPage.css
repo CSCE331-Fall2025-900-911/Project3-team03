@@ -193,10 +193,21 @@ body {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
-/* CSS for text */
+/* CSS for price text */
 .price {
     font-weight: 600;
+    margin: 5rem 5 3;
+}
+
+/* CSS for text */
+.drink-name {
+    font-weight: 600;
     margin: 0.25rem 0 0;
+}
+
+.drink-item .drink-name {
+    margin-top: 2rem;  
+    text-align: center;   
 }
 
 /* Popover button*/
