@@ -226,23 +226,31 @@ function resetInventoryForm() {
 document.getElementById('inventory-cancel-btn')?.addEventListener('click', resetInventoryForm);
 
 // WEEKLY INVENTORY
-document.getElementById('load-week').addEventListener('click', async () => {
-    const week = document.getElementById('weekNumber').value || 1;
-    try {
-        const data = await getJSON('/api/weeklyInventory/' + week); // array of {week_date,item,previous_qty,current_qty}
-        const tbody = document.querySelector('#weekly-table tbody');
-        fillTable(
-            tbody,
-            data,
-            (r) =>
-                `<tr><td>${r.week_date ?? ''}</td><td>${r.item ?? ''}</td><td>${
-                    r.previous_qty ?? ''
-                }</td><td>${r.current_qty ?? ''}</td></tr>`
-        );
-    } catch (e) {
-        console.error('Weekly inventory load failed', e);
-    }
-});
+const loadWeekBtn = document.getElementById('load-week');
+
+if (loadWeekBtn) {
+    loadWeekBtn.addEventListener('click', async () => {
+        const weekInput = document.getElementById('weekNumber');
+        const week = (weekInput && weekInput.value) || 1;
+
+        try {
+            const data = await getJSON('/api/weeklyInventory/' + week);
+            const tbody = document.querySelector('#weekly-table tbody');
+            if (!tbody) return;
+
+            fillTable(
+                tbody,
+                data,
+                (r) =>
+                    `<tr><td>${r.week_date ?? ''}</td><td>${r.item ?? ''}</td><td>${
+                        r.previous_qty ?? ''
+                    }</td><td>${r.current_qty ?? ''}</td></tr>`
+            );
+        } catch (e) {
+            console.error('Weekly inventory load failed', e);
+        }
+    });
+}
 
 // EMPLOYEES
 let editingEmployeeId = null;
@@ -377,4 +385,142 @@ document.getElementById('cancel-btn').addEventListener('click', () => {
     document.getElementById('submit-btn').textContent = 'Add Employee';
     document.getElementById('cancel-btn').style.display = 'none';
     editingEmployeeId = null;
+});
+
+// Reports Tab
+document.addEventListener("DOMContentLoaded", () => {
+    const reportsTableBody = document.querySelector("#reports-table tbody");
+    const detailTitle = document.getElementById("report-detail-title");
+    const detailContent = document.getElementById("report-detail-content");
+
+    const createForm = document.getElementById("report-create-form");
+    const createNameInput = document.getElementById("create-report-name");
+    const createCreatedByInput = document.getElementById("create-report-created-by");
+    const createContentInput = document.getElementById("create-report-content");
+
+    if (!reportsTableBody) return; 
+
+    let currentReport = null;
+    let currentRow = null;
+    let reportsCache = [];
+
+    loadReports();
+
+    async function loadReports() {
+        try {
+            const res = await fetch("/api/reports");
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            const reports = await res.json();
+            reportsCache = reports;
+            renderReports(reports);
+        } catch (err) {
+            console.error("Error loading reports:", err);
+            reportsTableBody.innerHTML = `
+                <tr><td colspan="2" style="color:#b91c1c;">Failed to load reports.</td></tr>
+            `;
+        }
+    }
+
+    function renderReports(reports) {
+        if (!Array.isArray(reports) || reports.length === 0) {
+            reportsTableBody.innerHTML =
+                `<tr><td colspan="2" style="color:#6b7280;">No reports found.</td></tr>`;
+            return;
+        }
+
+        reportsTableBody.innerHTML = "";
+        currentReport = null;
+        currentRow = null;
+
+        reports.forEach((r) => {
+            const tr = document.createElement("tr");
+            tr.style.cursor = "pointer";
+
+            tr.innerHTML = `
+                <td>${r.name}</td>
+                <td>${r.created_by}</td>
+            `;
+
+            tr.addEventListener("click", () => {
+                currentReport = r;
+                currentRow = tr;
+                showReportDetails(r);
+                highlightSelected(tr);
+            });
+
+            reportsTableBody.appendChild(tr);
+        });
+    }
+
+    function showReportDetails(report) {
+        detailTitle.textContent = report.name;
+        detailContent.textContent = report.content || "";
+    }
+
+    function highlightSelected(selectedRow) {
+        reportsTableBody.querySelectorAll("tr").forEach((row) =>
+            row.classList.remove("selected-report-row")
+        );
+        selectedRow.classList.add("selected-report-row");
+    }
+
+    // Create Report
+    if (createForm) {
+        createForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = createNameInput.value.trim();
+            const createdByStr = createCreatedByInput.value.trim();
+            const content = createContentInput.value;
+
+            if (!name || !createdByStr || !content) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            const created_by = Number(createdByStr);
+            if (Number.isNaN(created_by)) {
+                alert("Created By must be a number (employee ID).");
+                return;
+            }
+
+            try {
+                const res = await fetch("/api/reports", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name,
+                        created_by,
+                        content,
+                    }),
+                });
+
+                if (!res.ok) {
+                    const text = await res.text();
+                    console.error("Create failed", res.status, text);
+                    throw new Error(`HTTP ${res.status}: ${text}`);
+                }
+
+                const newReport = await res.json();
+
+                reportsCache.unshift(newReport);
+                renderReports(reportsCache);
+
+                currentReport = newReport;
+
+                const firstRow = reportsTableBody.querySelector("tr");
+                if (firstRow) {
+                    highlightSelected(firstRow);
+                }
+                showReportDetails(newReport);
+
+                createForm.reset();
+
+                alert("Report created successfully.");
+            } catch (err) {
+                console.error("Failed to create report:", err);
+                alert("Failed to create report: " + err.message);
+            }
+        });
+    }
 });
