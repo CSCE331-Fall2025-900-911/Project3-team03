@@ -19,9 +19,11 @@
         </header>
 
         <div id="weather-box">
-            <p id="weather-location">Loading weather...</p>
-            <p id="weather-temp"></p>
-            <p id="weather-desc"></p>
+            <div class="weather-info">
+                <p id="weather-location">Loading weather...</p>
+                <p id="weather-temp"></p>
+            </div>
+            <div id="weather-icon-container"></div>
         </div>
 
         <div class="menu-title">
@@ -543,17 +545,22 @@
         <script type="module">
             import { addToCart } from '/js/cart.js';
 
-            const res = await fetch('/api/wiki');
-            const drinkToDesc = await res.json();
-
-            for (const [drink, desc] of Object.entries(drinkToDesc)) {
-                const drinkItem = document.querySelector(`[data-name="${drink}"]`);
-                if (drinkItem) {
-                    const descP = drinkItem.parentElement.querySelector('.description');
-                    if (descP) {
-                        descP.textContent = desc;
+            try {
+                const res = await fetch('/api/wiki');
+                if (res.ok) {
+                    const drinkToDesc = await res.json();
+                    for (const [drink, desc] of Object.entries(drinkToDesc)) {
+                        const drinkItem = document.querySelector(`[data-name="${drink}"]`);
+                        if (drinkItem) {
+                            const descP = drinkItem.parentElement.querySelector('.description');
+                            if (descP) {
+                                descP.textContent = desc;
+                            }
+                        }
                     }
                 }
+            } catch (e) {
+                console.warn('Wiki descriptions could not be loaded:', e);
             }
 
             let pendingDrink = null;
@@ -728,35 +735,48 @@
 
                     const temp = data.current_weather.temperature;
                     const code = data.current_weather.weathercode;
+                    const isDay = data.current_weather.is_day; // 1 for day, 0 for night
 
-                    const descriptions = {
-                        0: 'Clear sky',
-                        1: 'Mainly clear',
-                        2: 'Partly cloudy',
-                        3: 'Overcast',
-                        45: 'Foggy',
-                        48: 'Rime fog',
-                        51: 'Light drizzle',
-                        53: 'Drizzle',
-                        55: 'Dense drizzle',
-                        61: 'Light rain',
-                        63: 'Rain',
-                        65: 'Heavy rain',
-                        71: 'Light snow',
-                        73: 'Snow',
-                        75: 'Heavy snow',
-                        95: 'Thunderstorm',
-                    };
+                    let gifName = 'sun.gif'; // default
 
-                    document.getElementById('weather-location').textContent =
-                        'College Station Weather';
+                    // Mapping logic
+                    if (isDay === 0 && (code === 0 || code === 1 || code === 2 || code === 3)) {
+                         gifName = 'night.gif';
+                    } else {
+                        // Day time or specific weather conditions that override "night" (like rain/snow)
+                        // Although typically rain/snow looks similar day/night, we'll stick to the requested mapping
+                        // prioritizing the specific weather condition GIFs over "night" if it's raining/snowing at night?
+                        // The plan said:
+                        // Night (is_day === 0): night.gif (for clear/cloudy codes).
+                        // Rain/Drizzle (51-67): rain.gif
+                        // Snow (71-77): snow.gif
+                        // Thunderstorm (95-99): storm.gif
+                        
+                        if (code >= 51 && code <= 67) {
+                            gifName = 'rain.gif';
+                        } else if (code >= 71 && code <= 77) {
+                            gifName = 'snow.gif';
+                        } else if (code >= 95 && code <= 99) {
+                            gifName = 'storm.gif';
+                        } else if (code === 0 || code === 1) {
+                            gifName = 'sun.gif';
+                        } else if (code === 2 || code === 3 || code === 45 || code === 48) {
+                            gifName = 'wind.gif'; // Using wind.gif for cloudy/overcast/fog as per plan
+                        }
+                    }
+
+                    document.getElementById('weather-location').textContent = 'College Station';
                     document.getElementById('weather-temp').textContent = `${temp}°F`;
-                    document.getElementById('weather-desc').textContent =
-                        descriptions[code] || 'N/A';
+                    
+                    // Replace text with GIF
+                    const iconContainer = document.getElementById('weather-icon-container');
+                    iconContainer.innerHTML = `<img src="/weatherGifs/${gifName}" alt="Weather Animation" class="weather-gif" />`;
+                    
                 } catch (err) {
+                    console.error(err);
                     document.getElementById('weather-location').textContent = 'Weather unavailable';
                     document.getElementById('weather-temp').textContent = '';
-                    document.getElementById('weather-desc').textContent = '';
+                    document.getElementById('weather-icon-container').innerHTML = '';
                 }
             }
 
