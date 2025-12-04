@@ -108,3 +108,40 @@ footer.header-container {
     background: rgba(11, 13, 23, 0.8);
     border-color: rgba(255, 255, 255, 0.5);
 }
+
+/* Notifcation text for adding to cart */
+.cart-notification {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: #ffffff;
+    backdrop-filter: blur(10px);
+    color: #1f2937;
+    padding: 10px 24px;
+    border-radius: 50px;
+    width: fit-content;
+    max-width: min(90vw, 480px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 0.95rem;
+    font-weight: 700; 
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.2s ease;
+}
+
+.cart-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+

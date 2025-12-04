@@ -109,6 +109,7 @@
             // If you want it to also clear the cart (so cashier gets fresh cart on next order), do this:
             const completeBtn = document.querySelector('.complete-order');
             completeBtn.addEventListener('click', () => {
+                sessionStorage.setItem('orderCompleted', '1');
                 clearCart();
                 // Then navigate (your existing onclick can stay, this just ensures clear first)
             });

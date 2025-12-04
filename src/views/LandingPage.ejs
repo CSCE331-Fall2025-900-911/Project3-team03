@@ -19,6 +19,17 @@
             </div>
         </header>
 
+        <!-- Cart Notification for successfully creating order -->
+        <div
+            id="cart-notification"
+            class="cart-notification"
+            role="status"
+            aria-live="polite"
+            hidden
+        >
+            Successfully Completed Order
+        </div>
+
         <div class="body-container">
             <img src="/landing_logo.png" class="body-logo" alt="body-logo">
             <a href="/menu-download.jpg" target="_blank" class="download-btn">
@@ -37,6 +48,8 @@
         <script type="module" src="/js/ADHDFocus.js"></script>
         <script src="/js/translation.js"></script>
         <script src="/js/textToSpeech.js"></script>
+        <script src="/js/createOrderNotification.js"></script>
+
 
         <script>
             try { localStorage.removeItem('yf_cart_v1'); } catch (e) {}
