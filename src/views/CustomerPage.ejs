@@ -18,6 +18,17 @@
             </div>
         </header>
 
+        <!-- Cart Notification for successfully adding drink -->
+        <div
+            id="cart-notification"
+            class="cart-notification"
+            role="status"
+            aria-live="polite"
+            hidden
+        >
+            Successfully Added to Shopping Cart!
+        </div>
+
         <div id="weather-box">
             <div class="weather-info">
                 <p id="weather-location">Loading weather...</p>
@@ -573,6 +584,22 @@
             const qtyValue = toppingsModal.querySelector('.qty-value');      
             const qtyDecBtn = toppingsModal.querySelector('.qty-decrease'); 
             const qtyIncBtn = toppingsModal.querySelector('.qty-increase'); 
+            const cartNotification = document.getElementById('cart-notification');
+
+            function showCartNotification(message) {
+                if (!cartNotification) return;
+                cartNotification.textContent = message;
+                cartNotification.hidden = false;
+                cartNotification.classList.add('show');
+
+                setTimeout(() => {
+                    cartNotification.classList.remove('show');
+                    setTimeout(() => {
+                        cartNotification.hidden = true;
+                    }, 250);
+                }, 4000);
+            }
+
 
             function setQuantity(newQty) {                                   
                 quantity = Math.max(1, newQty);
@@ -720,6 +747,8 @@
                     btn.textContent = orig;
                 }, 800);
 
+                
+                showCartNotification('Successfully added to shopping cart');
                 closeToppings();
             });
 
