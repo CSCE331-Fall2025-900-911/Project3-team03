@@ -30,6 +30,7 @@
                 <button class="tab-btn" data-tab="profit">Profit</button>
                 <button class="tab-btn" data-tab="inventory">Inventory</button>
                 <button class="tab-btn" data-tab="employees">Employees</button>
+                <button class="tab-btn" data-tab="reports">Reports</button>
             </div>
 
             <!-- Sales -->
@@ -284,6 +285,107 @@
                             </thead>
                             <tbody></tbody>
                         </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports -->
+            <section id="tab-reports" class="tab">
+                <div class="grid">
+                    <!-- Left: list of reports -->
+                    <div class="card">
+                        <h2>Reports</h2>
+                        <table class="table" id="reports-table">
+                            <thead>
+                                <tr>
+                                    <th>Report Name</th>
+                                    <th>Created By (Employee ID)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Middle: report details -->
+                    <div class="card">
+                        <h2 id="report-detail-title">Report Details</h2>
+                        <div
+                            id="report-detail-content"
+                            style="margin-top: 8px; white-space: pre-wrap;"
+                        >
+                            <p style="color: #6b7280; margin: 0;">
+                                Select a report on the left to view its contents.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right: create report form -->
+                    <div class="card">
+                        <h2>Create Report</h2>
+                        <form id="report-create-form">
+                            <div style="margin-bottom:10px;">
+                                <label for="create-report-name" style="display:block; margin-bottom:4px;">
+                                    Report Name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="create-report-name"
+                                    style="
+                                        width:100%;
+                                        padding:6px;
+                                        border:1px solid #cbd5e1;
+                                        border-radius:6px;
+                                    "
+                                    placeholder="Enter report title..."
+                                    required
+                                />
+                            </div>
+
+                            <div style="margin-bottom:10px;">
+                                <label for="create-report-created-by" style="display:block; margin-bottom:4px;">
+                                    Created By (Employee ID)
+                                </label>
+                                <input
+                                    type="number"
+                                    id="create-report-created-by"
+                                    style="
+                                        width:100%;
+                                        padding:6px;
+                                        border:1px solid #cbd5e1;
+                                        border-radius:6px;
+                                    "
+                                    placeholder="e.g. 1"
+                                    required
+                                />
+                            </div>
+
+                            <div style="margin-bottom:10px;">
+                                <label for="create-report-content" style="display:block; margin-bottom:4px;">
+                                    Report Details
+                                </label>
+                                <textarea
+                                    id="create-report-content"
+                                    rows="8"
+                                    style="
+                                        width:100%;
+                                        padding:6px;
+                                        border:1px solid #cbd5e1;
+                                        border-radius:6px;
+                                        resize:vertical;
+                                    "
+                                    placeholder="Enter the body of the report..."
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div style="display:flex; gap:8px;">
+                                <button type="submit" class="button" id="report-create-btn">
+                                    Create Report
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </section>
