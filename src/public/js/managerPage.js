@@ -69,16 +69,131 @@ function fillTable(tbody, rows, render) {
     }
 })();
 
-// INVENTORY SUMMARY
-(async function loadInventory() {
+// INVENTORY MANAGEMENT
+let editingInventoryId = null;
+
+async function loadInventory() {
     try {
-        const data = await getJSON('/api/inventory'); // expect rows with category & item_count
+        const data = await getJSON('/api/inventory'); // [{id, item, quantity, price}]
         const tbody = document.querySelector('#inventory-table tbody');
-        fillTable(tbody, data, (r) => `<tr><td>${r.category}</td><td>${r.item_count}</td></tr>`);
+        
+        if (!tbody) return;
+
+        fillTable(tbody, data, (r) => {
+             const item = String(r.item ?? '');
+             const quantity = r.quantity ?? 0;
+             const price = Number(r.price ?? 0).toFixed(2);
+             
+             return `<tr>
+                <td>${r.id}</td>
+                <td>${item}</td>
+                <td>${quantity}</td>
+                <td>$${price}</td>
+                <td>
+                    <button class="button edit-inventory-btn" style="padding: 4px 8px; font-size: 12px;"
+                        data-id="${r.id}"
+                        data-item="${item.replace(/"/g, '&quot;')}"
+                        data-quantity="${quantity}"
+                        data-price="${price}">Edit</button>
+                </td>
+             </tr>`;
+        });
     } catch (e) {
         console.error('Inventory load failed', e);
     }
-})();
+}
+
+// Initial load if inventory tab is active
+if (document.querySelector('.tab-btn[data-tab="inventory"]')?.classList.contains('active')) {
+    loadInventory();
+}
+
+// Tab click listener update to load inventory
+document.querySelector('.tab-btn[data-tab="inventory"]')?.addEventListener('click', loadInventory);
+
+// Inventory Form Submission
+document.getElementById('inventory-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('inventory-id').value;
+    const item = document.getElementById('inventory-item').value;
+    const quantity = document.getElementById('inventory-quantity').value;
+    const price = document.getElementById('inventory-price').value;
+
+    try {
+        const url = '/api/inventory'; 
+        // Note: The existing API uses PUT /api/inventory for updates and POST /api/inventory for creates.
+        // PUT expects {id, quantity}, POST expects {item, quantity, price}.
+        // The current PUT implementation in inventory.js only updates quantity. 
+        // If we want to update other fields, we'd need to update the backend. 
+        // For now, we will stick to the existing API contract.
+        
+        const method = id ? 'PUT' : 'POST';
+        const body = id ? { id, quantity } : { item, quantity, price };
+
+        const response = await fetch(url, {
+            method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        // Reset form
+        resetInventoryForm();
+        
+        // Reload inventory
+        await loadInventory();
+    } catch (e) {
+        console.error('Inventory save failed', e);
+        alert('Failed to save inventory item: ' + e.message);
+    }
+});
+
+// Edit Inventory Button Click
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('edit-inventory-btn')) {
+        const btn = e.target;
+        const id = btn.dataset.id;
+        const item = btn.dataset.item;
+        const quantity = btn.dataset.quantity;
+        const price = btn.dataset.price;
+
+        editInventory(id, item, quantity, price);
+    }
+});
+
+function editInventory(id, item, quantity, price) {
+    document.getElementById('inventory-id').value = id;
+    document.getElementById('inventory-item').value = item;
+    document.getElementById('inventory-quantity').value = quantity;
+    document.getElementById('inventory-price').value = price;
+    
+    // Disable item and price fields for edit if backend only supports quantity update
+    // Based on src/routes/inventory.js, PUT only takes id and quantity.
+    // So we should probably disable item and price editing or warn the user.
+    // For better UX, let's disable them visually or just know they won't update.
+    // Actually, let's disable them to be clear.
+    document.getElementById('inventory-item').disabled = true;
+    document.getElementById('inventory-price').disabled = true;
+
+    document.getElementById('inventory-submit-btn').textContent = 'Update Quantity';
+    document.getElementById('inventory-cancel-btn').style.display = 'inline-block';
+    editingInventoryId = id;
+}
+
+function resetInventoryForm() {
+    document.getElementById('inventory-form').reset();
+    document.getElementById('inventory-id').value = '';
+    document.getElementById('inventory-item').disabled = false;
+    document.getElementById('inventory-price').disabled = false;
+    document.getElementById('inventory-submit-btn').textContent = 'Add Item';
+    document.getElementById('inventory-cancel-btn').style.display = 'none';
+    editingInventoryId = null;
+}
+
+document.getElementById('inventory-cancel-btn')?.addEventListener('click', resetInventoryForm);
 
 // WEEKLY INVENTORY
 document.getElementById('load-week').addEventListener('click', async () => {
