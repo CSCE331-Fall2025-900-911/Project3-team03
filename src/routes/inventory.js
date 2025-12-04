@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getInventory, createInventory, updateInventory } = require('../models/inventory');
+const { getInventory, createItem, updateItem, deleteItem } = require('../models/inventory');
 
 router.get('/', async (req, res) => {
     const all_inventory = await getInventory();
@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         res.status(400).send('Bad request');
     }
 
-    await createInventory(item, quantity, price);
+    await createItem(item, quantity, price);
 
     res.status(200).send('Added item!');
 });
@@ -39,9 +39,25 @@ router.put('/', async (req, res) => {
         res.status(400).send('Bad request');
     }
 
-    await updateInventory(id, quantity);
+    await updateItem(id, quantity);
 
     res.status(200).send('Updated item!');
+});
+
+router.delete('/', async (req, res) => {
+    if (!req.body || !req.body.id) {
+        res.status(400).send('Bad request');
+    }
+
+    const { id } = req.body;
+
+    if (id == null) {
+        res.status(400).send('Bad request');
+    }
+
+    await deleteItem(id);
+
+    res.status(200).send('Deleted item!');
 });
 
 module.exports = router;

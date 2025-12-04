@@ -9,7 +9,7 @@ async function getInventory() {
     return res.rows;
 }
 
-async function createInventory(item, quantity, price) {
+async function createItem(item, quantity, price) {
     const worker = await pool.connect();
 
     await worker.query('INSERT INTO inventory (item, quantity, price) VALUES($1,$2,$3)', [
@@ -21,7 +21,7 @@ async function createInventory(item, quantity, price) {
     worker.release();
 }
 
-async function updateInventory(id, quantity) {
+async function updateItem(id, quantity) {
     const worker = await pool.connect();
 
     await worker.query('UPDATE inventory SET quantity = $1 WHERE id = $2', [
@@ -32,8 +32,17 @@ async function updateInventory(id, quantity) {
     worker.release();
 }
 
+async function deleteItem(id) {
+    const worker = await pool.connect();
+
+    await worker.query('DELETE FROM inventory WHERE id = $1', [Number(id)]);
+
+    worker.release();
+}
+
 module.exports = {
     getInventory,
-    createInventory,
-    updateInventory,
+    createItem,
+    updateItem,
+    deleteItem,
 };
