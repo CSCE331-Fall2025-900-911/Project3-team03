@@ -34,7 +34,7 @@ async function createOrder(employeeId, drinksInfo) {
     ]);
 
     console.log(`Order ${orderId} created with total price ${totalPrice}`);
-    (await worker).release();
+    worker.release();
     return { orderId, totalPrice };
 }
 
