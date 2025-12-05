@@ -321,10 +321,10 @@
                             </p>
                         </div>
                     </div>
-
-                    <!-- Right: create report form -->
+                    
                     <div class="card">
                         <h2>Create Report</h2>
+                        <!-- Create Report-->
                         <form id="report-create-form">
                             <div style="margin-bottom:10px;">
                                 <label for="create-report-name" style="display:block; margin-bottom:4px;">
@@ -386,6 +386,33 @@
                                     Create Report
                                 </button>
                             </div>
+                        </form>
+
+                        <!-- X-Report -->
+                        <hr style="margin:16px 0; border:none; border-top:1px solid #e5e7eb;" />
+
+                        <h3 style="margin-top:0;">Generate X-Report</h3>
+                        <form id="xreport-form">
+                            <div style="margin-bottom:10px;">
+                                <label for="xreport-date" style="display:block; margin-bottom:4px;">
+                                    Report Date
+                                </label>
+                                <input
+                                    type="date"
+                                    id="xreport-date"
+                                    style="
+                                        width:100%;
+                                        padding:6px;
+                                        border:1px solid #cbd5e1;
+                                        border-radius:6px;
+                                    "
+                                    required
+                                />
+                            </div>
+
+                            <button type="submit" class="button" id="xreport-generate-btn">
+                                Generate X-Report
+                            </button>
                         </form>
                     </div>
                 </div>

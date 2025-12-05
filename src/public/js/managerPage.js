@@ -536,6 +536,61 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // X-Report
+    const xReportForm = document.getElementById('xreport-form');
+    const xReportDateInput = document.getElementById('xreport-date');
+
+    if (xReportForm && xReportDateInput) {
+        xReportForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const dateStr = xReportDateInput.value;
+            if (!dateStr) {
+                alert('Please pick a date for the X-Report.');
+                return;
+            }
+
+            try {
+                const created_by = await loadEmployeeId();
+
+                const res = await fetch('/api/xreport', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        date: dateStr,
+                        created_by,
+                    }),
+                });
+
+                if (!res.ok) {
+                    const text = await res.text();
+                    console.error('X-Report creation failed', res.status, text);
+                    throw new Error(`HTTP ${res.status}: ${text}`);
+                }
+
+                const payload = await res.json();
+                const newReport = payload.report;
+
+                reportsCache.unshift(newReport);
+                renderReports(reportsCache);
+
+                currentReport = newReport;
+                const firstRow = reportsTableBody.querySelector('tr');
+                if (firstRow) {
+                    highlightSelected(firstRow);
+                }
+                showReportDetails(newReport);
+
+                xReportForm.reset();
+
+                alert('X-Report created successfully.');
+            } catch (err) {
+                console.error('Failed to create X-Report:', err);
+                alert('Failed to create X-Report: ' + err.message);
+            }
+        });
+    }
 });
 
 function getCookie(name) {
