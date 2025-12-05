@@ -167,7 +167,7 @@ document.addEventListener('click', (e) => {
         const btn = e.target;
         const id = btn.dataset.id;
         const item = btn.dataset.item;
-        
+
         if (confirm(`Are you sure you want to delete "${item}"?`)) {
             deleteInventory(id);
         }
@@ -388,17 +388,17 @@ document.getElementById('cancel-btn').addEventListener('click', () => {
 });
 
 // Reports Tab
-document.addEventListener("DOMContentLoaded", () => {
-    const reportsTableBody = document.querySelector("#reports-table tbody");
-    const detailTitle = document.getElementById("report-detail-title");
-    const detailContent = document.getElementById("report-detail-content");
+document.addEventListener('DOMContentLoaded', () => {
+    const reportsTableBody = document.querySelector('#reports-table tbody');
+    const detailTitle = document.getElementById('report-detail-title');
+    const detailContent = document.getElementById('report-detail-content');
 
-    const createForm = document.getElementById("report-create-form");
-    const createNameInput = document.getElementById("create-report-name");
-    const createCreatedByInput = document.getElementById("create-report-created-by");
-    const createContentInput = document.getElementById("create-report-content");
+    const createForm = document.getElementById('report-create-form');
+    const createNameInput = document.getElementById('create-report-name');
+    const createCreatedByInput = document.getElementById('create-report-created-by');
+    const createContentInput = document.getElementById('create-report-content');
 
-    if (!reportsTableBody) return; 
+    if (!reportsTableBody) return;
 
     let currentReport = null;
     let currentRow = null;
@@ -406,15 +406,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadReports();
 
+    async function loadEmployeeId() {
+        const jwtInfo = await (
+            await fetch('/api/jwt', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${getCookie('authToken')}`,
+                },
+            })
+        ).json();
+
+        return jwtInfo.employeeId;
+    }
+
     async function loadReports() {
         try {
-            const res = await fetch("/api/reports");
-            if (!res.ok) throw new Error("HTTP " + res.status);
+            const res = await fetch('/api/reports');
+            if (!res.ok) throw new Error('HTTP ' + res.status);
             const reports = await res.json();
             reportsCache = reports;
+            createCreatedByInput.value = await loadEmployeeId();
             renderReports(reports);
         } catch (err) {
-            console.error("Error loading reports:", err);
+            console.error('Error loading reports:', err);
             reportsTableBody.innerHTML = `
                 <tr><td colspan="2" style="color:#b91c1c;">Failed to load reports.</td></tr>
             `;
@@ -423,25 +437,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderReports(reports) {
         if (!Array.isArray(reports) || reports.length === 0) {
-            reportsTableBody.innerHTML =
-                `<tr><td colspan="2" style="color:#6b7280;">No reports found.</td></tr>`;
+            reportsTableBody.innerHTML = `<tr><td colspan="2" style="color:#6b7280;">No reports found.</td></tr>`;
             return;
         }
 
-        reportsTableBody.innerHTML = "";
+        reportsTableBody.innerHTML = '';
         currentReport = null;
         currentRow = null;
 
         reports.forEach((r) => {
-            const tr = document.createElement("tr");
-            tr.style.cursor = "pointer";
+            const tr = document.createElement('tr');
+            tr.style.cursor = 'pointer';
 
             tr.innerHTML = `
                 <td>${r.name}</td>
                 <td>${r.created_by}</td>
             `;
 
-            tr.addEventListener("click", () => {
+            tr.addEventListener('click', () => {
                 currentReport = r;
                 currentRow = tr;
                 showReportDetails(r);
@@ -454,19 +467,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showReportDetails(report) {
         detailTitle.textContent = report.name;
-        detailContent.textContent = report.content || "";
+        detailContent.textContent = report.content || '';
     }
 
     function highlightSelected(selectedRow) {
-        reportsTableBody.querySelectorAll("tr").forEach((row) =>
-            row.classList.remove("selected-report-row")
-        );
-        selectedRow.classList.add("selected-report-row");
+        reportsTableBody
+            .querySelectorAll('tr')
+            .forEach((row) => row.classList.remove('selected-report-row'));
+        selectedRow.classList.add('selected-report-row');
     }
 
     // Create Report
     if (createForm) {
-        createForm.addEventListener("submit", async (e) => {
+        createForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const name = createNameInput.value.trim();
@@ -474,20 +487,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const content = createContentInput.value;
 
             if (!name || !createdByStr || !content) {
-                alert("Please fill out all fields.");
+                alert('Please fill out all fields.');
                 return;
             }
 
             const created_by = Number(createdByStr);
             if (Number.isNaN(created_by)) {
-                alert("Created By must be a number (employee ID).");
+                alert('Created By must be a number (employee ID).');
                 return;
             }
 
             try {
-                const res = await fetch("/api/reports", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                const res = await fetch('/api/reports', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         name,
                         created_by,
@@ -497,7 +510,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (!res.ok) {
                     const text = await res.text();
-                    console.error("Create failed", res.status, text);
+                    console.error('Create failed', res.status, text);
                     throw new Error(`HTTP ${res.status}: ${text}`);
                 }
 
@@ -508,7 +521,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 currentReport = newReport;
 
-                const firstRow = reportsTableBody.querySelector("tr");
+                const firstRow = reportsTableBody.querySelector('tr');
                 if (firstRow) {
                     highlightSelected(firstRow);
                 }
@@ -516,11 +529,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 createForm.reset();
 
-                alert("Report created successfully.");
+                alert('Report created successfully.');
             } catch (err) {
-                console.error("Failed to create report:", err);
-                alert("Failed to create report: " + err.message);
+                console.error('Failed to create report:', err);
+                alert('Failed to create report: ' + err.message);
             }
         });
     }
 });
+
+function getCookie(name) {
+    return document.cookie
+        .split('; ')
+        .find((row) => row.startsWith(name + '='))
+        ?.split('=')[1];
+}
