@@ -6,4 +6,3 @@ npm install
 
 ## RUNNING APP ##
 node app
- o
