@@ -87,6 +87,11 @@ app.get('/manager', requireLogin, (req, res) => {
     res.render('ManagerPage', { title: 'Manager Dashboard' });
 });
 
+app.get('/logout', (req, res) => {
+    res.clearCookie('authToken');
+    return res.redirect('/')
+});
+
 function requireLogin(req, res, next) {
     const token = req.cookies.authToken;
 
