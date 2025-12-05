@@ -772,25 +772,24 @@
                     if (isDay === 0 && (code === 0 || code === 1 || code === 2 || code === 3)) {
                          gifName = 'night.gif';
                     } else {
-                        // Day time or specific weather conditions that override "night" (like rain/snow)
-                        // Although typically rain/snow looks similar day/night, we'll stick to the requested mapping
-                        // prioritizing the specific weather condition GIFs over "night" if it's raining/snowing at night?
-                        // The plan said:
-                        // Night (is_day === 0): night.gif (for clear/cloudy codes).
-                        // Rain/Drizzle (51-67): rain.gif
-                        // Snow (71-77): snow.gif
-                        // Thunderstorm (95-99): storm.gif
-                        
-                        if (code >= 51 && code <= 67) {
+                        // Rain: Drizzle (51-57), Rain (61-67), Rain Showers (80-82)
+                        if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) {
                             gifName = 'rain.gif';
-                        } else if (code >= 71 && code <= 77) {
+                        // Snow: Snow Fall (71-77), Snow Showers (85-86)
+                        } else if ((code >= 71 && code <= 77) || (code >= 85 && code <= 86)) {
                             gifName = 'snow.gif';
+                        // Thunderstorm (95-99)
                         } else if (code >= 95 && code <= 99) {
                             gifName = 'storm.gif';
+                        // Clear (0, 1)
                         } else if (code === 0 || code === 1) {
                             gifName = 'sun.gif';
-                        } else if (code === 2 || code === 3 || code === 45 || code === 48) {
-                            gifName = 'wind.gif'; // Using wind.gif for cloudy/overcast/fog as per plan
+                        // Partly Cloudy (2)
+                        } else if (code === 2) {
+                            gifName = 'clouds.gif';
+                        // Overcast (3), Fog (45, 48)
+                        } else if (code === 3 || code === 45 || code === 48) {
+                            gifName = 'cloudy.gif';
                         }
                     }
 
