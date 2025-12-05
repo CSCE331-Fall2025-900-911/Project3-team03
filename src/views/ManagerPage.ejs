@@ -414,6 +414,50 @@
                                 Generate X-Report
                             </button>
                         </form>
+
+                        <!-- Sales Report -->
+                        <hr style="margin:16px 0; border:none; border-top:1px solid #e5e7eb;" />
+
+                        <h3 style="margin-top:0;">Generate Sales Report</h3>
+                        <form id="sales-report-form">
+                            <div style="margin-bottom:10px;">
+                                <label for="sales-report-from" style="display:block; margin-bottom:4px;">
+                                    From Date
+                                </label>
+                                <input
+                                    type="date"
+                                    id="sales-report-from"
+                                    style="
+                                        width:100%;
+                                        padding:6px;
+                                        border:1px solid #cbd5e1;
+                                        border-radius:6px;
+                                    "
+                                    required
+                                />
+                            </div>
+
+                            <div style="margin-bottom:10px;">
+                                <label for="sales-report-to" style="display:block; margin-bottom:4px;">
+                                    To Date
+                                </label>
+                                <input
+                                    type="date"
+                                    id="sales-report-to"
+                                    style="
+                                        width:100%;
+                                        padding:6px;
+                                        border:1px solid #cbd5e1;
+                                        border-radius:6px;
+                                    "
+                                    required
+                                />
+                            </div>
+
+                            <button type="submit" class="button" id="sales-report-generate-btn">
+                                Generate Sales Report
+                            </button>
+                        </form>
                     </div>
                 </div>
             </section>

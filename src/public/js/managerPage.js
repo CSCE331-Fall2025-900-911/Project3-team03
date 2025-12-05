@@ -591,6 +591,64 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Sales Report
+    const salesReportForm = document.getElementById('sales-report-form');
+    const salesFromInput = document.getElementById('sales-report-from');
+    const salesToInput = document.getElementById('sales-report-to');
+
+    if (salesReportForm && salesFromInput && salesToInput) {
+        salesReportForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const from = salesFromInput.value;
+            const to = salesToInput.value;
+
+            if (!from || !to) {
+                alert('Please pick both start and end dates.');
+                return;
+            }
+            if (to < from) {
+                alert('End date must be on/after start date.');
+                return;
+            }
+
+            try {
+                const created_by = await loadEmployeeId();
+
+                const res = await fetch('/api/salesReport', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ from, to, created_by }),
+                });
+
+                if (!res.ok) {
+                    const text = await res.text();
+                    console.error('Sales report creation failed', res.status, text);
+                    throw new Error(`HTTP ${res.status}: ${text}`);
+                }
+
+                const payload = await res.json();
+                const newReport = payload.report;
+
+                reportsCache.unshift(newReport);
+                renderReports(reportsCache);
+
+                currentReport = newReport;
+                const firstRow = reportsTableBody.querySelector('tr');
+                if (firstRow) {
+                    highlightSelected(firstRow);
+                }
+                showReportDetails(newReport);
+
+                salesReportForm.reset();
+                alert('Sales report created successfully.');
+            } catch (err) {
+                console.error('Failed to create sales report:', err);
+                alert('Failed to create sales report: ' + err.message);
+            }
+        });
+    }
 });
 
 function getCookie(name) {
