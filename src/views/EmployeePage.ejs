@@ -18,6 +18,16 @@
             </div>
         </header>
 
+        <div
+            id="cart-notification"
+            class="cart-notification"
+            role="status"
+            aria-live="polite"
+            hidden
+        >
+            Successfully Completed Order
+        </div>
+
         <div class="wrap-white-box">
             <div class="white-box stack">
                 <h1>Welcome Back!</h1>
@@ -67,6 +77,8 @@
                 }
             });
         </script>
+
+        <script src="/js/createOrderNotification.js"></script>
 
         <script>
             try {

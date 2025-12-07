@@ -22,8 +22,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check if we just completed an order on the previous page
     const completed = sessionStorage.getItem('orderCompleted');
-    if (completed === '1') {
+    if (!completed) return;
+
+    const path = window.location.pathname;
+
+    // Landing page
+    if (path === '/' && completed === 'customer') {
         showCartNotification('Successfully Completed Order');
         sessionStorage.removeItem('orderCompleted');
+        return;
     }
+
+    // Employee page
+    if (path === '/employee' && completed === 'cashier') {
+        showCartNotification('Successfully Completed Order');
+        sessionStorage.removeItem('orderCompleted');
+        return;
+    }
+    
+    sessionStorage.removeItem('orderCompleted');
 });

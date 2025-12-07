@@ -102,6 +102,9 @@
             // Send Back to Cashier/Customer
             let menuHref = backLink ? backLink.href : '/cashier';
 
+            const cameFromCustomer = menuHref.includes('/menu') || menuHref.includes('/customer');
+
+
             // When edit, remember which drink to go to
             container.addEventListener('click', (e) => {
                 const editBtn = e.target.closest('.edit-line');
@@ -128,9 +131,13 @@
             // If you want it to also clear the cart (so cashier gets fresh cart on next order), do this:
             const completeBtn = document.querySelector('.complete-order');
             completeBtn.addEventListener('click', () => {
-                sessionStorage.setItem('orderCompleted', '1');
+                // Save who completed the order
+                sessionStorage.setItem(
+                    'orderCompleted',
+                    cameFromCustomer ? 'customer' : 'cashier'
+                );
+
                 clearCart();
-                // Then navigate (your existing onclick can stay, this just ensures clear first)
             });
 
             const removeAllBtn = document.querySelector('.remove-all');
