@@ -54,6 +54,7 @@ export function renderCartInto(container) {
 
         const line = document.createElement('div');
         line.className = 'cart-line';
+        line.dataset.index = idx;
 
         const left = document.createElement('div');
         left.className = 'cart-line-left';
@@ -96,6 +97,11 @@ export function renderCartInto(container) {
         priceEl.className = 'cart-line-price';
         priceEl.textContent = `$${dollars(price)}`;
 
+        const editBtn = document.createElement('button');
+        editBtn.className = 'edit-line';
+        editBtn.type = 'button';
+        editBtn.textContent = 'Edit';
+
         const removeBtn = document.createElement('button');
         removeBtn.className = 'remove-line';
         removeBtn.setAttribute('aria-label', 'Remove');
@@ -118,6 +124,7 @@ export function renderCartInto(container) {
         thumb.alt = item.name || 'Drink';
 
         right.appendChild(priceEl);
+        right.appendChild(editBtn);
         right.appendChild(removeBtn);
         right.appendChild(thumb);
 

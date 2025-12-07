@@ -428,9 +428,10 @@
         <script src="/js/textToSpeech.js"></script>
 
         <script type="module">
-            import { addToCart } from '/js/cart.js';
+            import { addToCart, getCart, saveCart } from '/js/cart.js';
 
             let pendingDrink = null;
+            let editCartIndex = null;
 
             const toppingsModal = document.getElementById('toppings');
             const toppingsCloseBtn = toppingsModal.querySelector('.toppings-close');
@@ -491,6 +492,58 @@
                 qtyIncBtn.addEventListener('click', () => {
                     setQuantity(quantity + 1);
                 });
+            }
+
+            // If we came here from the payment page to edit an existing drink:
+            const storedEditIndex = sessionStorage.getItem('editIndex');
+            if (storedEditIndex !== null) {
+                editCartIndex = Number(storedEditIndex);
+                sessionStorage.removeItem('editIndex');   
+
+                const cart = getCart();
+                const item = cart[editCartIndex];
+
+                if (item) {
+                    pendingDrink = {
+                        drinkId: item.drinkId,
+                        name: item.name,
+                        basePrice: item.basePrice,
+                        imgSrc: item.imgSrc || `/drinksImages/${item.drinkId}.png`,
+                    };
+
+                    const scope = document.getElementById('toppings');
+
+                    // Prefill toppings checkboxes
+                    const currentToppings = item.toppings || [];
+                    scope.querySelectorAll('.topping input[type="checkbox"]').forEach((cb) => {
+                        cb.checked = currentToppings.includes(cb.value);
+                    });
+
+                    scope.querySelectorAll('input[type="radio"]').forEach((r) => {
+                        r.checked = false;
+                    });
+
+                    const setRadio = (name, value) => {
+                        if (value == null) return;
+                        const input = scope.querySelector(
+                            `input[name="${name}"][value="${value}"]`
+                        );
+                        if (input) input.checked = true;
+                    };
+
+                    setRadio('size', item.size);
+                    setRadio('temp', item.temp);
+                    setRadio('sugar', item.sugar);
+                    setRadio('ice', item.ice);
+                    setRadio('milk', item.milk);
+
+                    setQuantity(1);
+
+                    openToppings();
+                } else {
+                    // index invalid, cancel edit mode
+                    editCartIndex = null;
+                }
             }
 
             // Lets a cashier click a drink, pick attributes, and add that configured drink to the cart stored in localStorage 
@@ -573,10 +626,26 @@
                     imgSrc: pendingDrink.imgSrc,
                 };
 
-                // add as many copies as the selected quantity
-                const qtyToAdd = quantity || 1;
-                for (let i = 0; i < qtyToAdd; i++) {
-                    addToCart(item);
+                if (editCartIndex !== null) {
+                    // Edit existing drink, remove the old entry, then add the new one 
+                    const cart = getCart();
+                    if (editCartIndex >= 0 && editCartIndex < cart.length) {
+                        cart.splice(editCartIndex, 1);      
+                        saveCart(cart);
+                    }
+
+                    const qtyToAdd = quantity || 1;
+                    for (let i = 0; i < qtyToAdd; i++) {
+                        addToCart(item);
+                    }
+
+                    editCartIndex = null; 
+                } else {
+                    // adding new drink
+                    const qtyToAdd = quantity || 1;
+                    for (let i = 0; i < qtyToAdd; i++) {
+                        addToCart(item);
+                    }
                 }
 
                 const btn = document.querySelector('.add-to-cart');

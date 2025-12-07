@@ -99,6 +99,25 @@
                 }
             }
 
+            // Send Back to Cashier/Customer
+            let menuHref = backLink ? backLink.href : '/cashier';
+
+            // When edit, remember which drink to go to
+            container.addEventListener('click', (e) => {
+                const editBtn = e.target.closest('.edit-line');
+                if (!editBtn) return;
+
+                const line = editBtn.closest('.cart-line');
+                if (!line) return;
+
+                const index = Number(line.dataset.index);
+                if (Number.isNaN(index)) return;
+
+                sessionStorage.setItem('editIndex', String(index));
+
+                window.location.href = menuHref;
+            });            
+
             // Initialize total on first load
             const totalNode = document.querySelector('.cart-total-price');
             totalNode.textContent = `$${dollars(
