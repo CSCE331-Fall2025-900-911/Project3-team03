@@ -23,8 +23,6 @@ const fs = require('fs');
 const reportsRouter = require('./src/routes/reports');
 const salesReportRouter = require('./src/routes/salesReport');
 
-
-
 dotenv.config();
 
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
@@ -42,9 +40,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/peak', requireLogin, peak);
 app.use('/api/profit', requireLogin, profit);
 app.use('/api/sales', requireLogin, sales);
-app.use('/api/wiki', requireLogin, wiki);
+app.use('/api/wiki', wiki);
 app.use('/api/weeklyInventory', requireLogin, weeklyInventory);
-app.use('/api/xreport', requireLogin , xreport);
+app.use('/api/xreport', requireLogin, xreport);
 app.use('/api/inventory', requireLogin, inventory);
 app.use('/api/employees', requireLogin, employees);
 app.use('/api/cashierOrder', requireLogin, cashierOrder);
@@ -56,8 +54,6 @@ app.use('/api/jwt', jwtAPI);
 app.use('/api/rewards', rewards);
 app.use('/api/reports', requireLogin, reportsRouter);
 app.use('/api/salesReport', requireLogin, salesReportRouter);
-
-
 
 app.get('/routes/cart.js', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'src/routes/cart.js'));
@@ -93,7 +89,7 @@ app.get('/manager', requireLogin, (req, res) => {
 
 app.get('/logout', (req, res) => {
     res.clearCookie('authToken');
-    return res.redirect('/')
+    return res.redirect('/');
 });
 
 function requireLogin(req, res, next) {
