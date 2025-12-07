@@ -127,3 +127,8 @@ function loginNotAllowed(req, res, next) {
 app.listen(SERVER_PORT, () =>
     console.log(`App started on ${SERVER_PORT} | http://localhost:${SERVER_PORT}/`)
 );
+
+const managerDrinksRouter = require("./src/routes/managerDrinks");
+
+app.use(express.json());
+app.use("/manager/drinks", managerDrinksRouter);

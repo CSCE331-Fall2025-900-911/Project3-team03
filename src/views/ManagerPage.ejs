@@ -32,10 +32,11 @@
                 <button class="tab-btn" data-tab="inventory">Inventory</button>
                 <button class="tab-btn" data-tab="employees">Employees</button>
                 <button class="tab-btn" data-tab="reports">Reports</button>
+                <button class="tab-btn" data-tab="drinks">Drinks</button>
             </div>
 
             <!-- Sales -->
-            <section id="tab-sales" class="tab active">
+            <section id="sales" class="tab active">
                 <div class="grid">
                     <div class="card">
                         <h2>Sales by Drink</h2>
@@ -59,7 +60,7 @@
             </section>
 
             <!-- Profit -->
-            <section id="tab-profit" class="tab">
+            <section id="profit" class="tab">
                 <div class="grid">
                     <div class="card">
                         <h2>Revenue & Orders</h2>
@@ -84,7 +85,7 @@
             </section>
 
             <!-- Inventory -->
-            <section id="tab-inventory" class="tab">
+            <section id="inventory" class="tab">
                 <div class="grid">
                     <div class="card" style="align-self: start">
                         <h2>Add/Edit Inventory</h2>
@@ -178,7 +179,7 @@
             </section>
 
             <!-- Employees -->
-            <section id="tab-employees" class="tab">
+            <section id="employees" class="tab">
                 <div class="grid">
                     <div class="card">
                         <h2>Add/Edit Employee</h2>
@@ -291,7 +292,7 @@
             </section>
 
             <!-- Reports -->
-            <section id="tab-reports" class="tab">
+            <section id="reports" class="tab">
                 <div class="grid">
                     <!-- Left: list of reports -->
                     <div class="card">
@@ -303,9 +304,7 @@
                                     <th>Created By (Employee ID)</th>
                                 </tr>
                             </thead>
-                            <tbody>
-
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
 
@@ -321,7 +320,7 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <div class="card">
                         <h2>Create Report</h2>
                         <!-- Create Report-->
@@ -461,6 +460,69 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Drinks -->
+            <section class="tab" id="drinks">
+              <h2>Drink Menu Management</h2>
+
+              <div class="drinks-layout">
+                <!-- LEFT: existing drinks -->
+                <div class="drinks-table-wrapper">
+                  <h3>Current Drinks</h3>
+                  <table class="table" id="drinks-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Price ($)</th>
+                        <th>Available</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="drinks-table-body">
+                      <!-- Filled dynamically by JS -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- RIGHT: form to add a new drink -->
+                <div class="drinks-form-wrapper">
+                  <h3>Add New Drink</h3>
+                  <form id="drink-form">
+                    <div class="form-group">
+                      <label for="drink-name">Name</label>
+                      <input type="text" id="drink-name" name="name" required />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="drink-size">Size</label>
+                      <select id="drink-size" name="size" required>
+                        <option value="">Select size</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="drink-price">Price ($)</label>
+                      <input
+                        type="number"
+                        id="drink-price"
+                        name="price"
+                        step="0.01"
+                        min="0"
+                        required
+                      />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                      Add Drink
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </section>
         </main>
 
         <footer class="header-container">
@@ -473,7 +535,6 @@
         <script type="module" src="/js/ADHDFocus.js"></script>
         <script src="/js/translation.js"></script>
         <script src="/js/textToSpeech.js"></script>
-
         <script src="/js/managerPage.js"></script>
     </body>
 </html>
