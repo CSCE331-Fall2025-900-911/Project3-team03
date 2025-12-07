@@ -11,7 +11,8 @@
         <!-- dark blue bar and logo -->
         <header class="header-container">
             <nav class="nav-left">
-                <a href="/logout">Log Out</a>
+                <a id="logoutBtn">Log Out</a>
+
             </nav>
             <div class="logo-container">
                 <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
@@ -38,6 +39,30 @@
         <script type="module" src="/js/ADHDFocus.js"></script>
         <script src="/js/translation.js"></script>
         <script src="/js/textToSpeech.js"></script>
+
+        <!--Z Report when LogOut-->
+        <script type="module">
+            async function handleLogoutClick(event) {
+                try {
+                    const res = await fetch('/api/zReport');
+                    alert('Test1')
+                    const report = await res.json();
+                    alert('TEST ALERT')
+                } catch (err) {
+                    console.error('Z Report failed to load', err);
+                    alert('Unable to load Z-Report. Proceeding to logout.');
+                }
+
+                window.location.href = '/logout';
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const logoutBtn = document.getElementById('logoutBtn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', handleLogoutClick);
+                }
+            });
+        </script>
 
         <script>
             try { localStorage.removeItem('yf_cart_v1'); } catch (e) {}

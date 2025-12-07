@@ -22,8 +22,7 @@ const rewards = require('./src/routes/rewards');
 const fs = require('fs');
 const reportsRouter = require('./src/routes/reports');
 const salesReportRouter = require('./src/routes/salesReport');
-
-
+const zReportRouter = require('./src/routes/zReport');
 
 dotenv.config();
 
@@ -56,8 +55,7 @@ app.use('/api/jwt', jwtAPI);
 app.use('/api/rewards', rewards);
 app.use('/api/reports', requireLogin, reportsRouter);
 app.use('/api/salesReport', requireLogin, salesReportRouter);
-
-
+app.use('/api/zReport', requireLogin, zReportRouter);
 
 app.get('/routes/cart.js', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'src/routes/cart.js'));
@@ -93,7 +91,7 @@ app.get('/manager', requireLogin, (req, res) => {
 
 app.get('/logout', (req, res) => {
     res.clearCookie('authToken');
-    return res.redirect('/')
+    return res.redirect('/');
 });
 
 function requireLogin(req, res, next) {
