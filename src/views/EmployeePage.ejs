@@ -12,7 +12,6 @@
         <header class="header-container">
             <nav class="nav-left">
                 <a id="logoutBtn">Log Out</a>
-
             </nav>
             <div class="logo-container">
                 <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
@@ -27,7 +26,6 @@
             </div>
         </div>
 
-        
         <!-- dark blue bar and logo -->
         <footer class="header-container">
             <div class="logo-container">
@@ -44,13 +42,19 @@
         <script type="module">
             async function handleLogoutClick(event) {
                 try {
-                    const res = await fetch('/api/zReport');
-                    alert('Test1')
+                    const res = await fetch('/api/zreport');
                     const report = await res.json();
-                    alert('TEST ALERT')
+
+                    const r = report[0];
+
+                    alert(`
+                    Z REPORT for ${new Date().toLocaleString()}
+                    Number of Sales: ${r.num_sales}
+                    Total Sales: $${r.total_sales}
+                    Discards: ${r.discards}
+                    Employees Worked: ${r.employees}`);
                 } catch (err) {
                     console.error('Z Report failed to load', err);
-                    alert('Unable to load Z-Report. Proceeding to logout.');
                 }
 
                 window.location.href = '/logout';
@@ -65,7 +69,9 @@
         </script>
 
         <script>
-            try { localStorage.removeItem('yf_cart_v1'); } catch (e) {}
+            try {
+                localStorage.removeItem('yf_cart_v1');
+            } catch (e) {}
         </script>
     </body>
 </html>

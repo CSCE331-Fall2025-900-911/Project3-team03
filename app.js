@@ -22,7 +22,7 @@ const rewards = require('./src/routes/rewards');
 const fs = require('fs');
 const reportsRouter = require('./src/routes/reports');
 const salesReportRouter = require('./src/routes/salesReport');
-const zReportRouter = require('./src/routes/zReport');
+const zReportRouter = require('./src/routes/zreport');
 
 dotenv.config();
 
@@ -41,9 +41,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/peak', requireLogin, peak);
 app.use('/api/profit', requireLogin, profit);
 app.use('/api/sales', requireLogin, sales);
-app.use('/api/wiki', requireLogin, wiki);
+app.use('/api/wiki', wiki);
 app.use('/api/weeklyInventory', requireLogin, weeklyInventory);
-app.use('/api/xreport', requireLogin , xreport);
+app.use('/api/xreport', requireLogin, xreport);
 app.use('/api/inventory', requireLogin, inventory);
 app.use('/api/employees', requireLogin, employees);
 app.use('/api/cashierOrder', requireLogin, cashierOrder);
@@ -55,7 +55,7 @@ app.use('/api/jwt', jwtAPI);
 app.use('/api/rewards', rewards);
 app.use('/api/reports', requireLogin, reportsRouter);
 app.use('/api/salesReport', requireLogin, salesReportRouter);
-app.use('/api/zReport', requireLogin, zReportRouter);
+app.use('/api/zreport', requireLogin, zReportRouter);
 
 app.get('/routes/cart.js', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'src/routes/cart.js'));
@@ -129,3 +129,8 @@ function loginNotAllowed(req, res, next) {
 app.listen(SERVER_PORT, () =>
     console.log(`App started on ${SERVER_PORT} | http://localhost:${SERVER_PORT}/`)
 );
+
+const managerDrinksRouter = require('./src/routes/managerDrinks');
+
+app.use(express.json());
+app.use('/manager/drinks', managerDrinksRouter);

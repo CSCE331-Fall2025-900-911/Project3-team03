@@ -42,14 +42,19 @@ async function createOrder() {
         return alert('Nothing to order!');
     }
 
-    const jwtInfo = await (
-        await fetch('/api/jwt', {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${getCookie('authToken')}`,
-            },
-        })
-    ).json();
+    let jwtInfo = {};
+    try {
+        jwtInfo = await (
+            await fetch('/api/jwt', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${getCookie('authToken')}`,
+                },
+            })
+        ).json();
+    } catch (e) {
+        jwtInfo.employeeId = null;
+    }
 
     const employeeId = jwtInfo.employeeId;
 

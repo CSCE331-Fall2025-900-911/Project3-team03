@@ -1,17 +1,34 @@
 // Tabs
 const tabButtons = document.querySelectorAll('.tab-btn');
 const tabs = document.querySelectorAll('.tab');
+
 tabButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
+        const tabId = btn.dataset.tab; // "sales", "profit", "inventory", "employees", "reports", "drinks"
+
+        // Clear previous active states
         tabButtons.forEach((b) => b.classList.remove('active'));
         tabs.forEach((t) => t.classList.remove('active'));
+
+        // Activate clicked button + corresponding tab
         btn.classList.add('active');
-        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        const targetTab = document.getElementById(tabId);
+        if (targetTab) {
+            targetTab.classList.add('active');
+        }
 
         // Load data when specific tabs are clicked
-        if (btn.dataset.tab === 'employees') {
+        if (tabId === 'employees') {
             console.log('Employees tab clicked, loading employees...');
             loadEmployees();
+        } else if (tabId === 'inventory') {
+            loadInventory();
+        } else if (tabId === 'drinks') {
+            loadDrinks();
+        }
+        if (btn.dataset.tab === 'weekly-inventory') {
+            console.log('Weekly Inventory tab clicked, loading weekly inventory...');
+            if (typeof loadWeeklyInventory === 'function') loadWeeklyInventory();
         }
     });
 });
@@ -110,8 +127,6 @@ if (document.querySelector('.tab-btn[data-tab="inventory"]')?.classList.contains
     loadInventory();
 }
 
-// Tab click listener update to load inventory
-document.querySelector('.tab-btn[data-tab="inventory"]')?.addEventListener('click', loadInventory);
 
 // Inventory Form Submission
 document.getElementById('inventory-form')?.addEventListener('submit', async (e) => {
@@ -200,11 +215,6 @@ function editInventory(id, item, quantity, price) {
     document.getElementById('inventory-quantity').value = quantity;
     document.getElementById('inventory-price').value = price;
 
-    // Disable item and price fields for edit if backend only supports quantity update
-    // Based on src/routes/inventory.js, PUT only takes id and quantity.
-    // So we should probably disable item and price editing or warn the user.
-    // For better UX, let's disable them visually or just know they won't update.
-    // Actually, let's disable them to be clear.
     document.getElementById('inventory-item').disabled = true;
     document.getElementById('inventory-price').disabled = true;
 
@@ -226,30 +236,77 @@ function resetInventoryForm() {
 document.getElementById('inventory-cancel-btn')?.addEventListener('click', resetInventoryForm);
 
 // WEEKLY INVENTORY
+let weeklyChart = null;
 const loadWeekBtn = document.getElementById('load-week');
 
-if (loadWeekBtn) {
-    loadWeekBtn.addEventListener('click', async () => {
-        const weekInput = document.getElementById('weekNumber');
-        const week = (weekInput && weekInput.value) || 1;
+async function loadWeeklyInventory(weekNumber) {
+    const weekInput = document.getElementById('weekNumber');
+    const week = weekNumber || (weekInput && weekInput.value) || 1;
 
-        try {
-            const data = await getJSON('/api/weeklyInventory/' + week);
-            const tbody = document.querySelector('#weekly-table tbody');
-            if (!tbody) return;
+    try {
+        const data = await getJSON('/api/weeklyInventory/' + week);
+        const tbody = document.querySelector('#weekly-table tbody');
+        if (!tbody) return;
 
-            fillTable(
-                tbody,
-                data,
-                (r) =>
-                    `<tr><td>${r.week_date ?? ''}</td><td>${r.item ?? ''}</td><td>${
-                        r.previous_qty ?? ''
-                    }</td><td>${r.current_qty ?? ''}</td></tr>`
-            );
-        } catch (e) {
-            console.error('Weekly inventory load failed', e);
+        // Render table: expect backend rows with item, sold_count, total_revenue
+        fillTable(
+            tbody,
+            data,
+            (r) => `<tr><td>${r.item ?? ''}</td><td>${r.sold_count ?? 0}</td><td>$${(
+                Number(r.total_revenue ?? 0)
+            ).toFixed(2)}</td></tr>`
+        );
+
+        // Render chart: labels=item, data=sold_count
+        const labels = data.map((r) => r.item);
+        const values = data.map((r) => Number(r.sold_count || 0));
+
+        const canvas = document.getElementById('weekly-chart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        if (weeklyChart) {
+            try {
+                weeklyChart.destroy();
+            } catch (err) {
+                console.warn('Could not destroy previous weeklyChart', err);
+            }
         }
-    });
+
+        weeklyChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [
+                    {
+                        label: `Sold Count (Week ${week})`,
+                        data: values,
+                        backgroundColor: 'rgba(59,130,246,0.6)',
+                        borderColor: 'rgba(59,130,246,1)',
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true } },
+            },
+        });
+    } catch (e) {
+        console.error('Weekly inventory load failed', e);
+        const tbody = document.querySelector('#weekly-table tbody');
+        if (tbody) tbody.innerHTML = '<tr><td colspan="3" style="color:#b91c1c">Failed to load weekly inventory.</td></tr>';
+    }
+}
+
+if (loadWeekBtn) {
+    loadWeekBtn.addEventListener('click', () => loadWeeklyInventory());
+
+    // Auto-load on page load if weekly-inventory tab is active
+    if (document.querySelector('.tab-btn[data-tab="weekly-inventory"]')?.classList.contains('active')) {
+        loadWeeklyInventory();
+    }
 }
 
 // EMPLOYEES
@@ -385,6 +442,121 @@ document.getElementById('cancel-btn').addEventListener('click', () => {
     document.getElementById('submit-btn').textContent = 'Add Employee';
     document.getElementById('cancel-btn').style.display = 'none';
     editingEmployeeId = null;
+});
+
+// ====================== DRINKS ======================
+async function loadDrinks() {
+    try {
+        const tbody = document.querySelector('#drinks-table-body');
+        if (!tbody) return;
+
+        const data = await getJSON('/manager/drinks'); // [{id, name, size, price, is_available}]
+
+        if (!data || !Array.isArray(data) || data.length === 0) {
+            tbody.innerHTML =
+                '<tr><td colspan="5" style="text-align:center; color:#6b7280;">No drinks found. Add one using the form.</td></tr>';
+            return;
+        }
+
+        fillTable(
+            tbody,
+            data,
+            (d) =>
+                `<tr data-id="${d.id}">
+                    <td>${d.name}</td>
+                    <td>${d.size}</td>
+                    <td>$${Number(d.price ?? 0).toFixed(2)}</td>
+                    <td>${d.is_available ? 'Yes' : 'No'}</td>
+                    <td>
+                        <button
+                            class="button drink-delete-btn"
+                            style="padding:4px 8px; font-size:12px; background-color:#ef4444;"
+                            data-id="${d.id}"
+                        >
+                            Remove
+                        </button>
+                    </td>
+                </tr>`
+        );
+    } catch (e) {
+        console.error('Drinks load failed', e);
+        const tbody = document.querySelector('#drinks-table-body');
+        if (tbody) {
+            tbody.innerHTML =
+                '<tr><td colspan="5" style="text-align:center; color:#b91c1c;">Error loading drinks. Check console.</td></tr>';
+        }
+    }
+}
+
+// Initial load if drinks tab is active on page load
+if (document.querySelector('.tab-btn[data-tab="drinks"]')?.classList.contains('active')) {
+    loadDrinks();
+}
+
+// Add-drink form handling
+const drinkForm = document.getElementById('drink-form');
+if (drinkForm) {
+    drinkForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('drink-name').value.trim();
+        const size = document.getElementById('drink-size').value;
+        const price = document.getElementById('drink-price').value;
+
+        if (!name || !size || !price) {
+            alert('Please fill out all drink fields.');
+            return;
+        }
+
+        try {
+            const res = await fetch('/manager/drinks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, size, price }),
+            });
+
+            if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                throw new Error(data.error || `HTTP ${res.status}`);
+            }
+
+            drinkForm.reset();
+            await loadDrinks();
+        } catch (e) {
+            console.error('Add drink failed', e);
+            alert('Failed to add drink: ' + e.message);
+        }
+    });
+}
+
+// Delete drink (event delegation)
+document.addEventListener('click', async (e) => {
+    if (!e.target.classList.contains('drink-delete-btn')) return;
+
+    const id = e.target.dataset.id;
+    if (!id) return;
+
+    if (!confirm('Are you sure you want to remove this drink?')) return;
+
+    try {
+        const res = await fetch(`/manager/drinks/${id}`, { method: 'DELETE' });
+
+        if (!res.ok && res.status !== 204) {
+            throw new Error(`HTTP ${res.status}`);
+        }
+
+        // Remove row directly
+        const row = document.querySelector(`#drinks-table-body tr[data-id="${id}"]`);
+        if (row) row.remove();
+
+        const tbody = document.querySelector('#drinks-table-body');
+        if (tbody && !tbody.querySelector('tr')) {
+            tbody.innerHTML =
+                '<tr><td colspan="5" style="text-align:center; color:#6b7280;">No drinks found. Add one using the form.</td></tr>';
+        }
+    } catch (e) {
+        console.error('Delete drink failed', e);
+        alert('Failed to delete drink: ' + e.message);
+    }
 });
 
 // Reports Tab
