@@ -22,7 +22,7 @@ const rewards = require('./src/routes/rewards');
 const fs = require('fs');
 const reportsRouter = require('./src/routes/reports');
 const salesReportRouter = require('./src/routes/salesReport');
-const zReportRouter = require('./src/routes/zreport');
+const zReportRouter = require('./src/routes/zReport');
 
 dotenv.config();
 
