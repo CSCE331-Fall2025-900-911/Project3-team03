@@ -26,6 +26,10 @@ tabButtons.forEach((btn) => {
         } else if (tabId === 'drinks') {
             loadDrinks();
         }
+        if (btn.dataset.tab === 'weekly-inventory') {
+            console.log('Weekly Inventory tab clicked, loading weekly inventory...');
+            if (typeof loadWeeklyInventory === 'function') loadWeeklyInventory();
+        }
     });
 });
 
@@ -211,11 +215,6 @@ function editInventory(id, item, quantity, price) {
     document.getElementById('inventory-quantity').value = quantity;
     document.getElementById('inventory-price').value = price;
 
-    // Disable item and price fields for edit if backend only supports quantity update
-    // Based on src/routes/inventory.js, PUT only takes id and quantity.
-    // So we should probably disable item and price editing or warn the user.
-    // For better UX, let's disable them visually or just know they won't update.
-    // Actually, let's disable them to be clear.
     document.getElementById('inventory-item').disabled = true;
     document.getElementById('inventory-price').disabled = true;
 
@@ -237,30 +236,77 @@ function resetInventoryForm() {
 document.getElementById('inventory-cancel-btn')?.addEventListener('click', resetInventoryForm);
 
 // WEEKLY INVENTORY
+let weeklyChart = null;
 const loadWeekBtn = document.getElementById('load-week');
 
-if (loadWeekBtn) {
-    loadWeekBtn.addEventListener('click', async () => {
-        const weekInput = document.getElementById('weekNumber');
-        const week = (weekInput && weekInput.value) || 1;
+async function loadWeeklyInventory(weekNumber) {
+    const weekInput = document.getElementById('weekNumber');
+    const week = weekNumber || (weekInput && weekInput.value) || 1;
 
-        try {
-            const data = await getJSON('/api/weeklyInventory/' + week);
-            const tbody = document.querySelector('#weekly-table tbody');
-            if (!tbody) return;
+    try {
+        const data = await getJSON('/api/weeklyInventory/' + week);
+        const tbody = document.querySelector('#weekly-table tbody');
+        if (!tbody) return;
 
-            fillTable(
-                tbody,
-                data,
-                (r) =>
-                    `<tr><td>${r.week_date ?? ''}</td><td>${r.item ?? ''}</td><td>${
-                        r.previous_qty ?? ''
-                    }</td><td>${r.current_qty ?? ''}</td></tr>`
-            );
-        } catch (e) {
-            console.error('Weekly inventory load failed', e);
+        // Render table: expect backend rows with item, sold_count, total_revenue
+        fillTable(
+            tbody,
+            data,
+            (r) => `<tr><td>${r.item ?? ''}</td><td>${r.sold_count ?? 0}</td><td>$${(
+                Number(r.total_revenue ?? 0)
+            ).toFixed(2)}</td></tr>`
+        );
+
+        // Render chart: labels=item, data=sold_count
+        const labels = data.map((r) => r.item);
+        const values = data.map((r) => Number(r.sold_count || 0));
+
+        const canvas = document.getElementById('weekly-chart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        if (weeklyChart) {
+            try {
+                weeklyChart.destroy();
+            } catch (err) {
+                console.warn('Could not destroy previous weeklyChart', err);
+            }
         }
-    });
+
+        weeklyChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [
+                    {
+                        label: `Sold Count (Week ${week})`,
+                        data: values,
+                        backgroundColor: 'rgba(59,130,246,0.6)',
+                        borderColor: 'rgba(59,130,246,1)',
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true } },
+            },
+        });
+    } catch (e) {
+        console.error('Weekly inventory load failed', e);
+        const tbody = document.querySelector('#weekly-table tbody');
+        if (tbody) tbody.innerHTML = '<tr><td colspan="3" style="color:#b91c1c">Failed to load weekly inventory.</td></tr>';
+    }
+}
+
+if (loadWeekBtn) {
+    loadWeekBtn.addEventListener('click', () => loadWeeklyInventory());
+
+    // Auto-load on page load if weekly-inventory tab is active
+    if (document.querySelector('.tab-btn[data-tab="weekly-inventory"]')?.classList.contains('active')) {
+        loadWeeklyInventory();
+    }
 }
 
 // EMPLOYEES
