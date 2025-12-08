@@ -104,3 +104,11 @@ input:focus {
     background: #1f2937;
     transform: translateY(-2px);
 }
+
+.visually-hidden {
+    position: absolute!important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+    white-space: nowrap;
+}

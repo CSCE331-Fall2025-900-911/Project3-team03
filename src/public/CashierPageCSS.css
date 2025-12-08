@@ -435,3 +435,11 @@ body {
     transform: translateX(-50%) translateY(-2px);
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
 }
+
+.visually-hidden {
+    position: absolute!important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+    white-space: nowrap;
+}
