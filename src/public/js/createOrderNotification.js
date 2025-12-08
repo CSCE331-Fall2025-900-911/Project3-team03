@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const path = window.location.pathname;
 
     // Landing page
-    if (path === '/' && completed === 'customer') {
+    if (path === '/customer' && completed === 'customer') {
         showCartNotification('Successfully Completed Order');
         sessionStorage.removeItem('orderCompleted');
         return;

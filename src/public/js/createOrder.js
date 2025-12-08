@@ -88,12 +88,12 @@ async function createOrder() {
     if (referrer && referrer.includes('/cashier')) {
         window.location.href = '/employee';
     } else if (referrer && referrer.includes('/menu')) {
-        window.location.href = '/';
+        window.location.href = '/customer';
     } else {
         if (jwtInfo) {
             window.location.href = '/employee';
         } else {
-            window.location.href = '/';
+            window.location.href = '/customer';
         }
     }
 }
