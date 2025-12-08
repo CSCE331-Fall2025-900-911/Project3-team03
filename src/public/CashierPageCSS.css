@@ -435,13 +435,3 @@ body {
     transform: translateX(-50%) translateY(-2px);
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
 }
-
-/* Header Off screen, wrapping,  */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-}
