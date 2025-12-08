@@ -129,13 +129,35 @@ footer.header-container {
 }
 
 /* bottom row with total price and checkout button */
+/* bottom row with total price and checkout button */
 .cart-bottom {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    align-items: flex-end; /* Align actions to the bottom */
+    gap: 2rem;
     margin-top: 1rem;
     flex-wrap: wrap;
+}
+
+.cart-bottom-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1 1 300px; /* Allow growing, base width 300px */
+}
+
+.cart-bottom-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    flex: 1 1 300px;
+}
+
+.cart-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 /* Text for price */
@@ -279,7 +301,6 @@ footer.header-container {
     cursor: pointer;
     transition: background 0.2s ease, transform 0.15s ease;
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
-    margin-right: -5rem;        
 }
 
 .remove-all:hover {
@@ -289,6 +310,19 @@ footer.header-container {
 
 .remove-all:active {
     transform: translateY(0);
+}
+
+.utensils-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 1rem; /* align with input fields visually */
+}
+
+.utensils-check label {
+    font-weight: 500;
+    color: #111827;
+    cursor: pointer;
 }
 
 /* Edit and x button */

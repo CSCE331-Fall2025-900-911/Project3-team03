@@ -27,42 +27,55 @@
                 <div id="cart-content" class="cart-content"></div>
                 <!-- Bottom of the cart wrap, shows complete order button and total price -->
                 <div class="cart-bottom">
-                    <div class="cart-total">
-                        <span>Total</span>
-                        <span class="cart-total-price">
-                            $<%= (typeof total === 'undefined') ? '0.00' : Number(total).toFixed(2)
-                            %>
-                        </span>
-                    </div>
-
-                    <div class="phone-number">
-                        <h3>Rewards System</h3>
-                        <div class="attribute">
-                            <p class="attribute-title"><strong>Phone Number</strong></p>
-                            <div class="phone-row">
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    name="phone"
-                                    placeholder="e.g. 5551234567"
-                                    inputmode="numeric"
-                                    pattern="[0-9]*"
-                                />
-                                <button type="button" class="apply-rewards" onclick="checkRewards()" id="apply-rewards">
-                                    Apply
-                                </button>
+                    <!-- Left Side: Rewards & Extra Options -->
+                    <div class="cart-bottom-left">
+                        <div class="phone-number">
+                            <h3>Rewards System</h3>
+                            <div class="attribute">
+                                <p class="attribute-title"><strong>Phone Number</strong></p>
+                                <div class="phone-row">
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        placeholder="e.g. 5551234567"
+                                        inputmode="numeric"
+                                        pattern="[0-9]*"
+                                    />
+                                    <button type="button" class="apply-rewards" onclick="checkRewards()" id="apply-rewards">
+                                        Apply
+                                    </button>
+                                </div>
+                                <p class="reward-message" id="reward-message" aria-live="polite"></p>
                             </div>
-                            <p class="reward-message" id="reward-message" aria-live="polite"></p>
+                        </div>
+
+                        <div class="utensils-check">
+                             <input type="checkbox" id="utensils" name="utensils">
+                             <label for="utensils">Add napkins, straws, and utensils</label>
                         </div>
                     </div>
 
-                    <button type="button" class="remove-all">
-                        Remove All
-                    </button>
+                    <!-- Right Side: Total & Final Actions -->
+                    <div class="cart-bottom-right">
+                        <div class="cart-total">
+                            <span>Total</span>
+                            <span class="cart-total-price">
+                                $<%= (typeof total === 'undefined') ? '0.00' : Number(total).toFixed(2)
+                                %>
+                            </span>
+                        </div>
 
-                    <button type="button" class="complete-order" onclick="createOrder()">
-                        Complete Order
-                    </button>
+                        <div class="cart-actions">
+                            <button type="button" class="remove-all">
+                                Remove All
+                            </button>
+
+                            <button type="button" class="complete-order" onclick="createOrder()">
+                                Complete Order
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
