@@ -105,10 +105,12 @@ input:focus {
     transform: translateY(-2px);
 }
 
+/* Header Off screen, wrapping,  */
 .visually-hidden {
-    position: absolute!important;
-    height: 1px; width: 1px;
+    position: absolute;
+    width: 1px;
+    height: 1px;
     overflow: hidden;
-    clip: rect(1px,1px,1px,1px);
+    clip: rect(0, 0, 0, 0);
     white-space: nowrap;
 }
