@@ -2,12 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
-    /* Use the background image */
-    background-image: url('/landing_bg.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-color: #fbf8f2;
+    /* background-image removed as per request */
     
     display: flex;
     justify-content: center;
@@ -18,13 +14,17 @@ body {
 
 .landing-container {
     text-align: center;
-    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white to show context but keep readability */
+    /* Removed white background to blend with page or keep simple */
+    /* background: white;  -- Optional: keep or remove container bg? 
+       Usually on solid bg, we might not need a container card, or we keep it clean. 
+       I will keep the container card but make it fully white or matching? 
+       Let's stick to the previous card style but without blur/transparency complications since bg is solid. */
+    background: white;
     padding: 3rem;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 500px;
     width: 90%;
-    backdrop-filter: blur(5px); /* Nice blur effect */
 }
 
 .logo {
