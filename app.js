@@ -62,7 +62,11 @@ app.get('/routes/cart.js', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.render('LandingPage', { title: 'Hello from Yifang!!' });
+    res.render('LandingPage', { title: 'Welcome to Yi Fang Tea' });
+});
+
+app.get('/customer', (req, res) => {
+    res.render('CustomerWelcome', { title: 'Hello from Yifang!!' });
 });
 
 app.get('/login', loginNotAllowed, (req, res) => {

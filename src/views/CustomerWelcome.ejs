@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Yi Fang Tea</title>
+        <link rel="stylesheet" href="LandingPageCSS.css" />
+        <link rel="stylesheet" href="/Accessibility.css" />
+    </head>
+    <body>
+        <!-- dark blue bar and logo -->
+        <header class="header-container">
+            <nav class="nav-left">
+                <a href="/menu">Order Here</a>
+            </nav>
+            <div class="logo-container">
+                <a href="/"><img src="/logo.png" alt="logo" class="logo" /></a>
+            </div>
+        </header>
+
+        <!-- Cart Notification for successfully creating order -->
+        <div
+            id="cart-notification"
+            class="cart-notification"
+            role="status"
+            aria-live="polite"
+            hidden
+        >
+            Successfully Completed Order
+        </div>
+
+        <main class="body-container">
+            <img src="/landing_logo.png" class="body-logo" alt="body-logo">
+            <a href="/menu-download.jpg" target="_blank" class="download-btn">
+                View Menu
+            </a>
+        </main>
+
+        <!-- dark blue bar and logo -->
+        <footer class="header-container">
+            <div class="logo-container">
+                <a href="/"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
+            </div>
+        </footer>
+
+        <%- include("accessibilityFeaturesPage") %>
+        <script type="module" src="/js/ADHDFocus.js"></script>
+        <script src="/js/translation.js"></script>
+        <script src="/js/textToSpeech.js"></script>
+        <script src="/js/createOrderNotification.js"></script>
+
+
+        <script>
+            try { localStorage.removeItem('yf_cart_v1'); } catch (e) {}
+        </script>
+    </body>
+</html>
