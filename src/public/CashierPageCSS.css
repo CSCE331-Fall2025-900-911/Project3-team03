@@ -87,6 +87,38 @@ body {
     transition: background-color 0.25s ease, transform 0.2s ease;
 }
 
+/* CSS for tabs */
+.menu-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.menu-tab {
+    padding: 0.5rem 1rem;
+    border-radius: 800px;
+    background: #f9fafb;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.menu-tab.active {
+    background: #111827;
+    color: #fff;
+}
+
+/* Displays 1 tab at a time */
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
 /* Group all drinks from the category */
 .menu-items {
     max-width: 1200px;
@@ -97,21 +129,21 @@ body {
 /* Organzie the group of drinks */
 .drink-items {
     display: grid;
-    grid-template-columns: repeat(6, 200px);
+    grid-template-columns: repeat(4, 260px);
     justify-content: center;
-    gap: 1.2rem;
-    margin: 1rem 0 2.5rem;
-    
+    gap: 2rem;
+    margin: 1.25rem 0 2.5rem;
+    align-items: start;
 }
 
 /* Organize the group of drinks */
 .drink-item {
     width: 260px;
-    height: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 0.5rem;
     animation: drink-fade 200ms ease;
 }
 
@@ -142,9 +174,8 @@ body {
 
 /* CSS for text */
 .price {
-    margin-top: 0.2rem;
-    font-weight: 500;
-    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0;
 }
 
 /* Popover button*/
