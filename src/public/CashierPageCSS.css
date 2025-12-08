@@ -121,15 +121,16 @@ body {
 
 /* Group all drinks from the category */
 .menu-items {
-    max-width: 1200px;
-    margin: 0 auto;
+    /* max-width: 1200px;  <-- removed to let flex control width */
+    margin: 0;
     padding: 0 1rem 2rem;
 }
 
 /* Organzie the group of drinks */
 .drink-items {
     display: grid;
-    grid-template-columns: repeat(4, 260px);
+    /* grid-template-columns: repeat(4, 260px); <-- old fixed columns */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     justify-content: center;
     gap: 2rem;
     margin: 1.25rem 0 2.5rem;
@@ -138,7 +139,7 @@ body {
 
 /* Organize the group of drinks */
 .drink-item {
-    width: 260px;
+    width: 100%; /* Fill the grid cell */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -462,7 +463,145 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-.cart-notification.show:hover {
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+
+/* Layout for sidebar */
+.cashier-layout {
+    display: flex;
+    max-width: 1560px; /* Increased max-width for better use of space */
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    gap: 2rem;
+    align-items: flex-start;
 }
+
+.menu-section {
+    flex: 1;
+    min-width: 0; /* Prevent flex item from overflowing */
+}
+
+.sidebar-section {
+    width: 380px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    padding: 1.25rem;
+    max-height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sidebar Specifics */
+.sidebar-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    color: #111827;
+    text-align: center;
+}
+
+.cart-content {
+    flex: 1 1 auto;
+    min-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Cart Item Styles (Copied/Adapted from PaymentPage) */
+.cart-line {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cart-line:last-child {
+    border-bottom: none;
+}
+
+.cart-line-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-line-name {
+    font-weight: 700;
+    color: #000;
+}
+
+.cart-line-attrs {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.cart-line-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.25rem;
+}
+
+.cart-line-price {
+    font-weight: 700;
+}
+
+.cart-line-thumb {
+    display: none; /* Hide thumbs in small sidebar to save space */
+}
+
+/* Sidebar Actions */
+.sidebar-footer {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.checkout-btn {
+    background: #111827;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.checkout-btn:hover {
+    background: #1f2937;
+}
+
+.edit-line, .remove-line {
+    background: #eee;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.edit-line:hover, .remove-line:hover {
+    background: #ddd;
+}
+

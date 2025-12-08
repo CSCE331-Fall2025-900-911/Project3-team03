@@ -32,13 +32,13 @@
 
         <div class="menu-title">
             <h1>Drinks Menu</h1>
-            <p>Select drinks below and add them to the order.</p>
-            <a href="/payment" class="proceed-button">Proceed to Payment</a>
         </div>
 
-            <!-- All drinks showing name/price -->
-            <div class="menu-items">
-                <!-- Drinks seperated by tabs -->
+<div class="cashier-layout">
+            <div class="menu-section">
+                <!-- All drinks showing name/price -->
+                <div class="menu-items">
+                    <!-- Drinks seperated by tabs -->
                 <div class="menu-tabs">
                     <button class="menu-tab active" data-tab="tea">Tea Series</button>
                     <button class="menu-tab" data-tab="fruit-tea">Fruit Tea Series</button>
@@ -49,7 +49,6 @@
 
                 <section class="tab-panel active" data-tab="tea">
                     <!-- Category: Tea -->
-                    <h2>Tea Series</h2>
                     <div class="drink-items">
                         <div class="drink-item">
                             <button
@@ -96,7 +95,6 @@
 
                 <section class="tab-panel" data-tab="fruit-tea">
                     <!-- Category: Fruit Tea -->
-                    <h2>Fruit Tea Series</h2>
                     <div class="drink-items">
                         <div class="drink-item">
                             <button
@@ -153,7 +151,6 @@
 
                 <section class="tab-panel" data-tab="tea-latte">
                     <!-- Category: Tea Latte -->
-                    <h2>Tea Latte Series</h2>
                     <div class="drink-items">
                         <div class="drink-item">
                             <button
@@ -230,7 +227,6 @@
 
                 <section class="tab-panel" data-tab="traditional">
                     <!-- Category: Traditional -->
-                    <h2>Traditional Series</h2>
                     <div class="drink-items">
                         <div class="drink-item">
                             <button
@@ -277,7 +273,6 @@
 
                 <section class="tab-panel" data-tab="seasonal">
                     <!-- Category: Seasonal -->
-                    <h2>Seasonal Series</h2>
                     <div class="drink-items">
                         <div class="drink-item">
                             <button
@@ -321,7 +316,24 @@
                         </div>
                     </div>
                 </section>
-            </div>
+                </div> <!-- End menu-items -->
+            </div> <!-- End menu-section -->
+
+            <!-- Sidebar -->
+            <aside class="sidebar-section">
+                <h2 class="sidebar-title">Current Order</h2>
+                <div id="sidebar-cart" class="cart-content">
+                    <!-- Cart items will be rendered here -->
+                </div>
+                <div class="sidebar-footer">
+                    <div class="cart-total">
+                        <span>Total</span>
+                        <span class="cart-total-price">$0.00</span>
+                    </div>
+                    <a href="/payment" class="checkout-btn">Proceed to Payment</a>
+                </div>
+            </aside>
+        </div> <!-- End cashier-layout -->
 
         <!-- Toppings Section -->
         <div id="toppings" class="toppings-modal" hidden>
@@ -452,13 +464,15 @@
         <script src="/js/textToSpeech.js"></script>
 
         <script type="module">
-            import { addToCart, getCart, saveCart } from '/js/cart.js';
+            import { addToCart, getCart, saveCart, renderCartInto, computePrice, dollars } from '/js/cart.js';
 
             let pendingDrink = null;
             let editCartIndex = null;
 
             const toppingsModal = document.getElementById('toppings');
             const toppingsCloseBtn = toppingsModal.querySelector('.toppings-close');
+            const cartContainer = document.getElementById('sidebar-cart');
+            const totalNode = document.querySelector('.cart-total-price');
 
             let quantity = 1; // user can set the amount of drinks to add to cart
 
@@ -466,6 +480,88 @@
             const qtyDecBtn = toppingsModal.querySelector('.qty-decrease'); 
             const qtyIncBtn = toppingsModal.querySelector('.qty-increase'); 
             const cartNotification = document.getElementById('cart-notification');
+
+            // --- Sidebar Logic ---
+            function updateSidebar() {
+                const { total } = renderCartInto(cartContainer);
+                totalNode.textContent = `$${dollars(total)}`;
+            }
+
+            // Initial render
+            updateSidebar();
+
+            // Handle Sidebar Clicks (Edit/Remove)
+            cartContainer.addEventListener('click', (e) => {
+                // Remove
+                if (e.target.closest('.remove-line')) {
+                    // renderCartInto handles the removal logic internally if we didn't override it,
+                    // BUT renderCartInto in cart.js attaches its own event listener for remove-line?
+                    // Let's check cart.js.
+                    // cart.js: removeBtn.addEventListener('click', ...) -> calls renderCartInto.
+                    // So we just need to update OUR total.
+                    // Actually, cart.js's renderCartInto updates the total node if found by selector .cart-total-price.
+                    // So it might just work!
+                    // Let's double check if we need to do anything here.
+                    // The cart.js implementation of renderCartInto attaches a click listener to remove button.
+                    // It modifies the cart, saves it, re-renders (into the same container), and updates .cart-total-price.
+                    // Since we use the same class names (.cart-total-price), it should work out of the box!
+                    return; 
+                }
+
+                // Edit
+                const editBtn = e.target.closest('.edit-line');
+                if (editBtn) {
+                    const line = editBtn.closest('.cart-line');
+                    const index = Number(line.dataset.index);
+                    editItem(index);
+                }
+            });
+
+            function editItem(index) {
+                const cart = getCart();
+                const item = cart[index];
+                if (!item) return;
+
+                editCartIndex = index;
+                pendingDrink = {
+                    drinkId: item.drinkId,
+                    name: item.name,
+                    basePrice: item.basePrice,
+                    imgSrc: item.imgSrc || `/drinksImages/${item.drinkId}.png`,
+                };
+
+                const scope = document.getElementById('toppings');
+
+                // Prefill toppings
+                const currentToppings = item.toppings || [];
+                scope.querySelectorAll('.topping input[type="checkbox"]').forEach((cb) => {
+                    cb.checked = currentToppings.includes(cb.value);
+                });
+
+                scope.querySelectorAll('input[type="radio"]').forEach((r) => {
+                    r.checked = false;
+                });
+
+                const setRadio = (name, value) => {
+                    if (value == null) return;
+                    const input = scope.querySelector(
+                        `input[name="${name}"][value="${value}"]`
+                    );
+                    if (input) input.checked = true;
+                };
+
+                setRadio('size', item.size);
+                setRadio('temp', item.temp);
+                setRadio('sugar', item.sugar);
+                setRadio('ice', item.ice);
+                setRadio('milk', item.milk);
+
+                setQuantity(1); // Default to 1 when editing, or maybe we should support quantity in cart item? 
+                                // Current cart item doesn't seem to store quantity (it stores individual items). 
+                                // So we just edit one item.
+
+                openToppings();
+            }
 
             function showCartNotification(message) {
                 if (!cartNotification) return;
@@ -521,53 +617,8 @@
             // If we came here from the payment page to edit an existing drink:
             const storedEditIndex = sessionStorage.getItem('editIndex');
             if (storedEditIndex !== null) {
-                editCartIndex = Number(storedEditIndex);
-                sessionStorage.removeItem('editIndex');   
-
-                const cart = getCart();
-                const item = cart[editCartIndex];
-
-                if (item) {
-                    pendingDrink = {
-                        drinkId: item.drinkId,
-                        name: item.name,
-                        basePrice: item.basePrice,
-                        imgSrc: item.imgSrc || `/drinksImages/${item.drinkId}.png`,
-                    };
-
-                    const scope = document.getElementById('toppings');
-
-                    // Prefill toppings checkboxes
-                    const currentToppings = item.toppings || [];
-                    scope.querySelectorAll('.topping input[type="checkbox"]').forEach((cb) => {
-                        cb.checked = currentToppings.includes(cb.value);
-                    });
-
-                    scope.querySelectorAll('input[type="radio"]').forEach((r) => {
-                        r.checked = false;
-                    });
-
-                    const setRadio = (name, value) => {
-                        if (value == null) return;
-                        const input = scope.querySelector(
-                            `input[name="${name}"][value="${value}"]`
-                        );
-                        if (input) input.checked = true;
-                    };
-
-                    setRadio('size', item.size);
-                    setRadio('temp', item.temp);
-                    setRadio('sugar', item.sugar);
-                    setRadio('ice', item.ice);
-                    setRadio('milk', item.milk);
-
-                    setQuantity(1);
-
-                    openToppings();
-                } else {
-                    // index invalid, cancel edit mode
-                    editCartIndex = null;
-                }
+                editItem(Number(storedEditIndex));
+                sessionStorage.removeItem('editIndex');
             }
 
             // Lets a cashier click a drink, pick attributes, and add that configured drink to the cart stored in localStorage 
@@ -680,6 +731,7 @@
                 }, 800);
 
                 showCartNotification('Successfully added to shopping cart');
+                updateSidebar(); // Refresh sidebar
                 closeToppings();
             });
 
