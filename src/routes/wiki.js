@@ -21,6 +21,22 @@ const wikiMap = {
     'Longan Ginger Tea': 'Longan',
     'Ginger Tea': 'Ginger_tea',
     'Pearl Ginger Milk Tea': 'Bubble_tea',
+    'Sugar Cane Mountain Tea' : 'Sugarcane', //new onward
+    'Black Tea Latte' : 'Black_tea',
+    'Fresh Taro Latte' : 'Taro',
+    'Taro Milk Tea' : 'Taro',
+    'Matcha Milk Tea' : 'Matcha',
+    'Brown Sugar Milk Tea' : 'Bubble_tea',
+    'Jasmine Milk Tea' : 'Jasmine_tea',
+    'Earl Grey Milk Tea' : 'Earl_Grey_tea',
+    'Mango Pomelo Sago' : 'Mango_pomelo_sago',
+    'Almond Milk Grass Jelly' : 'Almond_milk',
+    'Strawberry Smoothie' : 'Strawberry',
+    'Yakult Mountain Tea' : 'Yakult',
+    'Yakult Passion Fruit Green Tea' : 'Yakult',
+    'Vietnamese Coffee' : 'Vietnamese_iced_coffee',
+    'Brew' : 'Coffee',
+    'Chocolate Cream Brew' : 'Chocolate' 
 };
 
 const nutritionMap = {
@@ -111,6 +127,70 @@ const nutritionMap = {
   "Pearl Ginger Milk Tea": [
     "Calories: 500 → 1,570",
     "Allergens: Milk, tapioca pearls."
+  ],
+    "Sugar Cane Mountain Tea": [
+    "Calories: 90 → 1,120",
+    "Allergens: None major."
+  ],
+  "Black Tea Latte": [
+    "Calories: 350 → 1,420",
+    "Allergens: Milk."
+  ],
+  "Fresh Taro Latte": [
+    "Calories: 420 → 1,490",
+    "Allergens: Milk, taro (root vegetable)."
+  ],
+  "Taro Milk Tea": [
+    "Calories: 380 → 1,450",
+    "Allergens: Milk, taro."
+  ],
+  "Matcha Milk Tea": [
+    "Calories: 350 → 1,420",
+    "Allergens: Milk."
+  ],
+  "Brown Sugar Milk Tea": [
+    "Calories: 480 → 1,550",
+    "Allergens: Milk."
+  ],
+  "Jasmine Milk Tea": [
+    "Calories: 350 → 1,420",
+    "Allergens: Milk."
+  ],
+  "Earl Grey Milk Tea": [
+    "Calories: 360 → 1,430",
+    "Allergens: Milk, bergamot (citrus-derived aroma)."
+  ],
+  "Mango Pomelo Sago": [
+    "Calories: 420 → 1,490",
+    "Allergens: Mango, coconut milk (tree-nut category for some), pomelo (citrus)."
+  ],
+  "Almond Milk Grass Jelly": [
+    "Calories: 200 → 1,270",
+    "Allergens: Almond (major allergen)."
+  ],
+  "Strawberry Smoothie": [
+    "Calories: 320 → 1,390",
+    "Allergens: Strawberry."
+  ],
+  "Yakult Mountain Tea": [
+    "Calories: 180 → 1,250",
+    "Allergens: Milk (Yakult contains skim milk)."
+  ],
+  "Yakult Passion Fruit Green Tea": [
+    "Calories: 200 → 1,270",
+    "Allergens: Milk (Yakult), passion fruit."
+  ],
+  "Vietnamese Coffee": [
+    "Calories: 220 → 1,290",
+    "Allergens: Milk (condensed milk)."
+  ],
+  "Brew": [
+    "Calories: 5 → 1,020",
+    "Allergens: None major."
+  ],
+  "Chocolate Cream Brew": [
+    "Calories: 250 → 1,320",
+    "Allergens: Milk, cocoa (possible trace allergens)."
   ]
 };
 
