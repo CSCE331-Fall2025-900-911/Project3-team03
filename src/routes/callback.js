@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
             grant_type: 'authorization_code',
         });
 
-        const userData = jwt.verify(resp.data.id_token);
+        const userData = jwt.decode(resp.data.id_token);
         const employeeData = await employeeExists(userData.email);
 
         if (!employeeData) {
