@@ -95,7 +95,7 @@ app.get('/manager', requireLogin, (req, res) => {
 
 app.get('/logout', (req, res) => {
     res.clearCookie('authToken');
-    return res.redirect('/');
+    return res.redirect('/login');
 });
 
 function requireLogin(req, res, next) {

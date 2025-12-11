@@ -19,7 +19,7 @@
                 <a class="nav-link" href="/employee">Employee</a>
                 <a class="nav-link active" href="/manager">Manager</a>
                 <a class="nav-link" href="/cashier">Cashier</a>
-                <a href="/logout">Log Out</a>
+                <a class="nav-link" id="logoutBtn">Log Out</a>
             </nav>
         </header>
 
@@ -562,6 +562,36 @@
                 <a href="/employee"><img src="/logo.png" alt="Yi Fang Logo" class="logo" /></a>
             </div>
         </footer>
+
+        <!--Z Report when LogOut-->
+        <script type="module">
+            async function handleLogoutClick(event) {
+                try {
+                    const res = await fetch('/api/zreport');
+                    const report = await res.json();
+
+                    const r = report[0];
+
+                    alert(`
+                    Z REPORT for ${new Date().toLocaleString()}
+                    Number of Sales: ${r.num_sales}
+                    Total Sales: $${r.total_sales}
+                    Discards: ${r.discards}
+                    Employees Worked: ${r.employees}`);
+                } catch (err) {
+                    console.error('Z Report failed to load', err);
+                }
+
+                window.location.href = '/logout';
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const logoutBtn = document.getElementById('logoutBtn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', handleLogoutClick);
+                }
+            });
+        </script>
 
         <%- include("accessibilityFeaturesPage") %>
         <script type="module" src="/js/ADHDFocus.js"></script>
