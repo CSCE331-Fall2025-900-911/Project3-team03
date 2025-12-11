@@ -4,6 +4,19 @@ const router = express.Router();
 const pool = require("../models/pool");
 
 /**
+ * This route module provides CRUD-style endpoints for managing drink items
+ * in the bubble-tea POS system’s manager interface. It allows the frontend
+ * to retrieve all drinks, create new drinks, and delete existing ones.
+ * Because the database schema uses names like `drink_id`, `category`, and
+ * `disabled`, this file also handles translating those fields into the
+ * frontend’s expected format (`id`, `size`, and `is_available`). New drinks
+ * are initialized with empty `ingredients` and `disabled` arrays, meaning
+ * they are available by default. All database operations use parameterized
+ * SQL queries for safety, and errors are caught and returned with consistent
+ * API responses for easier debugging on the frontend.
+ */
+
+/**
  * We map DB columns -> frontend fields as:
  *   drink_id        -> id
  *   name            -> name
