@@ -36,7 +36,8 @@ const wikiMap = {
     'Yakult Passion Fruit Green Tea' : 'Yakult',
     'Vietnamese Coffee' : 'Vietnamese_iced_coffee',
     'Brew' : 'Coffee',
-    'Chocolate Cream Brew' : 'Chocolate' 
+    'Chocolate Cream Brew' : 'Chocolate' ,
+    'Thai Milk Tea' : 'Thai_tea'
 };
 
 const nutritionMap = {
@@ -191,6 +192,10 @@ const nutritionMap = {
   "Chocolate Cream Brew": [
     "Calories: 250 → 1,320",
     "Allergens: Milk, cocoa (possible trace allergens)."
+  ],
+  "Thai Milk Tea": [
+  "Calories: 220 → 1,100",
+  "Allergens: Milk, black tea (possible trace allergens)."
   ]
 };
 
