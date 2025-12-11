@@ -396,6 +396,8 @@ body {
     border: 1px solid #939394;
     border-radius: 12px;
     background: #f8fafc;
+    white-space: nowrap;
+    overflow-x: auto;
 }
 
 .attribute-title {
@@ -407,11 +409,11 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-right: 14px;
+    margin-right: 6px;
     margin-bottom: 4px;
     cursor: pointer;
     border: 1px solid #939394;
-    padding: 6px 10px;
+    padding: 6px 8px;
     border-radius: 999px;
     transition: background 50ms ease;
 }
